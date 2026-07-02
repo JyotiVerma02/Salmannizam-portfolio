@@ -1,122 +1,876 @@
 "use client";
 
+import "@/styles/hero.css";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import Link from "next/link";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
-import AboutSection from "@/components/Common/AboutSection";
-import SkillsSection from "@/components/Common/SkillsSection";
-import ExperienceSection from "@/components/Common/ExperienceSection";
-import ProjectSection from "@/components/Common/ProjectSection";
-import CaseStudySection from "@/components/Common/CaseStudySection";
-import TestimonialSection from "@/components/Common/TestimonialSection";
-import BlogSection from "@/components/Common/BlogSection";
-import ContactSection from "@/components/Common/ContactSection";
 
-const cardVariant = {
-  hidden: { opacity: 0, y: 50 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.6,
-      ease: "easeOut",
-    },
-  }),
-} as any;
+const skillCategories = [
+  {
+    title: "Backend",
+    description:
+      "Building scalable backend systems, APIs, and microservices architecture.",
+    skills: [
+      "Node.js",
+      "NestJS",
+      "PHP",
+      "Laravel",
+      "REST APIs",
+      "RabbitMQ",
+      "Microservices",
+      "Serverless",
+    ],
+  },
+  {
+    title: "Frontend",
+    description:
+      "Creating responsive, performant user interfaces with modern frameworks.",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "HTML/CSS",
+      "Bootstrap",
+      "jQuery",
+      "Tailwind CSS",
+    ],
+  },
+  {
+    title: "Databases",
+    description:
+      "Designing efficient database schemas and optimizing query performance.",
+    skills: [
+      "MySQL",
+      "MongoDB",
+      "Redis",
+      "Database Design",
+      "Query Optimization",
+    ],
+  },
+  {
+    title: "DevOps / Cloud",
+    description:
+      "Infrastructure as code, containerization, cloud deployment, and observability.",
+    skills: [
+      "AWS",
+      "Azure",
+      "Docker",
+      "Kubernetes",
+      "Linux",
+      "CI/CD",
+      "Prometheus",
+      "Grafana",
+      "Monitoring",
+      "Logging",
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    description:
+      "Development workflow, collaboration tools, and methodologies.",
+    skills: [
+      "Git",
+      "GitHub",
+      "Postman",
+      "Linux",
+      "Agile/Scrum",
+      "API Integration",
+      "Authentication Systems",
+    ],
+  },
+];
+
+const experiences = [
+  {
+    role: "Co-Founder & Full-Stack Developer",
+    company: "Coderlala Technologies Private Limited",
+    duration: "December 2024 - Present",
+    location: "Gurugram, Haryana, India",
+    responsibilities: [
+      "Build full-stack applications using NestJS, Next.js, TypeScript, Node.js, MongoDB, and MySQL",
+      "Design scalable backend architectures with focus on performance and security",
+      "Develop SaaS products, APIs, dashboards, and automations",
+      "Integrate AI tools and APIs to enhance product capabilities",
+      "Lead product development from concept → MVP → Production",
+      "Work directly with clients to gather requirements and deliver solutions",
+      "Oversee code quality, deployments, and development processes",
+    ],
+    achievements: [
+      "Delivered multiple client products across Web, Mobile, and SaaS categories",
+      "Built a strong technical foundation for scaling Coderlala's product ecosystem",
+      "Helped position Coderlala Technologies as a multi-solution technology company",
+    ],
+  },
+  {
+    role: "Full-Stack Developer",
+    company: "WebShlok Digital Services",
+    duration: "March 2024 - Present",
+    location: "Gurugram, Haryana, India",
+    responsibilities: [
+      "Develop and maintain full-stack web applications",
+      "Build scalable backend systems and APIs",
+      "Collaborate with cross-functional teams",
+      "Develop responsive frontend interfaces",
+      "Optimize performance and maintain code quality",
+    ],
+    achievements: [
+      "Delivered multiple client projects",
+      "Improved application performance and user experience",
+    ],
+  },
+  {
+    role: "Backend Developer",
+    company: "Poliyx Pvt Ltd",
+    duration: "July 2022 - March 2024",
+    location: "Gurugram, Haryana, India",
+    responsibilities: [
+      "Developed multi-user platforms using PHP, MySQL, Node.js and MongoDB",
+      "Built REST APIs",
+      "Integrated third-party Insurance APIs",
+      "Worked closely with frontend team",
+      "Optimized databases and backend performance",
+    ],
+    achievements: [
+      "Built a platform serving 1,000+ users daily",
+      "Developed a stock market platform for 1,000+ companies",
+      "Automated workflows using API integrations",
+    ],
+  },
+  {
+    role: "Trainee Developer",
+    company: "Centre for Development of Telematics (C-DOT)",
+    duration: "April 2022 - July 2022",
+    location: "Delhi, India",
+    responsibilities: [
+      "Developed REST services",
+      "Built backend APIs",
+      "Prepared technical documentation",
+      "Debugged and optimized existing modules",
+    ],
+    achievements: [
+      "Contributed to large-scale backend systems",
+      "Improved overall system performance",
+    ],
+  },
+];
+
+const projects = [
+  {
+    id: "saarthii",
+    title: "Saarthii B2B Transaction Platform",
+    description:
+      "Comprehensive B2B transaction platform featuring wallet, air, bus and rail booking with multiple payment gateways.",
+    tech: ["Next.js", "NestJS", "MongoDB", "Redis", "AWS", "Docker"],
+    gradient: "orange",
+  },
+  {
+    id: "coderlala",
+    title: "CoderLala CRM System",
+    description:
+      "Enterprise-grade CRM platform built with microservices architecture, RabbitMQ and real-time processing.",
+    tech: ["Next.js", "NestJS", "MongoDB", "Redis", "RabbitMQ", "Docker"],
+    gradient: "blue",
+  },
+];
+
+const testimonials = [
+  {
+    quote:
+      "Working with CoderLala was a seamless experience. They built a clean, fast and fully mobile-optimized yoga platform that made it easier for our students to explore classes and schedules.",
+    name: "Ravinder",
+    role: "Founder",
+    company: "SkyYogaShala",
+  },
+  {
+    quote:
+      "CoderLala created a modern and professional website for our clinic. The layout, appointment system, and overall structure are intuitive, making it very easy for patients to find information.",
+    name: "Dr. (Maj) Chander Prakash",
+    role: "Founder & Chief Dentist",
+    company: "Kreative Dentistry",
+  },
+  {
+    quote:
+      "Our GCAD training platform required clarity, structure and a smooth experience for students. CoderLala delivered a fast, organized and easy-to-update website that works perfectly for our academic needs.",
+    name: "Dr. (Maj) Chander Prakash",
+    role: "Director",
+    company: "Kreative GCAD",
+  },
+  {
+    quote:
+      "CoderLala built a premium-quality website for our aesthetics and cosmetic services. The design aligns well with our brand and presents our treatments in a clear and elegant way.",
+    name: "Dr. (Maj) Chander Prakash",
+    role: "Founder",
+    company: "Kreative Aesthetics",
+  },
+  {
+    quote:
+      "We partnered with CoderLala to revamp the Polaris Hospitals website. The new version is clean, well-structured, and makes it easy for patients to explore departments and doctors.",
+    name: "Dr. Sringari",
+    role: "Medical Director",
+    company: "Polaris Hospitals",
+  },
+  {
+    quote:
+      "CoderLala designed a vibrant and high-performance website for our painting services. It showcases our work beautifully and provides visitors with a smooth browsing experience.",
+    name: "Zahid Malik",
+    role: "Founder",
+    company: "RangRoganWala",
+  },
+  {
+    quote:
+      "Our health & wellness platform required a clean, trustworthy and user-friendly interface. CoderLala delivered a well-structured website with excellent clarity and fast loading performance.",
+    name: "Poonam Agrawal",
+    role: "Co-Founder",
+    company: "RiPRAP Health",
+  },
+];
 
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(useTransform(mouseY, [-200, 200], [10, -10]), {
+    stiffness: 120,
+    damping: 18,
+  });
+
+  const rotateY = useSpring(useTransform(mouseX, [-200, 200], [-10, 10]), {
+    stiffness: 120,
+    damping: 18,
+  });
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
+      document.documentElement.style.setProperty("--cursor-x", `${e.clientX}px`);
+      document.documentElement.style.setProperty("--cursor-y", `${e.clientY}px`);
+      const px = (e.clientX / window.innerWidth - 0.5) * 30;
+      const py = (e.clientY / window.innerHeight - 0.5) * 30;
+      document.documentElement.style.setProperty("--parallax-x", `${px}px`);
+      document.documentElement.style.setProperty("--parallax-y", `${py}px`);
+
+      mouseX.set(e.clientX - window.innerWidth / 2);
+      mouseY.set(e.clientY - window.innerHeight / 2);
     };
+
     window.addEventListener("mousemove", onMove);
     return () => window.removeEventListener("mousemove", onMove);
   }, []);
 
   return (
     <>
-      <div className="cursor-glow" style={{ left: cursorPos.x, top: cursorPos.y }} />
-    <main className="main">
-      {/*================ BACKGROUND BLOBS =================*/}
-      <div className="blob-big" style={{ top: "-10rem", left: "-10rem" }} />
-      <div className="blob-big" style={{ top: "10rem", right: "-10rem" }} />
+      <div className="cursor-glow" />
+      <main className="main">
+        <div className="blob-big blob-left" />
+        <div className="blob-big blob-right" />
 
-      {/*================ HEADER =================*/}
-      <Navbar />
-      
-      {/*================ HERO (Centered) =================*/}
-      <section className="hero--center">
-        <div className="hero__inner container">
+        <Navbar />
 
-          {/* LEFT */}
-          <div className="hero__left">
-            <div className="hero__kicker">
-              <span /> Senior Full-Stack Developer
+        <motion.section
+          id="home"
+          className="hero--center"
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
+        >
+          <div className="hero__inner container">
+            <div className="hero__left">
+              <motion.div
+                className="hero-badge"
+                initial={{ scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 0.12, duration: 0.6 }}
+              >
+                <span className="badge-dot" />
+                <span className="badge-text">Senior Developer</span>
+              </motion.div>
+
+              <h1 className="hero-headline">
+                <motion.span
+                  className="line"
+                  initial={{ y: 28, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.22, duration: 0.6 }}
+                >
+                  Building Scalable
+                </motion.span>
+                <motion.span
+                  className="line"
+                  initial={{ y: 28, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.36, duration: 0.6 }}
+                >
+                  Backend Systems
+                </motion.span>
+                <motion.span
+                  className="line line--accent"
+                  initial={{ y: 28, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.5, duration: 0.6 }}
+                >
+                  with <span className="accent">Precision</span>
+                </motion.span>
+              </h1>
+
+              <motion.p
+                className="hero-desc"
+                initial={{ y: 18, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.72, duration: 0.6 }}
+              >
+                I design high-performance backend systems, APIs, and cloud
+                infrastructure—building resilient services and developer tools
+                that scale to millions of users.
+              </motion.p>
+
+              <div className="hero-actions">
+                <motion.a
+                  href="#projects"
+                  className="btn btn--primary magnetic"
+                  initial={{ y: 18, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 0.88 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  View Projects
+                  <div className="ripple" />
+                </motion.a>
+                <motion.a
+                  href="#contact"
+                  className="btn btn--outline magnetic"
+                  initial={{ y: 18, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1.02 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Contact Me
+                  <div className="ripple" />
+                </motion.a>
+              </div>
+
+              <div className="hero-stats">
+                <motion.div
+                  className="stat-card"
+                  initial={{ y: 12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1.18 }}
+                >
+                  <div className="stat-icon">●</div>
+                  <div className="stat-body">
+                    <div className="stat-num">3+</div>
+                    <div className="stat-label">Years Experience</div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  className="stat-card"
+                  initial={{ y: 12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1.32 }}
+                >
+                  <div className="stat-icon">●</div>
+                  <div className="stat-body">
+                    <div className="stat-num">20+</div>
+                    <div className="stat-label">Projects</div>
+                  </div>
+                </motion.div>
+                <motion.div
+                  className="stat-card"
+                  initial={{ y: 12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ delay: 1.46 }}
+                >
+                  <div className="stat-icon">●</div>
+                  <div className="stat-body">
+                    <div className="stat-num">10K+</div>
+                    <div className="stat-label">Users</div>
+                  </div>
+                </motion.div>
+              </div>
             </div>
 
-            <h1 className="hero__lead">
-              Building Scalable <br />
-              Backend Systems with <span className="highlight">Precision</span>
-            </h1>
+            <div className="hero__right">
+              <motion.div
+                className="hero-image-stage"
+                initial={{ scale: 0.98, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: 1.6, duration: 0.8 }}
+                whileHover={{ scale: 1.03 }}
+              >
+                <div className="hero-image-glass">
+                  <motion.div
+                    className="hero-image-wrap"
+                    style={{
+                      rotateX,
+                      rotateY,
+                      transformPerspective: 1200,
+                    }}
+                    animate={{
+                      y: [0, -10, 0, -6, 0],
+                      rotateZ: [0, -1.2, 0, 1.2, 0],
+                      scale: [1, 1.015, 1, 1.01, 1],
+                    }}
+                    transition={{
+                      duration: 10,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <Image
+                      src="/developer-transparent.png"
+                      alt="Developer"
+                      width={760}
+                      height={760}
+                      priority
+                      className="hero-image"
+                    />
+                  </motion.div>
+                </div>
 
-            <p className="hero__sub">
-              I design high-performance backend systems, APIs, and architectures
-              that scale from startup to millions of users.
+                <div className="hero-image-effects">
+                  <div className="effect-circle" />
+                  <div className="effect-circle small" />
+                  <div className="particles">
+                    <span className="p" />
+                    <span className="p" />
+                    <span className="p" />
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </motion.section>
+
+        <section id="about" className="section container">
+          <h2 className="section__title">
+            About <span>Me</span>
+          </h2>
+
+          <div className="card" style={{ padding: "2rem", lineHeight: "1.8" }}>
+            <h3 style={{ color: "var(--white-color)", marginBottom: "1rem" }}>
+              Professional Background
+            </h3>
+            <p style={{ marginBottom: "1.5rem" }}>
+              I am a senior full-stack developer with extensive experience in building
+              scalable backend systems, robust infrastructure, and user-focused products.
+              My career has been focused on solving complex engineering challenges across
+              various domains.
             </p>
 
-            <div className="hero__buttons">
-              <button className="btn btn--primary">View Projects</button>
-              <button className="btn btn--outline">Contact Me</button>
-            </div>
+            <h3 style={{ color: "var(--white-color)", marginBottom: "1rem" }}>
+              Career Journey
+            </h3>
+            <p style={{ marginBottom: "1.5rem" }}>
+              Starting from frontend development, I gradually moved into full-stack roles,
+              with a strong focus on backend architecture, database design, and system scalability.
+              I've worked with startups and established companies, building products that
+              serve thousands to millions of users.
+            </p>
 
-            <div className="hero__stats">
-              <div>
-                <h3>3+</h3>
-                <p>Years Exp</p>
-              </div>
-              <div>
-                <h3>20+</h3>
-                <p>Projects</p>
-              </div>
-              <div>
-                <h3>10k+</h3>
-                <p>Users</p>
-              </div>
-            </div>
+            <h3 style={{ color: "var(--white-color)", marginBottom: "1rem" }}>
+              Engineering Philosophy
+            </h3>
+            <p style={{ marginBottom: "1.5rem" }}>
+              I believe in writing clean, maintainable code that solves real problems.
+              I prioritize scalability, performance, and developer experience. Every system
+              should be built with future growth in mind, but not over-engineered for current needs.
+            </p>
+
+            <h3 style={{ color: "var(--white-color)", marginBottom: "1rem" }}>
+              Types of Problems I Solve
+            </h3>
+
+            <ul style={{ paddingLeft: "1.2rem", color: "var(--text-color)" }}>
+              <li>Backend architecture and API design</li>
+              <li>Database optimization and scaling</li>
+              <li>Infrastructure setup and DevOps</li>
+              <li>Product development from concept to launch</li>
+              <li>Performance optimization</li>
+              <li>System reliability and monitoring</li>
+            </ul>
+          </div>
+        </section>
+
+        <section id="skills" className="section container">
+          <h2 className="section__title">
+            Skills <span>& Expertise</span>
+          </h2>
+
+          <p
+            style={{
+              textAlign: "center",
+              maxWidth: "700px",
+              margin: "0 auto 3rem",
+              color: "var(--text-color)",
+            }}
+          >
+            A comprehensive overview of my technical skills and areas of expertise.
+          </p>
+
+          <div
+            className="grid"
+            style={{
+              gridTemplateColumns: "repeat(auto-fit,minmax(320px,1fr))",
+              gap: "2rem",
+            }}
+          >
+            {skillCategories.map((category, index) => (
+              <motion.div
+                key={category.title}
+                className="card"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                }}
+                style={{
+                  padding: "2rem",
+                }}
+              >
+                <h3
+                  style={{
+                    color: "var(--white-color)",
+                    marginBottom: ".75rem",
+                  }}
+                >
+                  {category.title}
+                </h3>
+
+                <p
+                  style={{
+                    color: "var(--text-color)",
+                    marginBottom: "1.5rem",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {category.description}
+                </p>
+
+                <div
+                  style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: ".7rem",
+                  }}
+                >
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      style={{
+                        padding: ".55rem 1rem",
+                        borderRadius: "999px",
+                        background: "rgba(255,140,40,.12)",
+                        border: "1px solid rgba(255,140,40,.18)",
+                        color: "var(--white-color)",
+                        fontSize: ".9rem",
+                        transition: ".3s",
+                      }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="experience" className="section container">
+          <h2 className="section__title">
+            Professional <span>Experience</span>
+          </h2>
+
+          <p
+            style={{
+              textAlign: "center",
+              color: "var(--text-color)",
+              maxWidth: "700px",
+              margin: "0 auto 4rem",
+            }}
+          >
+            Professional journey and career milestones.
+          </p>
+
+          <div className="experience">
+            {experiences.map((job, index) => (
+              <motion.div
+                key={job.company + index}
+                className="experience__item card"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="experience__dot"></div>
+
+                <h3>{job.role}</h3>
+
+                <h4>{job.company}</h4>
+
+                <small>
+                  {job.duration} • {job.location}
+                </small>
+
+                <h5>Responsibilities</h5>
+
+                <ul>
+                  {job.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+
+                <h5>Key Achievements</h5>
+
+                <ul>
+                  {job.achievements.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="projects" className="section container">
+          <div className="section-heading">
+            <h2 className="section__title">
+              Featured <span>Projects</span>
+            </h2>
+
+            <p className="section-description">
+              Real-world projects showcasing technical expertise and scalable
+              architecture.
+            </p>
           </div>
 
-          {/* RIGHT */}
-              <div className="hero__right">
-            <motion.div
-              className="hero-image-wrapper"
-              whileHover={{ scale: 1.02 }}
-              transition={{ type: "spring", stiffness: 140 }}
-            >
-              <Image
-                src="/developer-3d.png"
-                alt="3D Developer"
-                width={720}
-                height={720}
-                priority
-                className="hero-image"
-              />
-            </motion.div>
+          <div className="projects-grid">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="project-card"
+                initial={{ opacity: 0, y: 70 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.2,
+                }}
+              >
+                <div className={`project-image ${project.gradient}`}>
+                  <span>🚀</span>
+                </div>
+
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+
+                  <p>{project.description}</p>
+
+                  <div className="tech-list">
+                    {project.tech.map((tech) => (
+                      <span key={tech}>{tech}</span>
+                    ))}
+                  </div>
+
+                  <Link href={`/projects/${project.id}`} className="project-btn">
+                    Learn More →
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
-      </section>
-      <AboutSection />
-      <SkillsSection />
-      <ExperienceSection />
-      <ProjectSection />
-      <CaseStudySection />
-      <TestimonialSection />
-      <BlogSection />
-      <ContactSection />
-    </main>
+        </section>
+
+        <section id="case-studies" className="section container">
+          <div className="section-heading">
+            <h2 className="section__title">
+              Case <span>Studies</span>
+            </h2>
+
+            <p className="section-description">
+              Detailed case studies showcasing technical challenges, engineering
+              decisions, solutions, and measurable outcomes from real-world
+              projects.
+            </p>
+          </div>
+
+          <motion.div
+            className="case-study-card"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="case-study-banner">
+              <span>📖</span>
+            </div>
+
+            <div className="case-study-content">
+              <div className="case-study-meta">
+                <span>Various Projects</span>
+                <span>•</span>
+                <span>January 2026</span>
+              </div>
+
+              <h3>Case Studies Coming Soon</h3>
+
+              <p>
+                I'm preparing detailed engineering case studies covering backend
+                architecture, system design, scaling challenges, DevOps practices,
+                cloud infrastructure, API development, and performance optimization
+                from production applications.
+              </p>
+
+              <a href="#" className="case-study-btn">
+                Read Case Study →
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="testimonials" className="section container">
+          <div className="section-heading">
+            <span className="section-tag">Client Reviews</span>
+
+            <h2 className="section__title">
+              Client <span>Testimonials</span>
+            </h2>
+
+            <p className="section-description">
+              Hear from businesses that have achieved digital transformation
+              through our development services.
+            </p>
+          </div>
+
+          <div className="testimonial-grid">
+            {testimonials.map((item, index) => (
+              <motion.div
+                key={index}
+                className="testimonial-card"
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.08,
+                }}
+              >
+                <div className="quote-icon">❝</div>
+
+                <p className="testimonial-text">{item.quote}</p>
+
+                <div className="testimonial-user">
+                  <div className="testimonial-avatar">
+                    {item.name.charAt(0)}
+                  </div>
+
+                  <div>
+                    <h4>{item.name}</h4>
+                    <span>{item.role}</span>
+                    <small>{item.company}</small>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          <div className="testimonial-cta">
+            <h3>Ready to start your project?</h3>
+            <a href="#contact" className="btn btn--primary">
+              Get in Touch
+            </a>
+          </div>
+        </section>
+
+        <section id="blog" className="section container">
+          <div className="section-heading">
+            <span className="section-tag">Knowledge Sharing</span>
+
+            <h2 className="section__title">
+              Latest <span>Blog</span>
+            </h2>
+
+            <p className="section-description">
+              Technical articles, tutorials, and insights on full-stack
+              development, backend systems, cloud architecture, DevOps,
+              and modern web technologies.
+            </p>
+          </div>
+
+          <motion.div
+            className="blog-card"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="blog-banner">
+              <span>✍️</span>
+            </div>
+
+            <div className="blog-content">
+              <div className="blog-meta">
+                <span>Announcement</span>
+                <span>•</span>
+                <span>January 10, 2026</span>
+              </div>
+
+              <h3>Blog Coming Soon</h3>
+
+              <p>
+                I'm currently preparing in-depth technical articles covering
+                Next.js, NestJS, Node.js, TypeScript, System Design,
+                Microservices, AWS, Docker, Kubernetes, DevOps,
+                Performance Optimization, and Software Engineering
+                best practices.
+              </p>
+
+              <a href="#" className="blog-btn">
+                Read More →
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="contact" className="section container">
+          <div className="section-heading">
+            <h2 className="section__title">
+              Contact <span>Me</span>
+            </h2>
+            <p className="section-description">
+              Interested in collaborating? Send a message and I’ll get back to you soon.
+            </p>
+          </div>
+
+          <div className="contact-grid">
+            <form className="contact-card">
+              <input type="text" placeholder="Your name" />
+              <input type="email" placeholder="Email" />
+              <textarea rows={6} placeholder="Message"></textarea>
+              <button type="submit" className="btn btn--primary">
+                Send Message
+              </button>
+            </form>
+
+            <div className="contact-info card">
+              <h3>Get in touch</h3>
+              <p>
+                I’m available for freelance projects, collaborations, and remote roles.
+                Let’s build something great together.
+              </p>
+              <a className="nav__contact" href="mailto:hello@example.com">
+                Email Me
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
     </>
   );
 }
