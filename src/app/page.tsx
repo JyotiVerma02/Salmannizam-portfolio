@@ -3,15 +3,15 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import Navbar from "@/components/Navbar";
-import AboutSection from "@/components/AboutSection";
-import SkillsSection from "@/components/SkillsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectSection from "@/components/ProjectSection";
-import CaseStudySection from "@/components/CaseStudySection";
-import TestimonialSection from "@/components/TestimonialSection";
-import BlogSection from "@/components/BlogSection";
-import ContactSection from "@/components/ContactSection";
+import Navbar from "@/components/Navbar/Navbar";
+import AboutSection from "@/components/Common/AboutSection";
+import SkillsSection from "@/components/Common/SkillsSection";
+import ExperienceSection from "@/components/Common/ExperienceSection";
+import ProjectSection from "@/components/Common/ProjectSection";
+import CaseStudySection from "@/components/Common/CaseStudySection";
+import TestimonialSection from "@/components/Common/TestimonialSection";
+import BlogSection from "@/components/Common/BlogSection";
+import ContactSection from "@/components/Common/ContactSection";
 
 const cardVariant = {
   hidden: { opacity: 0, y: 50 },
