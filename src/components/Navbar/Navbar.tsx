@@ -9,10 +9,10 @@ import { usePathname } from "next/navigation";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Skills", href: "/skills" },
-  { label: "Experience", href: "/experience" },
+
+  
   { label: "Projects", href: "/projects" },
-  { label: "Case Studies", href: "/case-studies" },
+  
   { label: "Testimonials", href: "/testimonials" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -44,59 +44,62 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <nav
-          className={`navbar-shell ${scrolled ? "scrolled" : ""}`}
-          aria-label="Primary navigation"
-        >
-          <motion.div
-            initial={{ x: -24, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-          >
-            <Link href="/" className="navbar-logo" aria-label="Go to home page">
-              Salman <span className="navbar-logo-accent">Nizam</span>
+   <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
+  
+  {/* LEFT - LOGO */}
+  <div className="navbar-left">
+    <Link href="/" className="navbar-logo">
+      Salman <span className="navbar-logo-accent">Nizam</span>
+    </Link>
+  </div>
+
+  {/* CENTER - MENU */}
+  <div className="navbar-center">
+    <ul className="navbar-menu-list">
+      {navItems.map((item, index) => {
+        const isActive = activeSection === item.href;
+
+        return (
+          <motion.li key={item.label} className="navbar-menu-item">
+            <Link
+              href={item.href}
+              className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
+            >
+              {item.label}
+              <span className="navbar-link-glow" />
             </Link>
-          </motion.div>
+          </motion.li>
+        );
+      })}
+    </ul>
+  </div>
 
-          <div className="navbar-desktop-menu">
-            <ul className="navbar-menu-list">
-              {navItems.map((item, index) => {
-                const isActive = activeSection === item.href;
-                return (
-                  <motion.li
-                    key={item.label}
-                    className="navbar-menu-item"
-                    initial={{ y: -8, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.35, delay: 0.12 + index * 0.04 }}
-                  >
-                    <Link
-                      href={item.href}
-                      className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
-                      aria-current={isActive ? "page" : undefined}
-                    >
-                      {item.label}
-                      <span className="navbar-link-glow" />
-                    </Link>
-                  </motion.li>
-                );
-              })}
-            </ul>
-          </div>
+  {/* RIGHT - ACTIONS */}
+  <div className="navbar-right">
+    
+    {/* Theme Toggle */}
+    <button className="navbar-icon-btn">
+      🌙
+    </button>
 
-          <button
-            type="button"
-            className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
-            onClick={() => setOpen((prev) => !prev)}
-            aria-label={open ? "Close navigation menu" : "Open navigation menu"}
-            aria-expanded={open}
-            aria-controls="mobile-nav-drawer"
-          >
-            <span className="navbar-burger-line" />
-            <span className="navbar-burger-line" />
-            <span className="navbar-burger-line" />
-          </button>
-        </nav>
+    {/* Logout / CTA */}
+    <button className="navbar-logout-btn">
+      Logout
+    </button>
+
+    {/* Mobile Burger */}
+    <button
+      type="button"
+      className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
+      onClick={() => setOpen((prev) => !prev)}
+    >
+      <span className="navbar-burger-line" />
+      <span className="navbar-burger-line" />
+      <span className="navbar-burger-line" />
+    </button>
+
+  </div>
+</nav>
       </motion.header>
 
       <AnimatePresence>

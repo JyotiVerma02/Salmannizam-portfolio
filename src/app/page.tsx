@@ -7,6 +7,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 
+
 const skillCategories = [
   {
     title: "Backend",
@@ -246,8 +247,14 @@ export default function Home() {
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
-      document.documentElement.style.setProperty("--cursor-x", `${e.clientX}px`);
-      document.documentElement.style.setProperty("--cursor-y", `${e.clientY}px`);
+      document.documentElement.style.setProperty(
+        "--cursor-x",
+        `${e.clientX}px`,
+      );
+      document.documentElement.style.setProperty(
+        "--cursor-y",
+        `${e.clientY}px`,
+      );
       const px = (e.clientX / window.innerWidth - 0.5) * 30;
       const py = (e.clientY / window.innerHeight - 0.5) * 30;
       document.documentElement.style.setProperty("--parallax-x", `${px}px`);
@@ -264,19 +271,12 @@ export default function Home() {
   return (
     <>
       <div className="cursor-glow" />
-      <main className="main">
-        <div className="blob-big blob-left" />
-        <div className="blob-big blob-right" />
-
+      <main className="page">
         <Navbar />
 
-        <motion.section
-          id="home"
-          className="hero--center"
-          initial={{ opacity: 0, y: 60 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.2, 0.8, 0.2, 1] }}
-        >
+        <section id="home" className="hero--center">
+          <div className="blob-big blob-left" />
+          <div className="blob-big blob-right" />
           <div className="hero__inner container">
             <div className="hero__left">
               <motion.div
@@ -329,7 +329,7 @@ export default function Home() {
 
               <div className="hero-actions">
                 <motion.a
-                  href="#projects"
+                  href="/projects"
                   className="btn btn--primary magnetic"
                   initial={{ y: 18, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -341,7 +341,7 @@ export default function Home() {
                   <div className="ripple" />
                 </motion.a>
                 <motion.a
-                  href="#contact"
+                  href="/contact"
                   className="btn btn--outline magnetic"
                   initial={{ y: 18, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -444,20 +444,7 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
-        </motion.section>
-
-     
-
-
-      
-
-      
-
-
-       
-
-      
-
+        </section>
       </main>
     </>
   );
