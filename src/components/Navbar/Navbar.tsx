@@ -7,21 +7,21 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/", anchor: "home" },
-  { label: "About", href: "/about", anchor: "about" },
-  { label: "Skills", href: "/skills", anchor: "skills" },
-  { label: "Experience", href: "/experience", anchor: "experience" },
-  { label: "Projects", href: "/projects", anchor: "projects" },
-  { label: "Case Studies", href: "/case-studies", anchor: "case-studies" },
-  { label: "Testimonials", href: "/testimonials", anchor: "testimonials" },
-  { label: "Blog", href: "/blog", anchor: "blog" },
-  { label: "Contact", href: "/contact", anchor: "contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Skills", href: "/skills" },
+  { label: "Experience", href: "/experience" },
+  { label: "Projects", href: "/projects" },
+  { label: "Case Studies", href: "/case-studies" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  const [activeSection, setActiveSection] = useState("/");
   const pathname = usePathname();
 
   useEffect(() => {
@@ -33,37 +33,7 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
-    if (pathname !== "/") return;
-
-    const sectionElements = Array.from(
-      document.querySelectorAll<HTMLElement>("section[id], #home"),
-    );
-
-    if (sectionElements.length === 0) {
-      setActiveSection("home");
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id || "home");
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: "-35% 0px -55% 0px",
-        threshold: 0.3,
-      },
-    );
-
-    sectionElements.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
+    setActiveSection(pathname || "/");
   }, [pathname]);
 
   return (
@@ -74,7 +44,10 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`} aria-label="Primary navigation">
+        <nav
+          className={`navbar-shell ${scrolled ? "scrolled" : ""}`}
+          aria-label="Primary navigation"
+        >
           <motion.div
             initial={{ x: -24, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -88,8 +61,7 @@ export default function Navbar() {
           <div className="navbar-desktop-menu">
             <ul className="navbar-menu-list">
               {navItems.map((item, index) => {
-                const isActive = pathname === item.href || (pathname === "/" && activeSection === item.anchor);
-                const linkHref = pathname === "/" ? `#${item.anchor}` : item.href;
+                const isActive = activeSection === item.href;
                 return (
                   <motion.li
                     key={item.label}
@@ -99,7 +71,7 @@ export default function Navbar() {
                     transition={{ duration: 0.35, delay: 0.12 + index * 0.04 }}
                   >
                     <Link
-                      href={linkHref}
+                      href={item.href}
                       className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
                       aria-current={isActive ? "page" : undefined}
                     >
@@ -161,17 +133,19 @@ export default function Navbar() {
 
               <ul className="navbar-drawer-list">
                 {navItems.map((item, index) => {
-                  const isActive = pathname === item.href || (pathname === "/" && activeSection === item.anchor);
-                  const linkHref = pathname === "/" ? `#${item.anchor}` : item.href;
+                  const isActive = activeSection === item.href;
                   return (
                     <motion.li
                       key={item.label}
                       initial={{ x: 16, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      transition={{ duration: 0.24, delay: 0.05 + index * 0.04 }}
+                      transition={{
+                        duration: 0.24,
+                        delay: 0.05 + index * 0.04,
+                      }}
                     >
                       <Link
-                        href={linkHref}
+                        href={item.href}
                         className={`navbar-drawer-link ${isActive ? "navbar-drawer-link-active" : ""}`}
                         aria-current={isActive ? "page" : undefined}
                         onClick={() => setOpen(false)}
