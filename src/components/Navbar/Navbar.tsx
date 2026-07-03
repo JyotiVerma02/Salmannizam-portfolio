@@ -3,7 +3,8 @@
 import "@/styles/navbar.css";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -26,10 +27,13 @@ const sectionToNav: Record<string, string> = {
   contact: "/#contact",
 };
 
+const getNavbarOffset = () => (window.innerWidth <= 640 ? 84 : 96);
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("/#home");
+  const activeLockUntil = useRef(0);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -55,7 +59,11 @@ export default function Navbar() {
     }
 
     const updateActiveSection = () => {
-      const scrollPosition = window.scrollY + 150;
+      if (Date.now() < activeLockUntil.current) {
+        return;
+      }
+
+      const scrollPosition = window.scrollY + getNavbarOffset() + 14;
       let current = "/#home";
 
       Object.entries(sectionToNav).forEach(([sectionId, navHref]) => {
@@ -96,6 +104,31 @@ export default function Navbar() {
     };
   }, [pathname]);
 
+  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
+    setActiveSection(href);
+    activeLockUntil.current = Date.now() + 850;
+    setOpen(false);
+
+    if (pathname !== "/") {
+      return;
+    }
+
+    const sectionId = href.split("#")[1];
+    const section = sectionId ? document.getElementById(sectionId) : null;
+
+    if (!section) {
+      return;
+    }
+
+    event.preventDefault();
+    window.history.pushState(null, "", href);
+
+    window.scrollTo({
+      top: Math.max(section.offsetTop - getNavbarOffset(), 0),
+      behavior: "smooth",
+    });
+  };
+
   return (
     <>
       <motion.header
@@ -109,7 +142,7 @@ export default function Navbar() {
             <Link
               href="/#home"
               className="navbar-logo"
-              onClick={() => setActiveSection("/#home")}
+              onClick={(event) => handleNavClick(event, "/#home")}
             >
               Salman <span className="navbar-logo-accent">Nizam</span>
             </Link>
@@ -129,7 +162,7 @@ export default function Navbar() {
                       href={item.href}
                       className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
                       aria-current={isActive ? "page" : undefined}
-                      onClick={() => setActiveSection(item.href)}
+                      onClick={(event) => handleNavClick(event, item.href)}
                     >
                       {item.label}
                       <span className="navbar-link-glow" />
@@ -217,10 +250,7 @@ export default function Navbar() {
                         href={item.href}
                         className={`navbar-drawer-link ${isActive ? "navbar-drawer-link-active" : ""}`}
                         aria-current={isActive ? "page" : undefined}
-                        onClick={() => {
-                          setActiveSection(item.href);
-                          setOpen(false);
-                        }}
+                        onClick={(event) => handleNavClick(event, item.href)}
                       >
                         <span>{item.label}</span>
                         <span className="navbar-drawer-arrow">&gt;</span>

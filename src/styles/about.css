@@ -9,9 +9,9 @@ body {
 }
 
 .section {
-  scroll-margin-top: 110px;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  scroll-margin-top: 96px;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
 }
 
 .container {
@@ -25,12 +25,13 @@ body {
 ==================================*/
 
 .about-hero {
-  min-height: 90vh;
+  min-height: auto;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding-top: 110px;
-  padding-bottom: 40px;
+  padding-top: 1.75rem;
+  padding-bottom: 4rem;
+  scroll-margin-top: 96px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -465,9 +466,9 @@ body {
 ==========================================*/
 
 .section {
-  scroll-margin-top: 110px;
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  scroll-margin-top: 96px;
+  padding-top: 1.5rem;
+  padding-bottom: 4rem;
 }
 
 /*==================================================
@@ -477,7 +478,7 @@ body {
 .experience {
   position: relative;
   max-width: 900px;
-  margin: 3rem auto 0;
+  margin: 2rem auto 0;
   padding-left: 60px;
 }
 
@@ -836,7 +837,7 @@ body {
 
 @media(max-width:768px) {
   .about-hero {
-    padding: 120px 0 30px;
+    padding: 1.5rem 0 3rem;
     min-height: auto;
   }
 

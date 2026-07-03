@@ -2,6 +2,7 @@
 
 import "@/styles/about.css";
 import "@/styles/hero.css";
+import "@/styles/project.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -600,49 +601,65 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects" className="section container">
-          <div className="section-heading">
-            <h2 className="section__title">
-              Featured <span>Projects</span>
-            </h2>
-            <p className="section-description">
-              Real-world projects showcasing technical expertise and scalable
-              architecture.
-            </p>
+    <section id="projects" className="projects-section projects-section--home">
+  <div className="projects-container">
+    <div className="projects-heading">
+      <h2 className="projects-title">
+        Featured <span>Projects</span>
+      </h2>
+
+      <p className="projects-description">
+        Real-world projects showcasing technical expertise and scalable
+        architecture.
+      </p>
+    </div>
+
+    <div className="projects-grid">
+      {projects.map((project, index) => (
+        <motion.div
+          key={project.id}
+          className="project-card"
+          initial={{ opacity: 0, y: 70 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.6,
+            delay: index * 0.2,
+          }}
+        >
+          <div className={`project-image ${project.gradient}`}>
+            <span>Project</span>
           </div>
-          <div className="projects-grid">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="project-card"
-                initial={{ opacity: 0, y: 70 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-              >
-                <div className={`project-image ${project.gradient}`}>
-                  <span>Project</span>
-                </div>
-                <div className="project-content">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <div className="tech-list">
-                    {project.tech.map((tech) => (
-                      <span key={tech}>{tech}</span>
-                    ))}
-                  </div>
-                  <Link href={`/projects/${project.id}`} className="project-btn">
-                    Learn More
-                  </Link>
-                </div>
-              </motion.div>
-            ))}
+
+          <div className="project-content">
+            <h3>{project.title}</h3>
+
+            <p>{project.description}</p>
+
+            <div className="tech-list">
+              {project.tech.map((tech) => (
+                <span key={tech}>{tech}</span>
+              ))}
+            </div>
+
+            <Link
+              href={`/projects/${project.id}`}
+              className="project-btn"
+            >
+              Learn More
+            </Link>
           </div>
-        </section>
+        </motion.div>
+      ))}
+    </div>
+
+  </div> {/* <-- THIS WAS MISSING */}
+
+</section>
 
         <section id="testimonials" className="section container">
           <div className="section-heading">
-            <span className="section-tag">Client Reviews</span>
+         
             <h2 className="section__title">
               Client <span>Testimonials</span>
             </h2>

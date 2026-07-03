@@ -69,7 +69,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 110px;
+  scroll-padding-top: 96px;
 }
 
 body,
@@ -156,115 +156,8 @@ body::before {
 
 /* section spacing upgrade */
 .section {
-  padding-block: 4.5rem 1.5rem;
-  scroll-margin-top: 110px;
-}
-
-/* ===========================
-   PROJECT SECTION
-===========================*/
-
-.section-heading{
-    text-align:center;
-    margin-bottom:3.5rem;
-}
-
-.section-tag{
-    display:inline-block;
-    padding:.45rem 1rem;
-    border-radius:999px;
-    background:rgba(255,160,40,.12);
-    color:var(--first-color);
-    margin-bottom:1rem;
-}
-
-.section-description{
-    max-width:720px;
-    margin:0 auto;
-    color:var(--text-color);
-    line-height:1.8;
-}
-
-.projects-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-    gap:2rem;
-}
-
-.project-card{
-    background:var(--container-color);
-    border:1px solid rgba(255,255,255,.05);
-    border-radius:24px;
-    overflow:hidden;
-    transition:.35s;
-    display:flex;
-    flex-direction:column;
-    min-height: 360px;
-}
-
-.project-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(255,170,70,.35);
-    box-shadow:0 20px 50px rgba(0,0,0,.32);
-}
-
-.project-image{
-    height:220px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:70px;
-}
-
-.project-image.orange{
-    background:linear-gradient(135deg,#ffb347,#ff6b00);
-}
-
-.project-image.blue{
-    background:linear-gradient(135deg,#4facfe,#00f2fe);
-}
-
-.project-content{
-    padding:2rem;
-}
-
-.project-content h3{
-    font-size:1.5rem;
-    margin-bottom:1rem;
-}
-
-.project-content p{
-    color:var(--text-color);
-    line-height:1.7;
-    margin-bottom:1.5rem;
-}
-
-.tech-list{
-    display:flex;
-    flex-wrap:wrap;
-    gap:.7rem;
-    margin-bottom:2rem;
-}
-
-.tech-list span{
-    padding:.45rem .9rem;
-    background:rgba(255,255,255,.05);
-    border-radius:999px;
-    font-size:.85rem;
-    color:white;
-}
-
-.project-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:.5rem;
-    color:var(--first-color);
-    font-weight:600;
-    transition:.3s;
-}
-
-.project-btn:hover{
-    transform:translateX(8px);
+  padding-block: 1.5rem 4rem;
+  scroll-margin-top: 96px;
 }
 
 /*==============================
@@ -532,13 +425,6 @@ CASE STUDY
     .blog-content h3{
         font-size:1.5rem;
     }
-    .projects-grid{
-        grid-template-columns:1fr;
-    }
-    .project-image{
-        height:180px;
-        font-size:55px;
-    }
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -607,7 +493,7 @@ CASE STUDY
 }
 
 .section {
-  padding-block: 5rem 1rem;
+  padding-block: 1.5rem 4rem;
 }
 
 .section__title {
@@ -678,7 +564,7 @@ section {
   }
 
   .section{
-    padding-block: 5rem 1.5rem;
+    padding-block: 1.75rem 4.5rem;
   }
   .section__title{
     margin-bottom: 2.5rem;
