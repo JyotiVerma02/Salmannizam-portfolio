@@ -203,7 +203,48 @@
 .navbar-icon-btn:active {
   transform: scale(0.92);
 }
+.theme-sun-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  color: var(--first-color);
+  transition: transform 0.25s ease, color 0.25s ease;
+}
 
+.theme-sun-core {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 12px rgba(255, 140, 40, 0.45);
+}
+
+.theme-sun-icon::before,
+.theme-sun-icon::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  background: currentColor;
+  mask: linear-gradient(#000 0 0) top center / 2px 5px no-repeat,
+    linear-gradient(#000 0 0) bottom center / 2px 5px no-repeat,
+    linear-gradient(#000 0 0) left center / 5px 2px no-repeat,
+    linear-gradient(#000 0 0) right center / 5px 2px no-repeat;
+  -webkit-mask: linear-gradient(#000 0 0) top center / 2px 5px no-repeat,
+    linear-gradient(#000 0 0) bottom center / 2px 5px no-repeat,
+    linear-gradient(#000 0 0) left center / 5px 2px no-repeat,
+    linear-gradient(#000 0 0) right center / 5px 2px no-repeat;
+}
+
+.theme-sun-icon::after {
+  transform: rotate(45deg);
+}
+
+.navbar-icon-btn:hover .theme-sun-icon {
+  color: var(--first-color);
+  transform: rotate(18deg) scale(1.05);
+}
 .navbar-logout-btn {
   padding: 0.55rem 1rem;
   border-radius: 12px;

@@ -1,5 +1,6 @@
 "use client";
 
+import "@/styles/about.css";
 import "@/styles/hero.css";
 import Image from "next/image";
 import Link from "next/link";
@@ -329,7 +330,7 @@ export default function Home() {
 
               <div className="hero-actions">
                 <motion.a
-                  href="/projects"
+                  href="#projects"
                   className="btn btn--primary magnetic"
                   initial={{ y: 18, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -341,7 +342,7 @@ export default function Home() {
                   <div className="ripple" />
                 </motion.a>
                 <motion.a
-                  href="/contact"
+                  href="#contact"
                   className="btn btn--outline magnetic"
                   initial={{ y: 18, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
@@ -442,6 +443,312 @@ export default function Home() {
                   </div>
                 </div>
               </motion.div>
+            </div>
+          </div>
+        </section>
+        <section id="about" className="about-hero">
+          <div className="container">
+            <div className="about-hero__grid">
+              <motion.div
+                className="about-hero__intro"
+                initial={{ opacity: 0, y: 45 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                viewport={{ once: true }}
+              >
+                <span className="hero-label">About Me</span>
+                <h2 className="hero-title">
+                  {"Building scalable software with clean architecture and meaningful user experiences."
+                    .split(" ")
+                    .map((word, index) => (
+                      <motion.span
+                        key={word + index}
+                        className="hero-word"
+                        initial={{ opacity: 0, y: 40, filter: "blur(10px)" }}
+                        whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.55, delay: index * 0.04 }}
+                      >
+                        {word}&nbsp;
+                      </motion.span>
+                    ))}
+                </h2>
+                <p className="hero-subtitle">
+                  I design premium systems that bridge modern engineering,
+                  beautiful interfaces, and reliable infrastructure.
+                </p>
+                <div className="hero-copy">
+                  As a full-stack developer, I partner with ambitious teams to
+                  craft products that scale, perform, and delight users. My work
+                  focuses on clarity, craftsmanship, and real-world results.
+                </div>
+                <div className="hero-list">
+                  <div className="hero-list__item">
+                    Specializing in backend-first architecture and polished UI
+                    experiences.
+                  </div>
+                  <div className="hero-list__item">
+                    Delivering production-ready solutions with strong
+                    observability and reliability.
+                  </div>
+                </div>
+                <div className="hero-actions about-actions">
+                  <a href="/resume.pdf" className="about-button about-button--primary">
+                    Download Resume
+                  </a>
+                  <a href="#contact" className="about-button about-button--secondary">
+                    Contact Me
+                  </a>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="section container">
+          <h2 className="section__title">
+            Professional <span>Experience</span>
+          </h2>
+          <p className="section-description">
+            Professional journey and career milestones.
+          </p>
+          <div className="experience">
+            {experiences.map((job, index) => (
+              <motion.div
+                key={job.company + index}
+                className="experience__item"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <div className="experience__dot" />
+                <h3>{job.role}</h3>
+                <h4>{job.company}</h4>
+                <small>
+                  {job.duration} - {job.location}
+                </small>
+                <h5>Responsibilities</h5>
+                <ul>
+                  {job.responsibilities.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <h5>Key Achievements</h5>
+                <ul>
+                  {job.achievements.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="skills" className="section container">
+          <h2 className="section__title">
+            Skills <span>& Expertise</span>
+          </h2>
+          <p className="skills-subtitle">
+            A comprehensive overview of my technical skills and areas of expertise.
+          </p>
+          <div className="skills-layout">
+            <div className="skills-row">
+              {skillCategories.slice(0, 3).map((category, index) => (
+                <motion.div
+                  key={category.title}
+                  className="expertise-card"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.15 }}
+                >
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                  <div className="skills-tags">
+                    {category.skills.map((skill) => (
+                      <span key={skill} className="skill-pill">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+            <div className="skills-row skills-row--center">
+              {skillCategories.slice(3).map((category, index) => (
+                <motion.div
+                  key={category.title}
+                  className="expertise-card"
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: (index + 3) * 0.15 }}
+                >
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                  <div className="skills-tags">
+                    {category.skills.map((skill) => (
+                      <span key={skill} className="skill-pill">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="projects" className="section container">
+          <div className="section-heading">
+            <h2 className="section__title">
+              Featured <span>Projects</span>
+            </h2>
+            <p className="section-description">
+              Real-world projects showcasing technical expertise and scalable
+              architecture.
+            </p>
+          </div>
+          <div className="projects-grid">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.id}
+                className="project-card"
+                initial={{ opacity: 0, y: 70 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <div className={`project-image ${project.gradient}`}>
+                  <span>Project</span>
+                </div>
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
+                  <div className="tech-list">
+                    {project.tech.map((tech) => (
+                      <span key={tech}>{tech}</span>
+                    ))}
+                  </div>
+                  <Link href={`/projects/${project.id}`} className="project-btn">
+                    Learn More
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+
+        <section id="testimonials" className="section container">
+          <div className="section-heading">
+            <span className="section-tag">Client Reviews</span>
+            <h2 className="section__title">
+              Client <span>Testimonials</span>
+            </h2>
+            <p className="section-description">
+              Hear from businesses that achieved digital transformation through
+              our development services.
+            </p>
+          </div>
+          <div className="testimonial-grid">
+            {testimonials.map((item, index) => (
+              <motion.div
+                key={item.name + index}
+                className="testimonial-card"
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+              >
+                <div className="quote-icon">Quote</div>
+                <p className="testimonial-text">{item.quote}</p>
+                <div className="testimonial-user">
+                  <div className="testimonial-avatar">{item.name.charAt(0)}</div>
+                  <div>
+                    <h4>{item.name}</h4>
+                    <span>{item.role}</span>
+                    <small>{item.company}</small>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          <div className="testimonial-cta">
+            <h3>Ready to start your project?</h3>
+            <a href="#contact" className="btn btn--primary">
+              Get in Touch
+            </a>
+          </div>
+        </section>
+
+        <section id="blog" className="section container">
+          <div className="section-heading">
+            <span className="section-tag">Knowledge Sharing</span>
+            <h2 className="section__title">
+              Latest <span>Blog</span>
+            </h2>
+            <p className="section-description">
+              Technical articles, tutorials, and insights on full-stack
+              development, backend systems, cloud architecture, and DevOps.
+            </p>
+          </div>
+          <motion.div
+            className="blog-card"
+            initial={{ opacity: 0, y: 60 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="blog-banner">
+              <span>Blog</span>
+            </div>
+            <div className="blog-content">
+              <div className="blog-meta">
+                <span>Announcement</span>
+                <span>-</span>
+                <span>January 10, 2026</span>
+              </div>
+              <h3>Blog Coming Soon</h3>
+              <p>
+                I'm currently preparing in-depth technical articles covering
+                Next.js, NestJS, Node.js, TypeScript, System Design,
+                Microservices, AWS, Docker, Kubernetes, DevOps, and performance.
+              </p>
+              <a href="#contact" className="blog-btn">
+                Discuss a Topic
+              </a>
+            </div>
+          </motion.div>
+        </section>
+
+        <section id="contact" className="section container">
+          <div className="section-heading">
+            <h2 className="section__title">
+              Contact <span>Me</span>
+            </h2>
+            <p className="section-description">
+              Interested in collaborating? Send a message and I'll get back to you soon.
+            </p>
+          </div>
+          <div className="contact-grid">
+            <form className="contact-card">
+              <input type="text" placeholder="Your name" />
+              <input type="email" placeholder="Email" />
+              <textarea rows={6} placeholder="Message" />
+              <button type="submit" className="btn btn--primary">
+                Send Message
+              </button>
+            </form>
+            <div className="contact-info card">
+              <h3>Get in touch</h3>
+              <p>
+                I'm available for freelance projects, collaborations, and remote
+                roles. Let's build something great together.
+              </p>
+              <a className="nav__contact" href="mailto:hello@example.com">
+                Email Me
+              </a>
             </div>
           </div>
         </section>

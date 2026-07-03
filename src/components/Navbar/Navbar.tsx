@@ -1,39 +1,99 @@
 "use client";
 
 import "@/styles/navbar.css";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-
-  
-  { label: "Projects", href: "/projects" },
-  
-  { label: "Testimonials", href: "/testimonials" },
-  { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Home", href: "/#home" },
+  { label: "About", href: "/#about" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Testimonials", href: "/#testimonials" },
+  { label: "Blog", href: "/#blog" },
+  { label: "Contact", href: "/#contact" },
 ];
+
+const sectionToNav: Record<string, string> = {
+  home: "/#home",
+  about: "/#about",
+  experience: "/#about",
+  skills: "/#about",
+  projects: "/#projects",
+  testimonials: "/#testimonials",
+  blog: "/#blog",
+  contact: "/#contact",
+};
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("/");
+  const [activeSection, setActiveSection] = useState("/#home");
   const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
+
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     setOpen(false);
-    setActiveSection(pathname || "/");
+
+    if (pathname !== "/") {
+      const routeMatch = navItems.find((item) => {
+        const routePath = item.href.replace("/#", "/");
+        return routePath !== "/home" && pathname.startsWith(routePath);
+      });
+
+      setActiveSection(routeMatch?.href || "/#home");
+      return;
+    }
+
+    const updateActiveSection = () => {
+      const scrollPosition = window.scrollY + 150;
+      let current = "/#home";
+
+      Object.entries(sectionToNav).forEach(([sectionId, navHref]) => {
+        const section = document.getElementById(sectionId);
+
+        if (section && section.offsetTop <= scrollPosition) {
+          current = navHref;
+        }
+      });
+
+      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 24) {
+        current = "/#contact";
+      }
+
+      setActiveSection(current);
+    };
+
+    const updateFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+
+      if (hash && sectionToNav[hash]) {
+        setActiveSection(sectionToNav[hash]);
+        return;
+      }
+
+      updateActiveSection();
+    };
+
+    updateActiveSection();
+    updateFromHash();
+
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("hashchange", updateFromHash);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("hashchange", updateFromHash);
+    };
   }, [pathname]);
 
   return (
@@ -44,62 +104,66 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-   <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
-  
-  {/* LEFT - LOGO */}
-  <div className="navbar-left">
-    <Link href="/" className="navbar-logo">
-      Salman <span className="navbar-logo-accent">Nizam</span>
-    </Link>
-  </div>
-
-  {/* CENTER - MENU */}
-  <div className="navbar-center">
-    <ul className="navbar-menu-list">
-      {navItems.map((item, index) => {
-        const isActive = activeSection === item.href;
-
-        return (
-          <motion.li key={item.label} className="navbar-menu-item">
+        <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
+          <div className="navbar-left">
             <Link
-              href={item.href}
-              className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
+              href="/#home"
+              className="navbar-logo"
+              onClick={() => setActiveSection("/#home")}
             >
-              {item.label}
-              <span className="navbar-link-glow" />
+              Salman <span className="navbar-logo-accent">Nizam</span>
             </Link>
-          </motion.li>
-        );
-      })}
-    </ul>
-  </div>
+          </div>
 
-  {/* RIGHT - ACTIONS */}
-  <div className="navbar-right">
-    
-    {/* Theme Toggle */}
-    <button className="navbar-icon-btn">
-      🌙
-    </button>
+          <div className="navbar-center">
+            <ul className="navbar-menu-list">
+              {navItems.map((item) => {
+                const isActive = activeSection === item.href;
 
-    {/* Logout / CTA */}
-    <button className="navbar-logout-btn">
-      Logout
-    </button>
+                return (
+                  <motion.li
+                    key={item.label}
+                    className={`navbar-menu-item ${isActive ? "active" : ""}`}
+                  >
+                    <Link
+                      href={item.href}
+                      className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
+                      aria-current={isActive ? "page" : undefined}
+                      onClick={() => setActiveSection(item.href)}
+                    >
+                      {item.label}
+                      <span className="navbar-link-glow" />
+                    </Link>
+                  </motion.li>
+                );
+              })}
+            </ul>
+          </div>
 
-    {/* Mobile Burger */}
-    <button
-      type="button"
-      className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
-      onClick={() => setOpen((prev) => !prev)}
-    >
-      <span className="navbar-burger-line" />
-      <span className="navbar-burger-line" />
-      <span className="navbar-burger-line" />
-    </button>
+          <div className="navbar-right">
+            <button type="button" className="navbar-icon-btn" aria-label="Toggle theme">
+              <span className="theme-sun-icon" aria-hidden="true">
+                <span className="theme-sun-core" />
+              </span>
+            </button>
 
-  </div>
-</nav>
+            <button type="button" className="navbar-logout-btn">
+              Logout
+            </button>
+
+            <button
+              type="button"
+              className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
+              onClick={() => setOpen((prev) => !prev)}
+              aria-label="Open navigation menu"
+              aria-expanded={open}
+            >
+              <span className="navbar-burger-line" />
+              <span className="navbar-burger-line" />
+              <span className="navbar-burger-line" />
+            </button>
+          </div>
+        </nav>
       </motion.header>
 
       <AnimatePresence>
@@ -112,6 +176,7 @@ export default function Navbar() {
               exit={{ opacity: 0 }}
               onClick={() => setOpen(false)}
             />
+
             <motion.aside
               id="mobile-nav-drawer"
               className="navbar-mobile-drawer"
@@ -130,13 +195,14 @@ export default function Navbar() {
                   onClick={() => setOpen(false)}
                   aria-label="Close navigation menu"
                 >
-                  ×
+                  x
                 </button>
               </div>
 
               <ul className="navbar-drawer-list">
                 {navItems.map((item, index) => {
                   const isActive = activeSection === item.href;
+
                   return (
                     <motion.li
                       key={item.label}
@@ -151,10 +217,13 @@ export default function Navbar() {
                         href={item.href}
                         className={`navbar-drawer-link ${isActive ? "navbar-drawer-link-active" : ""}`}
                         aria-current={isActive ? "page" : undefined}
-                        onClick={() => setOpen(false)}
+                        onClick={() => {
+                          setActiveSection(item.href);
+                          setOpen(false);
+                        }}
                       >
                         <span>{item.label}</span>
-                        <span className="navbar-drawer-arrow">↗</span>
+                        <span className="navbar-drawer-arrow">&gt;</span>
                       </Link>
                     </motion.li>
                   );
