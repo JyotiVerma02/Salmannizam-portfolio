@@ -3,6 +3,7 @@ import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
 import "@/styles/responsive.css";
 import Footer from "@/app/footer/page";
+import SmoothScroll from "@/components/Common/SmoothScroll";
 
 const poppins = Poppins({
   weight: ["400", "500", "600"],
@@ -27,10 +28,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${syne.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${syne.variable} h-full antialiased`}
+    >
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        {children}
-        <Footer />
+        <SmoothScroll>
+          {children}
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );

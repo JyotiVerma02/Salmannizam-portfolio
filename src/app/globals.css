@@ -68,7 +68,6 @@
 }
 
 html {
-  scroll-behavior: smooth;
   scroll-padding-top: 96px;
 }
 
@@ -371,4 +370,21 @@ section {
     align-items: center;
     column-gap: 4rem;
   }
+}
+
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth body {
+  overflow: visible;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
