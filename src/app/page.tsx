@@ -4,6 +4,7 @@ import "@/styles/about.css";
 import "@/styles/hero.css";
 import "@/styles/project.css";
 import "@/styles/testimonial.css";
+import "@/styles/blog.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";

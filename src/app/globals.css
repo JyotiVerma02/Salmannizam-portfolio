@@ -160,73 +160,7 @@ body::before {
   scroll-margin-top: 96px;
 }
 
-/*==============================
-BLOG
-==============================*/
 
-.blog-card{
-    max-width:900px;
-    margin:auto;
-    background:var(--container-color);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:24px;
-    overflow:hidden;
-    transition:.35s;
-}
-
-.blog-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(255,170,70,.35);
-    box-shadow:0 25px 60px rgba(0,0,0,.45);
-}
-
-.blog-banner{
-    height:220px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:80px;
-    background:linear-gradient(135deg,#ffb347,#ff6b00);
-}
-
-.blog-content{
-    padding:2.5rem;
-}
-
-.blog-meta{
-    display:flex;
-    align-items:center;
-    gap:.7rem;
-    color:var(--first-color);
-    font-size:.9rem;
-    margin-bottom:1rem;
-    flex-wrap:wrap;
-}
-
-.blog-content h3{
-    font-size:2rem;
-    color:var(--white-color);
-    margin-bottom:1rem;
-}
-
-.blog-content p{
-    color:var(--text-color);
-    line-height:1.8;
-    margin-bottom:2rem;
-}
-
-.blog-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:.5rem;
-    color:var(--first-color);
-    font-weight:600;
-    transition:.3s;
-}
-
-.blog-btn:hover{
-    transform:translateX(8px);
-}
 
 
 
@@ -310,16 +244,7 @@ CASE STUDY
         font-size:1.5rem;
     }
 
-    .blog-banner{
-        height:180px;
-        font-size:60px;
-    }
-    .blog-content{
-        padding:1.5rem;
-    }
-    .blog-content h3{
-        font-size:1.5rem;
-    }
+
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -333,59 +258,7 @@ CASE STUDY
   gap: 1.5rem;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(320px, 1.4fr) minmax(280px, 0.9fr);
-  gap: 2rem;
-}
 
-.contact-card,
-.contact-info {
-  background: var(--container-color);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 1.5rem;
-  padding: 2rem;
-}
-
-.contact-card input,
-.contact-card textarea {
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--white-color);
-  padding: 1rem 1rem;
-  border-radius: 1rem;
-  margin-bottom: 1rem;
-}
-
-.contact-card textarea {
-  min-height: 220px;
-  resize: vertical;
-}
-
-.contact-card button {
-  margin-top: 1rem;
-}
-
-.contact-info h3 {
-  margin-bottom: 1rem;
-}
-
-.contact-info p {
-  color: var(--text-color);
-  line-height: 1.8;
-}
-
-.contact-info .nav__contact {
-  display: inline-flex;
-  margin-top: 1.5rem;
-}
-
-@media (max-width: 920px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
 .section {
   padding-block: 1.5rem 4rem;

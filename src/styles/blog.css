@@ -1,0 +1,121 @@
+/*==============================
+BLOG
+==============================*/
+
+.blog-card {
+    max-width: 900px;
+    margin: auto;
+    background: var(--container-color);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+}
+
+.blog-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 140, 35, 0.4);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45), 0 0 20px rgba(255, 140, 35, 0.1);
+}
+
+.blog-banner {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 70px;
+    background: var(--gradient-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.blog-banner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent 60%);
+    opacity: 0;
+    transition: 0.5s ease;
+}
+
+.blog-card:hover .blog-banner::before {
+    opacity: 1;
+}
+
+.blog-banner span {
+    z-index: 1;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card:hover .blog-banner span {
+    transform: scale(1.08);
+}
+
+.blog-content {
+    padding: 1.75rem 2rem;
+    position: relative;
+}
+
+.blog-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    color: var(--first-color);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    font-weight: 500;
+}
+
+.blog-content h3 {
+    font-size: 1.75rem;
+    color: var(--white-color);
+    margin-bottom: 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.blog-card:hover .blog-content h3 {
+    color: var(--first-color);
+}
+
+.blog-content p {
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+}
+
+.blog-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--first-color);
+    font-weight: 600;
+    transition: all 0.3s ease;
+    background: rgba(255, 140, 35, 0.1);
+    padding: 0.6rem 1.25rem;
+    border-radius: 50px;
+    border: 1px solid rgba(255, 140, 35, 0.2);
+}
+
+.blog-btn:hover {
+    transform: translateX(8px);
+    background: var(--gradient-color);
+    color: white;
+    box-shadow: 0 4px 15px rgba(255, 140, 35, 0.3);
+}
+
+@media (max-width: 768px) {
+    .blog-banner {
+        height: 180px;
+        font-size: 60px;
+    }
+    .blog-content {
+        padding: 1.5rem;
+    }
+    .blog-content h3 {
+        font-size: 1.5rem;
+    }
+}
