@@ -228,107 +228,7 @@ BLOG
     transform:translateX(8px);
 }
 
-/*==============================
-TESTIMONIALS
-==============================*/
 
-.testimonial-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
-    gap:2rem;
-    margin-top:4rem;
-}
-
-.testimonial-card{
-    background:var(--container-color);
-    border:1px solid rgba(255,255,255,.06);
-    border-radius:22px;
-    padding:2rem;
-    transition:.35s;
-    position:relative;
-    overflow:hidden;
-}
-
-.testimonial-card::before{
-    content:"";
-    position:absolute;
-    top:0;
-    left:0;
-    width:100%;
-    height:4px;
-    background:linear-gradient(90deg,var(--first-color),#ffb347);
-}
-
-.testimonial-card:hover{
-    transform:translateY(-8px);
-    border-color:rgba(255,170,70,.35);
-    box-shadow:0 25px 60px rgba(0,0,0,.45);
-}
-
-.quote-icon{
-    font-size:3rem;
-    color:var(--first-color);
-    margin-bottom:1rem;
-    line-height:1;
-}
-
-.testimonial-text{
-    line-height:1.8;
-    color:var(--text-color);
-    margin-bottom:2rem;
-}
-
-.testimonial-user{
-    display:flex;
-    align-items:center;
-    gap:1rem;
-}
-
-.testimonial-avatar{
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#ffb347,#ff6b00);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-weight:700;
-    font-size:1.4rem;
-    color:#111;
-}
-
-.testimonial-user h4{
-    color:white;
-    margin-bottom:.25rem;
-}
-
-.testimonial-user span{
-    display:block;
-    color:var(--first-color);
-    font-size:.9rem;
-}
-
-.testimonial-user small{
-    display:block;
-    margin-top:.2rem;
-    color:var(--text-color);
-}
-
-.testimonial-cta{
-    margin-top:5rem;
-    text-align:center;
-    padding:3rem;
-    border-radius:24px;
-    background:linear-gradient(135deg,
-    rgba(255,170,70,.08),
-    rgba(255,255,255,.02));
-    border:1px solid rgba(255,170,70,.15);
-}
-
-.testimonial-cta h3{
-    font-size:2rem;
-    margin-bottom:1.5rem;
-}
 
 /*==============================
 CASE STUDY
@@ -409,12 +309,7 @@ CASE STUDY
     .case-study-content h3{
         font-size:1.5rem;
     }
-    .testimonial-grid{
-        grid-template-columns:1fr;
-    }
-    .testimonial-card{
-        padding:1.5rem;
-    }
+
     .blog-banner{
         height:180px;
         font-size:60px;
@@ -496,15 +391,32 @@ CASE STUDY
   padding-block: 1.5rem 4rem;
 }
 
+.section-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 3rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .section__title {
   text-align: center;
   font-size: var(--bigger-font-size);
   color: var(--white-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem; /* Reduced from 2rem to pull description closer */
 }
 
 .section__title span {
   color: var(--first-color);
+}
+
+.section-description {
+  color: var(--text-color);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  text-align: center;
+  opacity: 0.85;
 }
 
 .page,

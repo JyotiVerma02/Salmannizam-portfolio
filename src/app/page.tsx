@@ -3,6 +3,7 @@
 import "@/styles/about.css";
 import "@/styles/hero.css";
 import "@/styles/project.css";
+import "@/styles/testimonial.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -221,13 +222,6 @@ const testimonials = [
     name: "Zahid Malik",
     role: "Founder",
     company: "RangRoganWala",
-  },
-  {
-    quote:
-      "Our health & wellness platform required a clean, trustworthy and user-friendly interface. CoderLala delivered a well-structured website with excellent clarity and fast loading performance.",
-    name: "Poonam Agrawal",
-    role: "Co-Founder",
-    company: "RiPRAP Health",
   },
 ];
 
@@ -678,15 +672,16 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
               >
-                <div className="quote-icon">Quote</div>
-                <p className="testimonial-text">{item.quote}</p>
                 <div className="testimonial-user">
                   <div className="testimonial-avatar">{item.name.charAt(0)}</div>
                   <div>
                     <h4>{item.name}</h4>
                     <span>{item.role}</span>
-                    <small>{item.company}</small>
                   </div>
+                </div>
+                <p className="testimonial-text">{item.quote}</p>
+                <div className="testimonial-stars">
+                  ★★★★★
                 </div>
               </motion.div>
             ))}

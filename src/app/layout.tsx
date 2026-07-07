@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
+import Footer from "@/app/footer/page";
 
 const poppins = Poppins({
   weight: ["400", "500", "600"],
@@ -26,7 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${syne.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
