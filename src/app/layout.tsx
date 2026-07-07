@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
+import "@/styles/responsive.css";
 import Footer from "@/app/footer/page";
 
 const poppins = Poppins({
