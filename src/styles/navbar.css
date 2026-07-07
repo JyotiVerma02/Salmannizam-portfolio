@@ -16,11 +16,11 @@
   margin: 0 auto;
   height: 72px;
   border-radius: 18px;
-  background: rgba(8, 8, 8, 0.36);
+  background: rgba(10,10,10,.18);
   border: 1px solid rgba(255, 255, 255, 0.05);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px) saturate(180%);
+  -webkit-backdrop-filter: blur(30px) saturate(180%);
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
@@ -38,6 +38,29 @@
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45),
               0 0 0 1px rgba(255, 140, 35, 0.05);
   transform: translateY(2px);
+}
+
+/*====================
+  SCROLL PROGRESS BAR
+====================*/
+
+.navbar-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform-origin: left;
+  background: linear-gradient(
+    90deg,
+    #ff8c28,
+    #ffb347,
+    #ff8c28
+  );
+  box-shadow:
+    0 0 12px rgba(255, 140, 40, .7),
+    0 0 25px rgba(255, 140, 40, .4);
+  z-index: 1002;
 }
 
 /*====================
@@ -59,7 +82,13 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   position: relative;
+  transition: transform .4s, filter .4s, color .4s;
   white-space: nowrap;
+}
+
+.navbar-logo:hover {
+  transform: translateY(-2px) scale(1.03);
+  filter: drop-shadow(0 0 18px rgba(255,140,40,.5));
 }
 
 .navbar-logo-accent {
@@ -132,8 +161,9 @@
 }
 
 .navbar-link:hover {
-  color: var(--first-color);
-  transform: translateY(-1px);
+  color: white;
+  transform: translateY(-2px);
+  text-shadow: 0 0 10px rgba(255,140,40,.5);
 }
 
 .navbar-link-active {
@@ -143,9 +173,9 @@
 /* Moving underline glow */
 .navbar-link-glow {
   position: absolute;
-  left: 0.9rem;
-  right: 0.9rem;
-  bottom: 0.25rem;
+  left: 12px;
+  right: 12px;
+  bottom: 4px;
   height: 2px;
   border-radius: 999px;
   background: linear-gradient(
@@ -155,13 +185,13 @@
     transparent
   );
   opacity: 0;
-  transform: scaleX(0.4);
-  transform-origin: center;
-  transition: all 0.25s ease;
+  transform: scaleX(.2);
+  transition: transform .35s, opacity .35s;
 }
 
+.navbar-link:hover .navbar-link-glow,
 .navbar-link-active .navbar-link-glow {
-  opacity: 0.6;
+  opacity: 1;
   transform: scaleX(1);
 }
 
@@ -203,6 +233,7 @@
 .navbar-icon-btn:active {
   transform: scale(0.92);
 }
+
 .theme-sun-icon {
   position: relative;
   display: grid;
@@ -245,6 +276,7 @@
   color: var(--first-color);
   transform: rotate(18deg) scale(1.05);
 }
+
 .navbar-logout-btn {
   padding: 0.55rem 1rem;
   border-radius: 12px;

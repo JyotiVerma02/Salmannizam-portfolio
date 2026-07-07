@@ -3,6 +3,12 @@
 import { useEffect, useState } from "react";
 
 import Link from "next/link";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useSpring,
+} from "framer-motion";
 
 const navItems = [
   { label: "Home", href: "/" },

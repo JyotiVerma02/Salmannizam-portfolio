@@ -1,7 +1,7 @@
 "use client";
 
 import "@/styles/navbar.css";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
@@ -35,6 +35,13 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("/#home");
   const activeLockUntil = useRef(0);
   const pathname = usePathname();
+
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 120,
+    damping: 20,
+    mass: 0.2,
+  });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -137,6 +144,11 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
+        <motion.div
+          className="navbar-progress"
+          style={{ scaleX }}
+        />
+
         <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
           <div className="navbar-left">
             <Link
