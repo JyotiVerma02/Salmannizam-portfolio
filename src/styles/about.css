@@ -93,20 +93,38 @@ body {
 }
 
 .hero-label {
-  display: inline-flex;
-  align-items: center;
-  width: max-content;
-  padding: 14px 22px;
-  border-radius: 999px;
-  background: rgba(255, 140, 40, .08);
-  border: 1px solid rgba(255, 140, 40, .18);
-  backdrop-filter: blur(20px);
-  color: var(--first-color, #ff8c28);
-  font-size: .82rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: .18em;
-  margin-bottom: 2rem;
+  display: block;
+  width: 100%;
+  margin: 0 0 0.75rem;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+
+  color: #ffffff;
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -1px;
+  text-transform: none;
+  text-align: center;
+}
+
+.hero-label span {
+  color: #ff8c28;
+}
+
+.hero-label::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 16px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #ff9f3f, transparent);
 }
 
 /* FIXED: Clean hero title without pseudo-element issues */

@@ -3,12 +3,24 @@ CONTACT SECTION
 ==============================*/
 
 .contact-grid {
-    display: grid;
-    grid-template-columns: minmax(320px, 1.4fr) minmax(280px, 0.9fr);
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
+    align-items: stretch;
 }
 
-.contact-card,
+.contact-card {
+    display: flex !important;
+    flex-direction: column !important;
+    background: var(--container-color);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 1.75rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
 .contact-info {
     background: var(--container-color);
     border: 1px solid var(--border-color);
@@ -28,33 +40,44 @@ CONTACT SECTION
 
 .contact-card input,
 .contact-card textarea {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    color: var(--white-color);
-    padding: 1.1rem 1.25rem;
-    border-radius: 1rem;
-    margin-bottom: 1.25rem;
-    font-size: 0.95rem;
+    display: block !important;
+    width: 100% !important;
+    background: rgba(255, 255, 255, 0.03) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: var(--white-color) !important;
+    padding: 1.1rem 1.25rem !important;
+    border-radius: 1rem !important;
+    margin-bottom: 0.85rem !important;
+    font-size: 0.95rem !important;
+    font-family: inherit !important;
+    outline: none !important;
     transition: all 0.3s ease;
+    box-sizing: border-box !important;
+}
+
+.contact-card input::placeholder,
+.contact-card textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
 }
 
 .contact-card input:focus,
 .contact-card textarea:focus {
-    border-color: var(--first-color);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 0 0 4px rgba(255, 140, 35, 0.1);
+    border-color: var(--first-color) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    box-shadow: 0 0 0 4px rgba(255, 140, 35, 0.1) !important;
 }
 
 .contact-card textarea {
-    min-height: 180px;
+    min-height: 130px !important;
     resize: vertical;
 }
 
 .contact-card button {
+    display: flex !important;
     margin-top: 0.5rem;
-    width: 100%;
+    width: 100% !important;
     justify-content: center;
+    align-self: stretch;
 }
 
 .contact-info h3 {
@@ -93,3 +116,4 @@ CONTACT SECTION
         padding: 1.75rem;
     }
 }
+

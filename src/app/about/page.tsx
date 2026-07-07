@@ -179,7 +179,9 @@ export default function AboutPage() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
             >
-              <span className="hero-label">About Me</span>
+<h2 className="section__title">
+  About <span className="text-orange">Me</span>
+</h2>
 
               <motion.h1
                 className="hero-title"

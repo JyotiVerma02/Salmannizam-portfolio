@@ -5,6 +5,7 @@ import "@/styles/hero.css";
 import "@/styles/project.css";
 import "@/styles/testimonial.css";
 import "@/styles/blog.css";
+import "@/styles/contact.css";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -452,7 +453,7 @@ export default function Home() {
                 transition={{ duration: 0.7 }}
                 viewport={{ once: true }}
               >
-                <span className="hero-label">About Me</span>
+                <h2 className="section__title">About <span>Me</span></h2>
                 <h2 className="hero-title">
                   {"Building scalable software with clean architecture and meaningful user experiences."
                     .split(" ")
@@ -759,7 +760,7 @@ export default function Home() {
                 I'm available for freelance projects, collaborations, and remote
                 roles. Let's build something great together.
               </p>
-              <a className="nav__contact" href="mailto:hello@example.com">
+              <a className="btn btn--primary" href="mailto:hello@example.com">
                 Email Me
               </a>
             </div>

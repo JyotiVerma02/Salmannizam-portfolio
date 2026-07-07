@@ -27,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${poppins.variable} ${syne.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col" suppressHydrationWarning>
         {children}
         <Footer />
       </body>

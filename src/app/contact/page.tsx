@@ -31,7 +31,7 @@ export default function ContactPage() {
               I’m available for freelance projects, collaborations, and remote roles.
               Let’s build something great together.
             </p>
-            <a className="nav__contact" href="mailto:hello@example.com">
+            <a className="btn btn--primary" href="mailto:hello@example.com">
               Email Me
             </a>
           </div>
