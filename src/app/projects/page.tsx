@@ -19,6 +19,7 @@ const projects = [
       { label: "Performance", value: "Fast" },
     ],
     features: ["Microservices", "Real-time", "Secure"],
+    theme: "", // Default orange
   },
   {
     id: "coderlala",
@@ -33,6 +34,37 @@ const projects = [
       { label: "Grade", value: "Enterprise" },
     ],
     features: ["Microservices", "Real-time", "Enterprise Grade"],
+    theme: "project-card--blue",
+  },
+  {
+    id: "neohealth",
+    title: "NeoHealth Dashboard",
+    description:
+      "Advanced healthcare analytics dashboard for tracking patient metrics, scheduling, and medical resource management in real-time.",
+    tech: ["React", "Node.js", "PostgreSQL", "GraphQL", "AWS"],
+    image: "/developer-3d.png",
+    stats: [
+      { label: "Data", value: "Real-time" },
+      { label: "Compliance", value: "HIPAA" },
+      { label: "Metrics", value: "Advanced" },
+    ],
+    features: ["Analytics", "Scheduling", "Secure Data"],
+    theme: "project-card--green",
+  },
+  {
+    id: "fintechflow",
+    title: "FinTech Flow App",
+    description:
+      "Next-generation financial application providing seamless peer-to-peer transfers, investment tracking, and automated portfolio management.",
+    tech: ["Next.js", "Go", "PostgreSQL", "Kafka", "Docker"],
+    image: "/developer-transparent.png",
+    stats: [
+      { label: "Transfers", value: "Instant" },
+      { label: "Security", value: "Bank-grade" },
+      { label: "UX", value: "Modern" },
+    ],
+    features: ["P2P Transfers", "Investing", "Automation"],
+    theme: "project-card--purple",
   },
 ];
 
@@ -73,7 +105,7 @@ export default function ProjectsPage() {
             {projects.map((project, index) => (
               <motion.article
                 key={project.id}
-                className={`project-card ${project.id === 'coderlala' ? 'project-card--blue' : ''}`}
+                className={`project-card ${project.theme}`}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
