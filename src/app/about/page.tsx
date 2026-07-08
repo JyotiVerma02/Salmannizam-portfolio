@@ -160,10 +160,15 @@ const skillCategories = [
   },
 ];
 
+const lines = [
+    ["Building", "scalable", "software"],
+    ["with", "clean", "architecture"],
+    ["and", "meaningful", "user"],
+    ["experiences."],
+  ];
+
 export default function AboutPage() {
-  const title =
-    "Building scalable software with clean architecture and meaningful user experiences."
-      .split(" ");
+  let wordIndex = 0;
 
   return (
     <PageShell>
@@ -178,39 +183,42 @@ export default function AboutPage() {
               transition={{ duration: 0.7 }}
               viewport={{ once: true }}
             >
-<h2 className="section__title">
-  About <span className="text-orange">Me</span>
-</h2>
+              <h2 className="section__title">
+                About <span className="text-orange">Me</span>
+              </h2>
 
               <motion.h1
                 className="hero-title"
                 initial="hidden"
                 animate="visible"
               >
-                {title.map((word, index) => (
-                  <motion.span
-                    key={index}
-                    className="hero-word"
-                    variants={{
-                      hidden: {
-                        opacity: 0,
-                        y: 60,
-                        filter: "blur(12px)",
-                      },
-                      visible: {
-                        opacity: 1,
-                        y: 0,
-                        filter: "blur(0px)",
-                        transition: {
-                          duration: 0.7,
-                          delay: index * 0.08,
-                          ease: [0.22, 1, 0.36, 1],
-                        },
-                      },
-                    }}
-                  >
-                    {word}&nbsp;
-                  </motion.span>
+                {lines.map((lineWords, lineIdx) => (
+                  <span key={lineIdx} style={{ display: "block" }}>
+                    {lineWords.map((word) => {
+                      const idx = wordIndex++;
+                      return (
+                        <motion.span
+                          key={idx}
+                          className="hero-word"
+                          variants={{
+                            hidden: { opacity: 0, y: 60, filter: "blur(12px)" },
+                            visible: {
+                              opacity: 1,
+                              y: 0,
+                              filter: "blur(0px)",
+                              transition: {
+                                duration: 0.7,
+                                delay: idx * 0.08,
+                                ease: [0.22, 1, 0.36, 1],
+                              },
+                            },
+                          }}
+                        >
+                          {word}&nbsp;
+                        </motion.span>
+                      );
+                    })}
+                  </span>
                 ))}
               </motion.h1>
 

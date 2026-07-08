@@ -6,7 +6,7 @@ export default function CoderLalaProjectPage() {
     <PageShell>
       <section className="project-detail-section">
         <div className="project-detail-container">
-          <Link href="/#projects" className="project-back-link">
+          <Link href="/projects" className="project-back-link">
             ← Back to Projects
           </Link>
 
@@ -123,7 +123,19 @@ export default function CoderLalaProjectPage() {
                     padding: '0.7rem 1.4rem'
                   }}
                 >
-                  View Live System →
+                  View Live Project →
+                </Link>
+                <Link 
+                  href="#" 
+                  className="project-btn"
+                  style={{ 
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    padding: '0.7rem 1.4rem',
+                    color: '#fff'
+                  }}
+                >
+                  GitHub Repository →
                 </Link>
               </div>
             </article>

@@ -6,7 +6,7 @@ export default function SaarthiiProjectPage() {
     <PageShell>
       <section className="project-detail-section">
         <div className="project-detail-container">
-          <Link href="/#projects" className="project-back-link">
+          <Link href="/projects" className="project-back-link">
             ← Back to Projects
           </Link>
 
@@ -117,29 +117,19 @@ export default function SaarthiiProjectPage() {
                     padding: '0.7rem 1.4rem'
                   }}
                 >
-                  View Wallet Platform →
+                  View Live Project →
                 </Link>
                 <Link 
                   href="#" 
                   className="project-btn"
                   style={{ 
-                    background: 'rgba(255,255,255,0.08)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    padding: '0.7rem 1.4rem'
+                    background: 'rgba(255,255,255,0.06)',
+                    border: '1px solid rgba(255,255,255,0.1)',
+                    padding: '0.7rem 1.4rem',
+                    color: '#fff'
                   }}
                 >
-                  View Air Booking →
-                </Link>
-                <Link 
-                  href="#" 
-                  className="project-btn"
-                  style={{ 
-                    background: 'rgba(255,255,255,0.08)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    padding: '0.7rem 1.4rem'
-                  }}
-                >
-                  View Bus Booking →
+                  GitHub Repository →
                 </Link>
               </div>
             </article>

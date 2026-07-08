@@ -140,14 +140,14 @@
   HERO INNER (STABLE)
 ====================*/
 
-.hero__inner{
-  width: min(1400px, 92%);
+.hero__inner {
+  width: min(100%, 1300px);
   margin: 0 auto;
+  padding: 0 1.5rem;
   display: grid;
   grid-template-columns: 58% 42%;
   align-items: start;
-  gap: 60px;
-  padding: 0;
+  gap: 24px;
 }
 
 /*====================
@@ -211,9 +211,9 @@
 }
 
 .hero-headline {
-  font-size: clamp(3rem, 5vw, 4.8rem);
-  line-height: 1.02;
-  letter-spacing: -3px;
+  font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+  line-height: 1.15;
+  letter-spacing: -1.5px;
   font-weight: 800;
   margin-bottom: 0.2rem;
   text-align: left;
