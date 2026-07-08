@@ -6,7 +6,7 @@ FOOTER
     background-color: var(--body-color, #120b05);
     padding: 4rem 0 2rem;
     border-top: 1px solid var(--border-color);
-    margin-top: 4rem;
+    margin-top: 0;
 }
 
 .footer-container {

@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import PageShell from "@/components/Common/PageShell";
-import "@/styles/project.css";
 
 const projects = [
   {

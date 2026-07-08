@@ -124,6 +124,19 @@ TESTIMONIALS
     font-size: 1.75rem;
     margin-bottom: 1.25rem;
 }
+.section-tag{
+      display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--first-color);
+  background: rgba(255, 140, 35, 0.1);
+  padding: 0.3rem 1rem;
+  border-radius: 999px;
+  margin-bottom: 0.75rem;
+  border: 1px solid rgba(255, 140, 35, 0.1);
+}
 
 @media(max-width: 768px) {
     .testimonial-grid {

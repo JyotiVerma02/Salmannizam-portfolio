@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import PageShell from "@/components/Common/PageShell";
-import "@/styles/about.css";
 
 const stats = [
   { value: "3+", label: "Years Experience", icon: "⌛" },

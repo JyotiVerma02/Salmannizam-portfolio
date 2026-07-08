@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
+import "@/styles/navbar.css";
+import "@/styles/hero.css";
+import "@/styles/about.css";
+import "@/styles/project.css";
+import "@/styles/testimonial.css";
+import "@/styles/blog.css";
+import "@/styles/contact.css";
+import "@/styles/footer.css";
 import "@/styles/responsive.css";
 import Footer from "@/app/footer/page";
 import SmoothScroll from "@/components/Common/SmoothScroll";

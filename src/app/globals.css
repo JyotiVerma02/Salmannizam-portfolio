@@ -18,8 +18,8 @@
   --body-color: #120b05;
   --container-color: #1c1207;
   --border-color: rgba(255,140,35,0.22);
-  --glass: rgba(255,140,35,0.08);
-  --glass-border: rgba(255,140,35,0.12);
+  --glass: rgba(255,255,255,0.03);
+  --glass-border: rgba(255,255,255,0.08);
 
   /*========== Font and typography ==========*/
   --body-font: "Poppins", sans-serif;
@@ -41,8 +41,6 @@
   /*========== z index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
-  --glass: rgba(255,255,255,0.03);
-  --glass-border: rgba(255,255,255,0.08);
 }
 
 
@@ -159,9 +157,21 @@ body::before {
   scroll-margin-top: 96px;
 }
 
+/* Full-viewport section — each "page" separated by footer-style divider */
+.section--page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 6rem 5rem;
+  scroll-margin-top: 0;
+  position: relative;
+}
 
-
-
+/* Divider between sections — clean top border line */
+.section--divided {
+  border-top: 1px solid rgba(255, 140, 35, 0.18);
+}
 
 /*==============================
 CASE STUDY
@@ -242,8 +252,6 @@ CASE STUDY
     .case-study-content h3{
         font-size:1.5rem;
     }
-
-
 }
 
 /*=============== REUSABLE CSS CLASSES ===============*/
@@ -256,8 +264,6 @@ CASE STUDY
   display: grid;
   gap: 1.5rem;
 }
-
-
 
 .section {
   padding-block: 1.5rem 4rem;
@@ -276,7 +282,7 @@ CASE STUDY
   text-align: center;
   font-size: var(--bigger-font-size);
   color: var(--white-color);
-  margin-bottom: 1rem; /* Reduced from 2rem to pull description closer */
+  margin-bottom: 1rem;
 }
 
 .section__title span {
@@ -302,7 +308,6 @@ section {
   position: relative;
   width: 100%;
 }
-
 
 /*=============== BLOB ===============*/
 .blob-small, .blob-big {
@@ -371,7 +376,6 @@ section {
     column-gap: 4rem;
   }
 }
-
 
 html.lenis {
   height: auto;

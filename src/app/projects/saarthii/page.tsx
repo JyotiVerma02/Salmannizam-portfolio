@@ -1,6 +1,5 @@
 import Link from "next/link";
 import PageShell from "@/components/Common/PageShell";
-import "@/styles/project.css";
 
 export default function SaarthiiProjectPage() {
   return (

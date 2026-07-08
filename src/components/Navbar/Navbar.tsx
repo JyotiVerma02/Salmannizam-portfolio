@@ -1,6 +1,5 @@
 "use client";
 
-import "@/styles/navbar.css";
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -8,24 +7,14 @@ import type { MouseEvent } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
-  { label: "Home", href: "/#home" },
-  { label: "About", href: "/#about" },
-  { label: "Projects", href: "/#projects" },
-  { label: "Testimonials", href: "/#testimonials" },
-  { label: "Blog", href: "/#blog" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Testimonials", href: "/testimonials" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
-const sectionToNav: Record<string, string> = {
-  home: "/#home",
-  about: "/#about",
-  experience: "/#about",
-  skills: "/#about",
-  projects: "/#projects",
-  testimonials: "/#testimonials",
-  blog: "/#blog",
-  contact: "/#contact",
-};
 
 const getNavbarOffset = () => (window.innerWidth <= 640 ? 84 : 96);
 
@@ -33,8 +22,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("/#home");
-  const activeLockUntil = useRef(0);
-  const pathname = usePathname();
+    const pathname = usePathname();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -54,86 +42,19 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
-
-    if (pathname !== "/") {
-      const routeMatch = navItems.find((item) => {
-        const routePath = item.href.replace("/#", "/");
-        return routePath !== "/home" && pathname.startsWith(routePath);
-      });
-
-      setActiveSection(routeMatch?.href || "/#home");
-      return;
+    
+    // Set active section based on current pathname
+    const currentPath = pathname === '/' ? '/' : `/${pathname.split('/')[1]}`;
+    const matchedItem = navItems.find(item => item.href === currentPath);
+    if (matchedItem) {
+      setActiveSection(matchedItem.href);
+    } else {
+      setActiveSection("/");
     }
-
-    const updateActiveSection = () => {
-      if (Date.now() < activeLockUntil.current) {
-        return;
-      }
-
-      const scrollPosition = window.scrollY + getNavbarOffset() + 14;
-      let current = "/#home";
-
-      Object.entries(sectionToNav).forEach(([sectionId, navHref]) => {
-        const section = document.getElementById(sectionId);
-
-        if (section && section.offsetTop <= scrollPosition) {
-          current = navHref;
-        }
-      });
-
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 24) {
-        current = "/#contact";
-      }
-
-      setActiveSection(current);
-    };
-
-    const updateFromHash = () => {
-      const hash = window.location.hash.replace("#", "");
-
-      if (hash && sectionToNav[hash]) {
-        setActiveSection(sectionToNav[hash]);
-        return;
-      }
-
-      updateActiveSection();
-    };
-
-    updateActiveSection();
-    updateFromHash();
-
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("hashchange", updateFromHash);
-
-    return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("hashchange", updateFromHash);
-    };
   }, [pathname]);
 
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    setActiveSection(href);
-    activeLockUntil.current = Date.now() + 850;
     setOpen(false);
-
-    if (pathname !== "/") {
-      return;
-    }
-
-    const sectionId = href.split("#")[1];
-    const section = sectionId ? document.getElementById(sectionId) : null;
-
-    if (!section) {
-      return;
-    }
-
-    event.preventDefault();
-    window.history.pushState(null, "", href);
-
-    window.scrollTo({
-      top: Math.max(section.offsetTop - getNavbarOffset(), 0),
-      behavior: "smooth",
-    });
   };
 
   return (
