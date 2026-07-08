@@ -77,7 +77,7 @@ body {
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
@@ -131,7 +131,7 @@ body {
 .hero-title {
   position: relative;
   display: block;
-  font-size: clamp(2.4rem, 3.5vw, 3.6rem);
+  font-size: clamp(2.18rem, 3.5vw, 3.27rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -1.5px;

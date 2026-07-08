@@ -67,6 +67,7 @@
 
 html {
   scroll-padding-top: 96px;
+  font-size: 110%; /* Increase base font size for the whole website */
 }
 
 body,
