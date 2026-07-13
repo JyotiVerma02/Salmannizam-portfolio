@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import PageShell from "@/components/Common/PageShell";
+import Image from "next/image";
 
 const stats = [
-  { value: "3+", label: "Years Experience", icon: "⌛" },
-  { value: "20+", label: "Projects", icon: "✨" },
-  { value: "10K+", label: "Users Served", icon: "👥" },
-  { value: "Full Stack", label: "Developer", icon: "🧠" },
+  { value: "1.5+", label: "Years of Experience", icon: "⌛" },
+  { value: "20+", label: "Projects Completed", icon: "✨" },
+  { value: "100%", label: "Client Satisfaction", icon: "⭐" },
+  { value: "24/7", label: "Always Learning", icon: "📚" },
 ];
 
 const experiences = [
@@ -86,90 +87,26 @@ const experiences = [
 
 const skillCategories = [
   {
-    title: "Backend",
-    description:
-      "Building scalable backend systems, APIs, and microservices architecture.",
-    skills: [
-      "Node.js",
-      "NestJS",
-      "PHP",
-      "Laravel",
-      "REST APIs",
-      "RabbitMQ",
-      "Microservices",
-      "Serverless",
-    ],
+    title: "Backend Architecture",
+    icon: "⚡",
+    description: "Building robust APIs and microservices with Node.js, NestJS & more.",
+    skills: ["Node.js", "NestJS", "PHP"],
   },
   {
-    title: "Frontend",
-    description:
-      "Creating responsive, performant user interfaces with modern frameworks.",
-    skills: [
-      "React",
-      "Next.js",
-      "TypeScript",
-      "JavaScript",
-      "HTML/CSS",
-      "Bootstrap",
-      "jQuery",
-      "Tailwind CSS",
-    ],
+    title: "Frontend Engineering",
+    icon: "🎨",
+    description: "Crafting responsive and interactive interfaces with React, Next.js & TypeScript.",
+    skills: ["React", "Next.js", "TypeScript"],
   },
   {
-    title: "Databases",
-    description:
-      "Designing efficient database schemas and optimizing query performance.",
-    skills: [
-      "MySQL",
-      "MongoDB",
-      "Redis",
-      "Database Design",
-      "Query Optimization",
-    ],
-  },
-  {
-    title: "DevOps / Cloud",
-    description:
-      "Infrastructure as code, containerization, cloud deployment, and observability.",
-    skills: [
-      "AWS",
-      "Azure",
-      "Docker",
-      "Kubernetes",
-      "Linux",
-      "CI/CD",
-      "Prometheus",
-      "Grafana",
-      "Monitoring",
-      "Logging",
-    ],
-  },
-  {
-    title: "Tools & Platforms",
-    description:
-      "Development workflow, collaboration tools, and methodologies.",
-    skills: [
-      "Git",
-      "GitHub",
-      "Postman",
-      "Linux",
-      "Agile/Scrum",
-      "API Integration",
-      "Authentication Systems",
-    ],
+    title: "Cloud & DevOps",
+    icon: "☁️",
+    description: "Deploying with confidence using AWS, Docker and modern DevOps practices.",
+    skills: ["AWS", "Docker", "Kubernetes"],
   },
 ];
 
-const lines = [
-    ["Building", "scalable", "software"],
-    ["with", "clean", "architecture"],
-    ["and", "meaningful", "user"],
-    ["experiences."],
-  ];
-
 export default function AboutPage() {
-  let wordIndex = 0;
-
   return (
     <PageShell>
       {/*================ ABOUT HERO ================*/}
@@ -177,87 +114,88 @@ export default function AboutPage() {
         <div className="container">
           <div className="about-hero__grid">
             <motion.div
-              className="about-hero__intro"
-              initial={{ opacity: 0, y: 45 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
+              className="about-hero__left"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
               viewport={{ once: true }}
             >
-              <h2 className="section__title">
-                About <span className="text-orange">Me</span>
-              </h2>
+              <div className="profile-card">
+                <Image
+                  src="/image/salmannizam.jpg"
+                  alt="Salman Nizam"
+                  fill
+                  priority
+                  className="profile-card__image"
+                />
+                <div className="profile-card__overlay"></div>
+                <div className="profile-card__v-text">
+                  FOCUSED • PASSIONATE • DEDICATED
+                </div>
+                <div className="profile-card__floating-box">
+                  <h3 className="profile-card__title">
+                    Full-Stack Developer
+                  </h3>
+                  <p className="profile-card__tagline">
+                    Building scalable & impactful digital solutions.
+                  </p>
+                </div>
+              </div>
+            </motion.div>
 
-              <motion.h1
-                className="hero-title"
-                initial="hidden"
-                animate="visible"
-              >
-                {lines.map((lineWords, lineIdx) => (
-                  <span key={lineIdx} style={{ display: "block" }}>
-                    {lineWords.map((word) => {
-                      const idx = wordIndex++;
-                      return (
-                        <motion.span
-                          key={idx}
-                          className="hero-word"
-                          variants={{
-                            hidden: { opacity: 0, y: 60, filter: "blur(12px)" },
-                            visible: {
-                              opacity: 1,
-                              y: 0,
-                              filter: "blur(0px)",
-                              transition: {
-                                duration: 0.7,
-                                delay: idx * 0.08,
-                                ease: [0.22, 1, 0.36, 1],
-                              },
-                            },
-                          }}
-                        >
-                          {word}&nbsp;
-                        </motion.span>
-                      );
-                    })}
-                  </span>
-                ))}
-              </motion.h1>
+            <motion.div
+              className="about-hero__right"
+              initial={{ opacity: 0, y: 45 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              <span className="about-label">ABOUT ME</span>
 
-              <p className="hero-subtitle">
-                I design premium systems that bridge modern engineering,
-                beautiful interfaces, and reliable infrastructure.
+              <h1 className="about-heading">
+                Building digital<br />
+                products that <span>scale.</span>
+              </h1>
+
+              <p className="about-description">
+                I design and build scalable software with clean architecture and meaningful user experiences.
               </p>
 
-              <div className="hero-copy">
-                As a full-stack developer, I partner with ambitious teams to
-                craft products that scale, perform, and delight users. My work
-                focuses on clarity, craftsmanship, and real-world results.
+              <p className="about-description-secondary">
+                As a full-stack developer, I partner with ambitious teams to turn ideas into high-performance products.
+              </p>
+
+              <div className="feature-cards">
+                {skillCategories.map((category, index) => (
+                  <motion.div
+                    key={category.title}
+                    className="feature-card"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.08 }}
+                  >
+                    <div className="feature-card__icon">{category.icon}</div>
+                    <div className="feature-card__content">
+                      <h4>{category.title}</h4>
+                      <p>{category.description}</p>
+                      <div className="feature-card__skills">
+                        {category.skills.map((skill) => (
+                          <span key={skill} className="feature-skill">• {skill}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
               </div>
 
-              <div className="hero-list">
-                <div className="hero-list__item">
-                  Specializing in backend-first architecture and polished UI
-                  experiences.
-                </div>
-
-                <div className="hero-list__item">
-                  Delivering production-ready solutions with strong
-                  observability and reliability.
-                </div>
-              </div>
-
-              <div className="hero-actions">
-                <a
-                  href="/resume.pdf"
-                  className="about-button about-button--primary"
-                >
-                  Download Resume
+              <div className="about-actions">
+                <a href="/resume.pdf" className="btn btn--primary">
+                  ⬇ Download Resume
                 </a>
 
-                <a
-                  href="#contact"
-                  className="about-button about-button--secondary"
-                >
-                  Contact Me
+                <a href="#contact" className="btn btn--outline">
+                  ✈ Let's Connect
                 </a>
               </div>
             </motion.div>
@@ -265,13 +203,30 @@ export default function AboutPage() {
         </div>
       </section>
 
-     
-    
+      {/*================ STATISTICS ================*/}
+      <section className="section container">
+        <div className="about-stats-grid">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              className="stat-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="stat-card__icon">{stat.icon}</div>
+              <span className="stat-value">{stat.value}</span>
+              <span className="stat-label">{stat.label}</span>
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
       {/*================ EXPERIENCE ================*/}
-      <section id="experience" className="section container">
+      <section id="experience" className="section container" style={{ marginTop: '2rem' }}>
         <h2 className="section__title">
-          Professional <span style={{ color: "#ff8c28" }}>Experience</span>
+          Professional <span style={{ color: "var(--first-color)" }}>Experience</span>
         </h2>
 
         <p
@@ -327,78 +282,48 @@ export default function AboutPage() {
       </section>
 
       {/*================ SKILLS ================*/}
-  {/*================ SKILLS ================*/}
-<section id="skills" className="section container">
-  <h2 className="section__title">
-    Skills <span style={{ color: "#ff8c28" }}>& Expertise</span>
-  </h2>
+      <section id="skills" className="section container">
+        <h2 className="section__title">
+          Skills <span style={{ color: "var(--first-color)" }}>& Expertise</span>
+        </h2>
 
-  <p className="skills-subtitle">
-    A comprehensive overview of my technical skills and areas of expertise.
-  </p>
+        <p className="skills-subtitle">
+          A comprehensive overview of my technical skills and areas of expertise.
+        </p>
 
-  <div className="skills-layout">
+        <div className="skills-layout">
+          <div className="skills-row">
+            {skillCategories.map((category, index) => (
+              <motion.div
+                key={category.title}
+                className="expertise-card"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.15,
+                }}
+              >
+                <h3>
+                  <span className="expertise-card__icon">{category.icon}</span>
+                  {category.title}
+                </h3>
 
-    {/* ---------- First Row ---------- */}
-    <div className="skills-row">
-      {skillCategories.slice(0, 3).map((category, index) => (
-        <motion.div
-          key={category.title}
-          className="expertise-card"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: index * 0.15,
-          }}
-        >
-          <h3>{category.title}</h3>
+                <p>{category.description}</p>
 
-          <p>{category.description}</p>
-
-          <div className="skills-tags">
-            {category.skills.map((skill) => (
-              <span key={skill} className="skill-pill">
-                {skill}
-              </span>
+                <div className="skills-tags">
+                  {category.skills.map((skill) => (
+                    <span key={skill} className="skill-pill">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
             ))}
           </div>
-        </motion.div>
-      ))}
-    </div>
-
-    {/* ---------- Second Row ---------- */}
-    <div className="skills-row skills-row--center">
-      {skillCategories.slice(3).map((category, index) => (
-        <motion.div
-          key={category.title}
-          className="expertise-card"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{
-            duration: 0.5,
-            delay: (index + 3) * 0.15,
-          }}
-        >
-          <h3>{category.title}</h3>
-
-          <p>{category.description}</p>
-
-          <div className="skills-tags">
-            {category.skills.map((skill) => (
-              <span key={skill} className="skill-pill">
-                {skill}
-              </span>
-            ))}
-          </div>
-        </motion.div>
-      ))}
-    </div>
-
-  </div>
-</section>
+        </div>
+      </section>
     </PageShell>
   );
 }

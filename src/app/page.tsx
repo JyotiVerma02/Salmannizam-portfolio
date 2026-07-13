@@ -2,7 +2,7 @@
 
 import "@/styles/hero.css";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 
@@ -37,37 +37,10 @@ const ChatIcon = () => (
 
 export default function Home() {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const rotateX = useSpring(useTransform(mouseY, [-200, 200], [10, -10]), {
-    stiffness: 120,
-    damping: 18,
-  });
-
-  const rotateY = useSpring(useTransform(mouseX, [-200, 200], [-10, 10]), {
-    stiffness: 120,
-    damping: 18,
-  });
 
   useEffect(() => {
     const onMove = (e: MouseEvent) => {
       setCursorPos({ x: e.clientX, y: e.clientY });
-      document.documentElement.style.setProperty(
-        "--cursor-x",
-        `${e.clientX}px`,
-      );
-      document.documentElement.style.setProperty(
-        "--cursor-y",
-        `${e.clientY}px`,
-      );
-      const px = (e.clientX / window.innerWidth - 0.5) * 30;
-      const py = (e.clientY / window.innerHeight - 0.5) * 30;
-      document.documentElement.style.setProperty("--parallax-x", `${px}px`);
-      document.documentElement.style.setProperty("--parallax-y", `${py}px`);
-
-      mouseX.set(e.clientX - window.innerWidth / 2);
-      mouseY.set(e.clientY - window.innerHeight / 2);
     };
 
     window.addEventListener("mousemove", onMove);
@@ -173,62 +146,19 @@ export default function Home() {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 1.6, duration: 0.8 }}
                   whileHover={{ scale: 1.02 }}
-                >
-                  <div className="orbit orbit-1"></div>
-                  <div className="orbit orbit-2"></div>
-                  
+                >                  
                   <div className="hero-image-wrap">
-                    <motion.div
-                      style={{
-                        rotateX,
-                        rotateY,
-                        transformPerspective: 1200,
-                      }}
-                      animate={{
-                        y: [0, -8, 0, -4, 0],
-                        rotateZ: [0, -0.8, 0, 0.8, 0],
-                        scale: [1, 1.01, 1, 1.005, 1],
-                      }}
-                      transition={{
-                        duration: 10,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                    >
+                    <div>
                       <Image
-                        src="/image/developer-3d.png"
-                        alt="Developer"
+                        src="/image/salmannizam.jpg"
+                        alt="Salman Nizam"
                         width={820}
                         height={820}
                         priority
                         className="hero-image"
                       />
-                    </motion.div>
+                    </div>
 
-                    {/* Floating Cards */}
-                    <div className="floating-card code">
-                      <div className="code-header">{'< / >'}</div>
-                      <div className="code-body">
-                        <span className="keyword">async function</span> <span className="func">build</span>() {'{'}<br/>
-                        &nbsp;&nbsp;<span className="keyword">const</span> system =<br/>
-                        &nbsp;&nbsp;<span className="keyword">await</span> <span className="func">architecture</span>();<br/>
-                        &nbsp;&nbsp;<span className="keyword">return</span> <span className="func">scale</span>(system);<br/>
-                        {'}'}
-                      </div>
-                    </div>
-                    
-                    <div className="floating-card tech tech1">
-                      <div className="tech-icon node"></div> Node.js
-                    </div>
-                    <div className="floating-card tech tech2">
-                      <div className="tech-icon nest"></div> NestJS
-                    </div>
-                    <div className="floating-card tech tech3">
-                      <div className="tech-icon ts">TS</div> TypeScript
-                    </div>
-                    <div className="floating-card tech tech4">
-                      <div className="tech-icon aws">aws</div> AWS
-                    </div>
                   </div>
 
                   <div className="hero-image-effects">
@@ -238,6 +168,14 @@ export default function Home() {
                       <span className="p" />
                       <span className="p" />
                       <span className="p" />
+                    </div>
+                  </div>
+
+                  <div className="hero-availability-card">
+                    <div className="availability-dot"></div>
+                    <div className="availability-text">
+                      <strong>Available for new projects</strong>
+                      <span>Let's build something great together.</span>
                     </div>
                   </div>
                 </motion.div>

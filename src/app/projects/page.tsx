@@ -19,7 +19,7 @@ const projects = [
       { label: "Performance", value: "Fast" },
     ],
     features: ["Microservices", "Real-time", "Secure"],
-    theme: "", // Default orange
+    theme: "", // Default monochrome
   },
   {
     id: "coderlala",

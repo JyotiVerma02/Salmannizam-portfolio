@@ -47,7 +47,7 @@ export default function BlogPage() {
             <div className="blog-card-inner">
               <div className="blog-banner">
                 <div className="blog-banner-content">
-                  <span className="blog-banner-icon">✍️</span>
+                  <span className="blog-banner-icon"></span>
                   <span className="blog-banner-text">Coming Soon</span>
                 </div>
               </div>

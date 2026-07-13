@@ -121,8 +121,8 @@ export default function FinTechFlowProjectPage() {
                   href="#" 
                   className="project-btn"
                   style={{ 
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(var(--first-color-rgb),0.06)',
+                    border: '1px solid rgba(var(--first-color-rgb),0.1)',
                     padding: '0.7rem 1.4rem',
                     color: '#fff'
                   }}

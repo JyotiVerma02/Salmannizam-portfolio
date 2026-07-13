@@ -1,6 +1,31 @@
 "use client";
 
 import PageShell from "@/components/Common/PageShell";
+import {
+  HiOutlineEnvelope,
+  HiOutlinePhone,
+  HiOutlineMapPin,
+  HiOutlineClock,
+} from "react-icons/hi2";
+
+const contactInfo = [
+  {
+    icon: <HiOutlineEnvelope size={20} />,
+    text: "salman.nizam@coderlala.com",
+  },
+  {
+    icon: <HiOutlinePhone size={20} />,
+    text: "+91 7830836770",
+  },
+  {
+    icon: <HiOutlineMapPin size={20} />,
+    text: "Gurugram, Haryana, India",
+  },
+  {
+    icon: <HiOutlineClock size={20} />,
+    text: "Mon–Sat · 9:00 AM – 7:00 PM",
+  },
+];
 
 export default function ContactPage() {
   return (
@@ -37,9 +62,13 @@ export default function ContactPage() {
           </div>
 
           {/* Right - Contact Info */}
-          <div className="contact-info card">
+          <div className="contact-info">
             <div className="contact-header">
-              <span className="contact-header-icon">💬</span>
+              <span className="contact-header-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+              </span>
               <h3>Let's Connect</h3>
             </div>
             
@@ -48,27 +77,14 @@ export default function ContactPage() {
               Let's build something great together.
             </p>
             
-            <div className="contact-details">
-              <div className="contact-item">
-                <span className="contact-icon">📧</span>
-                <a href="mailto:salman.nizam@coderlala.com" className="contact-link">
-                  salman.nizam@coderlala.com
-                </a>
-              </div>
-              <div className="contact-item">
-                <span className="contact-icon">📱</span>
-                <a href="tel:+917830836770" className="contact-link">
-                  +91 7830836770
-                </a>
-              </div>
-              <div className="contact-item">
-                <span className="contact-icon">📍</span>
-                <span className="contact-text">Gurugram, Haryana, India</span>
-              </div>
-              <div className="contact-item">
-                <span className="contact-icon">🕐</span>
-                <span className="contact-text">Mon-Sat · 9:00AM - 7:00PM</span>
-              </div>
+            {/* Contact Details - Boxed Layout */}
+            <div className="contact-details-box">
+              {contactInfo.map((item, index) => (
+                <div className="contact-item" key={index}>
+                  <span className="contact-icon">{item.icon}</span>
+                  <span className="contact-text">{item.text}</span>
+                </div>
+              ))}
             </div>
 
             <div className="contact-social-section">

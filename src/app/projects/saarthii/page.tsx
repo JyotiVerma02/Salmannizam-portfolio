@@ -10,7 +10,7 @@ export default function SaarthiiProjectPage() {
             ← Back to Projects
           </Link>
 
-          <div className="project-detail-hero project-detail-hero--orange">
+          <div className="project-detail-hero project-detail-hero--monochrome">
             <span className="project-detail-kicker">B2B Transaction Platform</span>
             <h1>
               Saarthii <span>Platform</span>
@@ -113,7 +113,7 @@ export default function SaarthiiProjectPage() {
                   href="#" 
                   className="project-btn"
                   style={{ 
-                    background: 'linear-gradient(135deg, #ff8c23, #ffb14b)',
+                    background: 'linear-gradient(135deg, var(--first-color), var(--first-color))',
                     padding: '0.7rem 1.4rem'
                   }}
                 >
@@ -123,8 +123,8 @@ export default function SaarthiiProjectPage() {
                   href="#" 
                   className="project-btn"
                   style={{ 
-                    background: 'rgba(255,255,255,0.06)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(var(--first-color-rgb),0.06)',
+                    border: '1px solid rgba(var(--first-color-rgb),0.1)',
                     padding: '0.7rem 1.4rem',
                     color: '#fff'
                   }}
