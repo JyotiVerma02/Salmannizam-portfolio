@@ -341,7 +341,7 @@
 .projects-cta {
   text-align: center;
   margin-top: 2.5rem;
-  padding: 2rem;
+  padding: 1.5rem 1rem;
   border-radius: 1rem;
   background: var(--container-color);
   border: 1px solid var(--border-color);
@@ -378,6 +378,21 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
+
+.projects-cta--gradient-background {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  border: none;
+}
+
+.projects-cta--gradient-background h3 {
+  color: #fff;
+}
+
+.projects-cta--gradient-background p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 
 /*==================================
   RESPONSIVE
@@ -561,86 +576,130 @@
   PROJECT CARD BLUE THEME (CODERLALA)
 ==================================*/
 
+.project-card--blue {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(230, 240, 255, 1));
+}
+
 .project-card--blue:hover {
-  border-color: rgba(79, 172, 254, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(79, 172, 254, 0.06);
+  border-color: rgba(79, 172, 254, 0.4);
 }
 
 .project-card--blue .tech-list span:hover {
   background: rgba(79, 172, 254, 0.12);
-  border-color: rgba(79, 172, 254, 0.2);
+  border-color: rgba(79, 172, 254, 0.3);
 }
 
 .project-card--blue .project-btn {
-  background: var(--black-color);
-  color: var(--white-color);
+  background: #4f8bff;
+  color: #fff;
 }
 
 .project-card--blue .project-btn:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: #639dff;
+  box-shadow: 0 8px 20px rgba(79, 172, 254, 0.3);
 }
 
 /*==================================
   PROJECT CARD GREEN THEME
 ==================================*/
 
+.project-card--green {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(230, 255, 235, 1));
+}
+
 .project-card--green:hover {
-  border-color: rgba(46, 213, 115, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(46, 213, 115, 0.06);
+  border-color: rgba(46, 213, 115, 0.4);
 }
 
 .project-card--green .tech-list span:hover {
   background: rgba(46, 213, 115, 0.12);
-  border-color: rgba(46, 213, 115, 0.2);
+  border-color: rgba(46, 213, 115, 0.3);
 }
 
 .project-card--green .project-btn {
-  background: var(--black-color);
-  color: var(--white-color);
+  background: #2ed573;
+  color: #fff;
 }
 
 .project-card--green .project-btn:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-}
-.project-card--blue .project-btn,
-.project-card--green .project-btn,
-.project-card--purple .project-btn {
-  background: #000 !important;
-  color: #fff !important;
-  border: 1px solid #000 !important;
-}
-
-.project-card--blue .project-btn:hover,
-.project-card--green .project-btn:hover,
-.project-card--purple .project-btn:hover {
-  background: #222 !important;
-  color: #fff !important;
-  border-color: #222 !important;
+  background: #45e08b;
+  box-shadow: 0 8px 20px rgba(46, 213, 115, 0.3);
 }
 
 /*==================================
   PROJECT CARD PURPLE THEME
 ==================================*/
 
+.project-card--purple {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(245, 235, 255, 1));
+}
+
 .project-card--purple:hover {
-  border-color: rgba(165, 94, 234, 0.25);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(165, 94, 234, 0.06);
+  border-color: rgba(165, 94, 234, 0.4);
 }
 
 .project-card--purple .tech-list span:hover {
   background: rgba(165, 94, 234, 0.12);
-  border-color: rgba(165, 94, 234, 0.2);
+  border-color: rgba(165, 94, 234, 0.3);
 }
 
 .project-card--purple .project-btn {
-  background: var(--black-color);
-  color: var(--white-color);
+  background: #a55eea;
+  color: #fff;
 }
 
 .project-card--purple .project-btn:hover {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  background: #b879f0;
+  box-shadow: 0 8px 20px rgba(165, 94, 234, 0.3);
 }
 
+/*==================================
+  PROJECT CARD ORANGE THEME
+==================================*/
+
+.project-card--orange {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(255, 245, 230, 1));
+}
+
+.project-card--orange:hover {
+  border-color: rgba(255, 165, 0, 0.4);
+}
+
+.project-card--orange .tech-list span:hover {
+  background: rgba(255, 165, 0, 0.12);
+  border-color: rgba(255, 165, 0, 0.3);
+}
+
+.project-card--orange .project-btn {
+  background: #ff9900;
+  color: #fff;
+}
+
+/*==================================
+  PROJECT CARD TEAL THEME
+==================================*/
+
+.project-card--teal {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 1), rgba(224, 247, 244, 1));
+}
+
+.project-card--teal:hover {
+  border-color: rgba(45, 212, 191, 0.4);
+}
+
+.project-card--teal .tech-list span:hover {
+  background: rgba(45, 212, 191, 0.12);
+  border-color: rgba(45, 212, 191, 0.3);
+}
+
+.project-card--teal .project-btn {
+  background: #2dd4bf;
+  color: #fff;
+}
+
+.project-card--teal .project-btn:hover {
+  box-shadow: 0 8px 20px rgba(45, 212, 191, 0.3);
+}
 /*==================================
   PROJECT DETAIL PAGES (SAARTHII & CODERLALA)
 ==================================*/

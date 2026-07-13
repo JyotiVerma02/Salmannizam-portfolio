@@ -19,7 +19,7 @@ const projects = [
       { label: "Performance", value: "Fast" },
     ],
     features: ["Microservices", "Real-time", "Secure"],
-    theme: "", // Default monochrome
+    theme: "project-card--orange",
   },
   {
     id: "coderlala",
@@ -65,6 +65,21 @@ const projects = [
     ],
     features: ["P2P Transfers", "Investing", "Automation"],
     theme: "project-card--purple",
+  },
+  {
+    id: "dummyproject",
+    title: "Upcoming Project",
+    description:
+      "This is a placeholder for an exciting new project. Details will be revealed soon, showcasing innovative solutions and modern technology.",
+    tech: ["Coming Soon"],
+    image: "/developer-3d.png",
+    stats: [
+      { label: "Status", value: "In-Progress" },
+      { label: "Launch", value: "TBD" },
+      { label: "Tech", value: "Modern" },
+    ],
+    features: ["Innovative", "Scalable", "User-Centric"],
+    theme: "project-card--teal",
   },
 ];
 
@@ -173,7 +188,7 @@ export default function ProjectsPage() {
 
           {/* CTA Section */}
           <motion.div
-            className="projects-cta"
+            className="projects-cta projects-cta--gradient-background"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
