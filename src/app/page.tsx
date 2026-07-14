@@ -3,7 +3,6 @@
 import "@/styles/hero.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar/Navbar";
 
 const ClockIcon = () => (
@@ -35,18 +34,7 @@ const ChatIcon = () => (
   </svg>
 );
 
-export default function Home() {
-  const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
-
-  useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      setCursorPos({ x: e.clientX, y: e.clientY });
-    };
-
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
-
+const Hero = () => {
   return (
     <>
       <div className="cursor-glow" />
@@ -120,23 +108,6 @@ export default function Home() {
                   </motion.a>
                 </div>
 
-                <motion.div
-                  className="hero-trusted"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1.6, duration: 0.6 }}
-                >
-                  <span className="trusted-label">
-                    TRUSTED BY MODERN BUSINESSES
-                  </span>
-                  <div className="trusted-logos">
-                    <span className="trusted-logo-icon" style={{ fontSize: '1.4rem' }}>aws</span>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-icon"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-icon"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-                    <div className="circle-logo-icon" style={{ width: '28px', height: '28px', fontSize: '0.9rem' }}>N</div>
-                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-icon"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-                  </div>
-                </motion.div>
               </div>
 
               <div className="hero__right">
@@ -181,52 +152,99 @@ export default function Home() {
                 </motion.div>
               </div>
             </div>
-
-            {/* Bottom Section: Full Width Stats Box */}
-            <motion.div 
-              className="hero-stats-wrapper"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.8, duration: 0.6 }}
-            >
-              <div className="hero-stats">
-                <div className="stat-card">
-                  <div className="stat-icon-wrapper"><ClockIcon /></div>
-                  <div className="stat-content">
-                    <div className="stat-number">3+</div>
-                    <div className="stat-labels">
-                      <span className="stat-label-main">Years</span>
-                      <span className="stat-label-sub">Experience</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="stat-card">
-                  <div className="stat-icon-wrapper"><CodeIcon /></div>
-                  <div className="stat-content">
-                    <div className="stat-number">20+</div>
-                    <div className="stat-labels">
-                      <span className="stat-label-main">Successful</span>
-                      <span className="stat-label-sub">Projects</span>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="stat-card">
-                  <div className="stat-icon-wrapper"><UsersIcon /></div>
-                  <div className="stat-content">
-                    <div className="stat-number">10K+</div>
-                    <div className="stat-labels">
-                      <span className="stat-label-main">Happy</span>
-                      <span className="stat-label-sub">Users</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </section>
       </main>
+    </>
+  );
+};
+
+const TrustedBy = () => (
+  <section className="trusted-by-section">
+    <div className="container">
+      <motion.div
+        className="trusted-by-card"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <span className="trusted-label">
+          TRUSTED BY MODERN BUSINESSES
+        </span>
+        <div className="trusted-logos">
+          {/* Restored original logos */}
+          <span className="trusted-logo-item" style={{ fontSize: '1.8rem', fontWeight: 700 }}>aws</span>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+          <div className="trusted-logo-item circle-logo-icon">N</div>
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+);
+
+const About = () => (
+  <section id="about" className="about-hero about-hero--centered">
+    <div className="container">
+      <div className="about-hero__grid">
+        <div className="about-hero__right">
+          <span className="about-label">My Philosophy</span>
+          <h2 className="about-heading">Engineering with <span>Purpose</span></h2>
+          <p className="about-description">
+            My journey into technology was driven by a fascination with solving complex problems. I believe the best digital products are built at the intersection of elegant code, user-centric design, and strategic business goals.
+          </p>
+          <p className="about-description-secondary">
+            I partner with founders and teams to not just write code, but to build systems that are reliable, scalable, and a joy to use. My focus is on creating tangible value and a foundation for long-term success.
+          </p>
+          
+          <div className="hero-stats-wrapper" style={{ marginTop: '40px' }}>
+            <div className="hero-stats">
+              <div className="stat-card">
+                <div className="stat-icon-wrapper"><ClockIcon /></div>
+                <div className="stat-content">
+                  <div className="stat-number">3+</div>
+                  <div className="stat-labels">
+                    <span className="stat-label-main">Years</span>
+                    <span className="stat-label-sub">Experience</span>
+                  </div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon-wrapper"><CodeIcon /></div>
+                <div className="stat-content">
+                  <div className="stat-number">20+</div>
+                  <div className="stat-labels">
+                    <span className="stat-label-main">Successful</span>
+                    <span className="stat-label-sub">Projects</span>
+                  </div>
+                </div>
+              </div>
+              <div className="stat-card">
+                <div className="stat-icon-wrapper"><UsersIcon /></div>
+                <div className="stat-content">
+                  <div className="stat-number">10K+</div>
+                  <div className="stat-labels">
+                    <span className="stat-label-main">Happy</span>
+                    <span className="stat-label-sub">Users</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
+
+export default function Home() {
+  return (
+    <>
+      <Hero />
+      <TrustedBy />
+      <About />
     </>
   );
 }
