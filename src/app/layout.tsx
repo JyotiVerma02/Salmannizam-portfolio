@@ -10,7 +10,6 @@ import "@/styles/blog.css";
 import "@/styles/contact.css";
 import "@/styles/footer.css";
 import "@/styles/responsive.css";
-import Footer from "@/app/footer/page";
 import SmoothScroll from "@/components/Common/SmoothScroll";
 
 const poppins = Poppins({
@@ -26,8 +25,8 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Salman Nizam | Portfolio",
-  description: "Portfolio website showcasing projects, experience, and skills.",
+  title: "Salman Nizam - Senior Developer",
+  description: "Portfolio of Salman Nizam, a senior full-stack developer.",
 };
 
 export default function RootLayout({
@@ -36,15 +35,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${poppins.variable} ${syne.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col" suppressHydrationWarning>
-        <SmoothScroll>
-          {children}
-          <Footer />
-        </SmoothScroll>
+    <html lang="en" className={`${poppins.variable} ${syne.variable}`}>
+      <body suppressHydrationWarning>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 "use client";
 
-import "@/styles/hero.css";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar/Navbar";

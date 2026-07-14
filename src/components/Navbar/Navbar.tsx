@@ -2,8 +2,7 @@
 
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import type { MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 
 const navItems = [
@@ -15,14 +14,11 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-
-const getNavbarOffset = () => (window.innerWidth <= 640 ? 84 : 96);
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("/#home");
-    const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("/");
+  const pathname = usePathname();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -42,20 +38,13 @@ export default function Navbar() {
 
   useEffect(() => {
     setOpen(false);
-    
-    // Set active section based on current pathname
-    const currentPath = pathname === '/' ? '/' : `/${pathname.split('/')[1]}`;
-    const matchedItem = navItems.find(item => item.href === currentPath);
-    if (matchedItem) {
-      setActiveSection(matchedItem.href);
-    } else {
-      setActiveSection("/");
-    }
+
+    const currentPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
+    const matchedItem = navItems.find((item) => item.href === currentPath);
+    setActiveSection(matchedItem ? matchedItem.href : "/");
   }, [pathname]);
 
-  const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    setOpen(false);
-  };
+  const closeMenu = () => setOpen(false);
 
   return (
     <>
@@ -65,18 +54,11 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <motion.div
-          className="navbar-progress"
-          style={{ scaleX }}
-        />
+        <motion.div className="navbar-progress" style={{ scaleX }} />
 
         <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
           <div className="navbar-left">
-            <Link
-              href="/#home"
-              className="navbar-logo"
-              onClick={(event) => handleNavClick(event, "/#home")}
-            >
+            <Link href="/#home" className="navbar-logo" onClick={closeMenu}>
               Salman <span className="navbar-logo-accent">Nizam</span>
             </Link>
           </div>
@@ -95,7 +77,7 @@ export default function Navbar() {
                       href={item.href}
                       className={`navbar-link ${isActive ? "navbar-link-active" : ""}`}
                       aria-current={isActive ? "page" : undefined}
-                      onClick={(event) => handleNavClick(event, item.href)}
+                      onClick={closeMenu}
                     >
                       {item.label}
                       <span className="navbar-link-glow" />
@@ -113,25 +95,25 @@ export default function Navbar() {
               </span>
             </button>
 
-        <Link href="/admin-login" className="navbar-admin-btn">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z"/>
-    <path d="M12 8v4"/>
-    <circle cx="12" cy="16" r="1"/>
-  </svg>
-
-  <span>Admin</span>
-</Link>
+            <Link href="/admin/login" className="navbar-admin-btn" onClick={closeMenu}>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 2l8 4v6c0 5-3.5 9-8 10-4.5-1-8-5-8-10V6l8-4z" />
+                <path d="M12 8v4" />
+                <circle cx="12" cy="16" r="1" />
+              </svg>
+              <span>Admin</span>
+            </Link>
 
             <button
               type="button"
@@ -156,7 +138,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              onClick={() => setOpen(false)}
+              onClick={closeMenu}
             />
 
             <motion.aside
@@ -174,7 +156,7 @@ export default function Navbar() {
                 <button
                   type="button"
                   className="navbar-drawer-close"
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   aria-label="Close navigation menu"
                 >
                   x
@@ -190,16 +172,13 @@ export default function Navbar() {
                       key={item.label}
                       initial={{ x: 16, opacity: 0 }}
                       animate={{ x: 0, opacity: 1 }}
-                      transition={{
-                        duration: 0.24,
-                        delay: 0.05 + index * 0.04,
-                      }}
+                      transition={{ duration: 0.24, delay: 0.05 + index * 0.04 }}
                     >
                       <Link
                         href={item.href}
                         className={`navbar-drawer-link ${isActive ? "navbar-drawer-link-active" : ""}`}
                         aria-current={isActive ? "page" : undefined}
-                        onClick={(event) => handleNavClick(event, item.href)}
+                        onClick={closeMenu}
                       >
                         <span>{item.label}</span>
                         <span className="navbar-drawer-arrow">&gt;</span>
@@ -207,6 +186,21 @@ export default function Navbar() {
                     </motion.li>
                   );
                 })}
+
+                <motion.li
+                  initial={{ x: 16, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  transition={{ duration: 0.24, delay: 0.32 }}
+                >
+                  <Link
+                    href="/admin/login"
+                    className="navbar-drawer-link navbar-drawer-link-admin"
+                    onClick={closeMenu}
+                  >
+                    <span>Admin Login</span>
+                    <span className="navbar-drawer-arrow">&gt;</span>
+                  </Link>
+                </motion.li>
               </ul>
             </motion.aside>
           </>
