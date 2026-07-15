@@ -95,7 +95,7 @@ export default function Navbar() {
               </span>
             </button>
 
-            <Link href="/admin/login" className="navbar-admin-btn" onClick={closeMenu}>
+            <Link href="/admin-login" className="navbar-admin-btn" onClick={closeMenu}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="18"
@@ -193,7 +193,7 @@ export default function Navbar() {
                   transition={{ duration: 0.24, delay: 0.32 }}
                 >
                   <Link
-                    href="/admin/login"
+                    href="/admin-login"
                     className="navbar-drawer-link navbar-drawer-link-admin"
                     onClick={closeMenu}
                   >

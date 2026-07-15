@@ -1,0 +1,52 @@
+.admin-dashboard-topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px 32px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.admin-user-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 16px 6px 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.admin-avatar {
+  width: 32px;
+  height: 32px;
+  background: #1e293b;
+  color: #ffffff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.admin-user-chip-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-user-chip-text strong {
+  font-size: 13px;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.admin-user-chip-text span {
+  font-size: 11px;
+  color: #64748b;
+}
+
+/* Content Area */

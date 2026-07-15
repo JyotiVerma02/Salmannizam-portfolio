@@ -80,7 +80,7 @@ async function isValidAdminToken(token: string) {
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get(ADMIN_AUTH_COOKIE)?.value;
-  const isLoginPage = pathname === "/admin/login";
+  const isLoginPage = pathname === "/admin-login";
   const isAdminRoot = pathname === "/admin";
   const hasValidToken = token ? await isValidAdminToken(token) : false;
 
@@ -93,7 +93,7 @@ export async function proxy(request: NextRequest) {
   }
 
   if (!hasValidToken) {
-    return NextResponse.redirect(new URL("/admin/login", request.url));
+    return NextResponse.redirect(new URL("/admin-login", request.url));
   }
 
   if (isAdminRoot) {
