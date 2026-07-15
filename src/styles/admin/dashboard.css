@@ -10,15 +10,27 @@
   background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  padding: 24px;
+  padding: 20px;
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .admin-stat-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
+  border-color: #cbd5e1;
+}
+
+.admin-stat-info span {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 4px;
 }
 
 .admin-stat-card span {
@@ -27,6 +39,20 @@
   font-weight: 600;
   color: #475569;
   margin-bottom: 8px;
+}
+
+.admin-stat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.admin-stat-icon svg {
+  width: 22px;
+  height: 22px;
 }
 
 .admin-stat-card strong {
@@ -54,7 +80,19 @@
   height: 4px;
 }
 
-.accent-violet::before { background: #8b5cf6; }
-.accent-cyan::before { background: #06b6d4; }
-.accent-amber::before { background: #f59e0b; }
-.accent-emerald::before { background: #10b981; }
+.accent-violet .admin-stat-icon { background: #f5f3ff; color: #7c3aed; }
+.accent-violet:hover { background: #fafaff; }
+
+.accent-cyan .admin-stat-icon { background: #ecfeff; color: #0891b2; }
+.accent-cyan:hover { background: #f8feff; }
+
+.accent-amber .admin-stat-icon { background: #fffbeb; color: #d97706; }
+.accent-amber:hover { background: #fffefa; }
+
+.accent-emerald .admin-stat-icon { background: #ecfdf5; color: #059669; }
+.accent-emerald:hover { background: #fafffc; }
+
+.accent-violet::before { background: #7c3aed; }
+.accent-cyan::before { background: #0891b2; }
+.accent-amber::before { background: #d97706; }
+.accent-emerald::before { background: #059669; }
