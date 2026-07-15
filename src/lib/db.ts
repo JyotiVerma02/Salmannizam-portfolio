@@ -9,7 +9,10 @@ declare global {
   var mongooseCache: MongooseCache | undefined;
 }
 
-const cached: MongooseCache = global.mongooseCache || { conn: null, promise: null };
+const cached: MongooseCache = global.mongooseCache || {
+  conn: null,
+  promise: null,
+};
 
 if (!global.mongooseCache) {
   global.mongooseCache = cached;
@@ -27,13 +30,17 @@ export async function connectDB() {
   }
 
   try {
-    cached.promise ||= mongoose.connect(uri, {
-      bufferCommands: false,
-      serverSelectionTimeoutMS: 5000,
-    });
+   cached.promise ||= mongoose.connect(uri, {
+  bufferCommands: false,
+  serverSelectionTimeoutMS: 5000,
+});
 
-    cached.conn = await cached.promise;
-    return cached.conn;
+cached.conn = await cached.promise;
+
+console.log("Connected Database:", mongoose.connection.name);
+console.log("Mongo URI:", process.env.MONGODB_URI);
+
+return cached.conn;
   } catch (error) {
     cached.promise = null;
     cached.conn = null;
