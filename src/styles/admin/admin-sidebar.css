@@ -259,11 +259,6 @@
   color: #38bdf8;
 }
 
-.admin-sidebar-logout button span {
-  transition: color 0.3s ease;
-  color: #0c4a6e;
-}
-
 .admin-sidebar-logout button:hover::before {
   opacity: 1;
 }
@@ -272,15 +267,12 @@
   border-color: #38bdf8;
   transform: translateX(4px) scale(1.01);
   box-shadow: 0 4px 16px rgba(56, 189, 248, 0.15);
+  color: #0284c7;
 }
 
 .admin-sidebar-logout button:hover svg {
   color: #0284c7;
   transform: scale(1.1) rotate(-8deg);
-}
-
-.admin-sidebar-logout button:hover span {
-  color: #0284c7;
 }
 
 .admin-sidebar-logout button:active {

@@ -1,15 +1,18 @@
 import "@/styles/admin/experience.css";
 import AdminSection from "@/components/Admin/AdminSection";
+import MiniList from "@/components/Admin/MiniList";
+
+const experience = ["Backend architecture", "Authentication systems", "Dashboard design"];
 
 export default function Page() {
   return (
     <AdminSection
-      id="page"
-      eyebrow="Admin"
-      title="Page"
-      description="Manage content here."
+      id="experience"
+      eyebrow="Career"
+      title="Experience"
+      description="Manage experience highlights and the story behind production work."
     >
-      <div>Content goes here...</div>
+      <MiniList items={experience} tone="amber" />
     </AdminSection>
   );
 }

@@ -95,7 +95,7 @@ export default async function AdminDashboardLayout({ children }: AdminDashboardL
         <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
           <button type="submit">
             <LogoutIcon />
-            Logout
+            <span>Logout</span>
           </button>
         </form>
       </aside>

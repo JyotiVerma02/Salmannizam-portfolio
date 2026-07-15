@@ -12,12 +12,10 @@ export default function AdminSection({ id, eyebrow, title, description, children
   return (
     <div id={id} className="admin-content-wrapper">
       <div className="admin-page-header">
-        <div className="admin-page-header-text">
-          <div>
-            <span style={{ fontSize: 11, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.05em', fontWeight: 600 }}>{eyebrow}</span>
-            <h1>{title}</h1>
-            <p>{description}</p>
-          </div>
+        <div className="admin-page-header-text">          
+          <span className="admin-page-eyebrow">{eyebrow}</span>
+          <h1>{title}</h1>
+          <p>{description}</p>
         </div>
       </div>
       {children}
