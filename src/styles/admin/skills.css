@@ -1,1 +1,103 @@
-/* CSS for skills page */
+/* =========================================
+   SKILLS PAGE — skills.css
+   Uses variables from admin-layout.css
+   ========================================= */
+
+.admin-skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 14px;
+}
+
+.admin-skill-pill {
+  background: var(--adm-bg-card);
+  border: 1px solid var(--adm-border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--adm-transition);
+  cursor: default;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-skill-pill::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--adm-accent), var(--adm-accent-2));
+  opacity: 0;
+  transition: opacity var(--adm-transition);
+}
+
+.admin-skill-pill:hover {
+  transform: translateY(-4px);
+  border-color: var(--adm-accent);
+  box-shadow: var(--adm-shadow-md), 0 0 0 3px var(--adm-accent-glow);
+  background: var(--adm-bg-card-hover);
+}
+
+.admin-skill-pill:hover::before {
+  opacity: 1;
+}
+
+.admin-skill-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--adm-accent-light);
+  color: var(--adm-accent);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 800;
+  transition: transform var(--adm-transition);
+}
+
+.admin-skill-pill:hover .admin-skill-icon {
+  transform: scale(1.12) rotate(-6deg);
+}
+
+.admin-skill-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--adm-text-primary);
+  line-height: 1.3;
+}
+
+.admin-skill-level {
+  font-size: 11px;
+  color: var(--adm-text-muted);
+}
+
+/* Skill category group header */
+.admin-skill-group-heading {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: var(--adm-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 28px 0 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-skill-group-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--adm-border);
+}
+
+.admin-skill-group-heading:first-child {
+  margin-top: 0;
+}

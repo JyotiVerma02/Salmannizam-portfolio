@@ -1,98 +1,182 @@
-/* CSS for dashboard page */
+/* =========================================
+   ADMIN DASHBOARD PAGE — dashboard.css
+   Uses variables from admin-layout.css
+   ========================================= */
 
+/* Stat grid */
 .admin-stat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 
+/* Stat card */
 .admin-stat-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 20px;
+  background: var(--adm-bg-card);
+  border: 1px solid var(--adm-border);
+  border-radius: 18px;
+  padding: 24px;
   position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
+  transition: all var(--adm-transition);
   display: flex;
   align-items: flex-start;
-  gap: 16px;
+  gap: 18px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.admin-stat-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
-  border-color: #cbd5e1;
-}
-
-.admin-stat-info span {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  margin-bottom: 4px;
-}
-
-.admin-stat-card span {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #475569;
-  margin-bottom: 8px;
-}
-
-.admin-stat-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  flex-shrink: 0;
-}
-
-.admin-stat-icon svg {
-  width: 22px;
-  height: 22px;
-}
-
-.admin-stat-card strong {
-  display: block;
-  font-size: 36px;
-  font-weight: 800;
-  color: #0f172a;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.admin-stat-card p {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0;
-  line-height: 1.5;
-}
-
+/* Shimmer top strip */
 .admin-stat-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 4px;
+  right: 0;
+  height: 3px;
+  border-radius: 18px 18px 0 0;
+  background: linear-gradient(90deg, transparent, var(--adm-accent), transparent);
+  opacity: 0;
+  transition: opacity var(--adm-transition);
 }
 
-.accent-violet .admin-stat-icon { background: #f5f3ff; color: #7c3aed; }
-.accent-violet:hover { background: #fafaff; }
+/* Glow spot on hover */
+.admin-stat-card::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  bottom: -40px;
+  right: -20px;
+  background: radial-gradient(circle, var(--adm-accent-glow), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--adm-transition);
+  pointer-events: none;
+}
 
-.accent-cyan .admin-stat-icon { background: #ecfeff; color: #0891b2; }
-.accent-cyan:hover { background: #f8feff; }
+.admin-stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--adm-shadow-lg);
+  border-color: var(--adm-border-strong);
+  background: var(--adm-bg-card-hover);
+}
 
-.accent-amber .admin-stat-icon { background: #fffbeb; color: #d97706; }
-.accent-amber:hover { background: #fffefa; }
+.admin-stat-card:hover::before { opacity: 1; }
+.admin-stat-card:hover::after  { opacity: 1; }
 
-.accent-emerald .admin-stat-icon { background: #ecfdf5; color: #059669; }
-.accent-emerald:hover { background: #fafffc; }
+/* Icon box */
+.admin-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  transition: transform var(--adm-transition);
+}
 
-.accent-violet::before { background: #7c3aed; }
-.accent-cyan::before { background: #0891b2; }
-.accent-amber::before { background: #d97706; }
-.accent-emerald::before { background: #059669; }
+.admin-stat-card:hover .admin-stat-icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+.admin-stat-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Info */
+.admin-stat-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.admin-stat-info > span,
+.admin-stat-card > span {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--adm-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.admin-stat-card strong {
+  display: block;
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--adm-text-primary);
+  line-height: 1;
+  margin-bottom: 10px;
+  letter-spacing: -0.02em;
+}
+
+.admin-stat-card p {
+  font-size: 13px;
+  color: var(--adm-text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   Accent color variants — icon + subtle top bar
+   ========================================== */
+.accent-violet .admin-stat-icon {
+  background: rgba(124,58,237,0.12);
+  color: #7c3aed;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.15);
+}
+.accent-violet::before { background: linear-gradient(90deg, transparent, #7c3aed, transparent) !important; }
+
+.accent-cyan .admin-stat-icon {
+  background: rgba(8,145,178,0.12);
+  color: #0891b2;
+  box-shadow: 0 4px 16px rgba(8,145,178,0.15);
+}
+.accent-cyan::before { background: linear-gradient(90deg, transparent, #0891b2, transparent) !important; }
+
+.accent-amber .admin-stat-icon {
+  background: rgba(217,119,6,0.12);
+  color: #d97706;
+  box-shadow: 0 4px 16px rgba(217,119,6,0.15);
+}
+.accent-amber::before { background: linear-gradient(90deg, transparent, #d97706, transparent) !important; }
+
+.accent-emerald .admin-stat-icon {
+  background: rgba(5,150,105,0.12);
+  color: #059669;
+  box-shadow: 0 4px 16px rgba(5,150,105,0.15);
+}
+.accent-emerald::before { background: linear-gradient(90deg, transparent, #059669, transparent) !important; }
+
+/* Dark theme: slightly brighter icon colors */
+[data-theme="dark"] .accent-violet .admin-stat-icon { background: rgba(139,92,246,0.2); color: #a78bfa; }
+[data-theme="dark"] .accent-cyan .admin-stat-icon   { background: rgba(6,182,212,0.2);  color: #22d3ee; }
+[data-theme="dark"] .accent-amber .admin-stat-icon  { background: rgba(245,158,11,0.2); color: #fbbf24; }
+[data-theme="dark"] .accent-emerald .admin-stat-icon { background: rgba(16,185,129,0.2); color: #34d399; }
+
+/* ==========================================
+   RECENT ACTIVITY SECTION (optional)
+   ========================================== */
+.admin-recent-section {
+  margin-top: 36px;
+}
+
+.admin-section-heading {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--adm-text-primary);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-section-heading::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--adm-border);
+}

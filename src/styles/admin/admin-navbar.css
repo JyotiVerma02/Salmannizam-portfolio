@@ -1,22 +1,38 @@
+/* =========================================
+   ADMIN TOPBAR / NAVBAR
+   Uses variables from admin-layout.css
+   ========================================= */
+
 .admin-dashboard-topbar {
   position: sticky;
   top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid #e2e8f0;
-  z-index: 5;
-  height: 80px;
+  padding: 0 36px;
+  background: var(--adm-bg-topbar);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--adm-border);
+  z-index: 9;
+  height: 72px;
+  transition:
+    background var(--adm-transition),
+    border-color var(--adm-transition);
+  gap: 16px;
 }
 
+[data-theme="dark"] .admin-dashboard-topbar {
+  box-shadow: 0 1px 0 var(--adm-border), 0 4px 20px rgba(0,0,0,0.3);
+}
+
+/* ==========================================
+   SEARCH BAR
+   ========================================== */
 .admin-search-bar {
   position: relative;
   width: 100%;
-  max-width: 400px;
+  max-width: 380px;
 }
 
 .admin-search-bar svg {
@@ -24,111 +40,196 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #94a3b8;
+  color: var(--adm-text-muted);
   pointer-events: none;
+  transition: color var(--adm-transition);
 }
 
 .admin-search-bar input {
   width: 100%;
-  padding: 10px 16px 10px 42px;
+  padding: 10px 16px 10px 44px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
+  border: 1px solid var(--adm-border);
+  background: var(--adm-bg-input);
   font-size: 14px;
-  color: #0f172a;
-  transition: all 0.2s ease;
+  color: var(--adm-text-primary);
+  transition: all var(--adm-transition);
+  font-family: inherit;
 }
 
 .admin-search-bar input:focus {
   outline: none;
-  border-color: #6366f1;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+  border-color: var(--adm-border-focus);
+  background: var(--adm-bg-input-focus);
+  box-shadow: 0 0 0 3px var(--adm-accent-glow);
+}
+
+.admin-search-bar input:focus + svg,
+.admin-search-bar:focus-within svg {
+  color: var(--adm-accent);
 }
 
 .admin-search-bar input::placeholder {
-  color: #94a3b8;
+  color: var(--adm-text-muted);
 }
 
+/* ==========================================
+   TOPBAR ACTION GROUP
+   ========================================== */
 .admin-topbar-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
+/* ==========================================
+   THEME TOGGLE
+   ========================================== */
+.admin-theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.admin-theme-toggle-track {
+  width: 52px;
+  height: 28px;
+  border-radius: 14px;
+  background: var(--adm-bg-muted);
+  border: 1px solid var(--adm-border);
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  transition: all var(--adm-transition);
+  position: relative;
+}
+
+[data-theme="dark"] .admin-theme-toggle-track {
+  background: var(--adm-accent-light);
+  border-color: var(--adm-accent);
+}
+
+.admin-theme-toggle-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 11px;
+  background: #ffffff;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.2);
+  display: grid;
+  place-items: center;
+  transition: transform var(--adm-transition);
+  color: var(--adm-accent);
+  flex-shrink: 0;
+}
+
+[data-theme="dark"] .admin-theme-toggle-thumb {
+  transform: translateX(24px);
+  background: var(--adm-accent);
+  color: #ffffff;
+}
+
+.admin-theme-toggle-thumb svg {
+  width: 13px;
+  height: 13px;
+  stroke-width: 2.2;
+}
+
+.admin-theme-toggle:hover .admin-theme-toggle-track {
+  border-color: var(--adm-accent);
+  box-shadow: 0 0 0 3px var(--adm-accent-glow);
+}
+
+/* ==========================================
+   NOTIFICATION BUTTON
+   ========================================== */
 .admin-notification-btn {
   position: relative;
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   border-radius: 12px;
-  border: 1px solid #e2e8f0;
-  background: #ffffff;
-  color: #64748b;
+  border: 1px solid var(--adm-border);
+  background: var(--adm-bg-input);
+  color: var(--adm-text-secondary);
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--adm-transition);
+  flex-shrink: 0;
 }
 
 .admin-notification-btn:hover {
-  background: #f8fafc;
-  color: #0f172a;
-  border-color: #cbd5e1;
+  background: var(--adm-accent-light);
+  color: var(--adm-accent);
+  border-color: var(--adm-accent);
+  box-shadow: 0 0 0 3px var(--adm-accent-glow);
 }
 
 .admin-notification-dot {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 9px;
+  right: 9px;
   width: 8px;
   height: 8px;
   border-radius: 50%;
   background: #ef4444;
-  border: 2px solid #ffffff;
+  border: 2px solid var(--adm-bg-topbar);
+  animation: notifPulse 2s ease-in-out infinite;
 }
 
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(1.4);
-    opacity: 0.7;
-  }
+@keyframes notifPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.5); }
+  50%       { box-shadow: 0 0 0 4px rgba(239,68,68,0); }
 }
 
+/* ==========================================
+   USER CHIP
+   ========================================== */
 .admin-user-chip {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 6px 12px 6px 6px;
+  gap: 10px;
+  padding: 5px 10px 5px 5px;
   border-radius: 12px;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: var(--adm-bg-input);
+  border: 1px solid var(--adm-border);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all var(--adm-transition);
+  flex-shrink: 0;
 }
 
 .admin-user-chip:hover {
-  background: #f8fafc;
-  border-color: #cbd5e1;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  background: var(--adm-accent-light);
+  border-color: var(--adm-accent);
+  box-shadow: 0 0 0 3px var(--adm-accent-glow);
 }
 
 .admin-user-chip svg {
-  color: #64748b;
+  color: var(--adm-text-muted);
+  transition: transform var(--adm-transition);
+}
+
+.admin-user-chip:hover svg {
+  transform: rotate(180deg);
+  color: var(--adm-accent);
 }
 
 .admin-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  background: #eef2ff;
-  color: #4338ca;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, var(--adm-accent), var(--adm-accent-2));
+  color: #ffffff;
   display: grid;
   place-items: center;
-  font-weight: 700;
-  font-size: 14px;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  box-shadow: var(--adm-shadow-accent);
+  flex-shrink: 0;
 }
 
 .admin-user-chip-text {
@@ -137,12 +238,39 @@
 }
 
 .admin-user-chip-text strong {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 600;
-  color: #0f172a;
+  color: var(--adm-text-primary);
+  line-height: 1.2;
+  transition: color var(--adm-transition);
 }
 
 .admin-user-chip-text span {
-  font-size: 12px;
-  color: #64748b;
+  font-size: 11px;
+  color: var(--adm-text-muted);
+  line-height: 1.2;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 900px) {
+  .admin-dashboard-topbar {
+    padding: 0 20px;
+    height: 64px;
+  }
+
+  .admin-search-bar {
+    max-width: 240px;
+  }
+
+  .admin-user-chip-text {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-search-bar {
+    max-width: 160px;
+  }
 }

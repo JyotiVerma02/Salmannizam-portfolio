@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { getCurrentAdmin } from "@/lib/auth";
 import AdminSidebarNav from "@/components/Admin/AdminSidebarNav";
+import { ThemeProvider } from "@/components/Admin/ThemeProvider";
+import ThemeToggle from "@/components/Admin/ThemeToggle";
 import "@/styles/admin/admin-layout.css";
 import "@/styles/admin/admin-sidebar.css";
 import "@/styles/admin/admin-navbar.css";
@@ -89,51 +91,61 @@ export default async function AdminDashboardLayout({ children }: AdminDashboardL
     .join("") || "SN";
 
   return (
-    <main className="admin-dashboard-layout">
-      <aside className="admin-sidebar">
-        <div className="admin-sidebar-brand">
-          <div className="admin-sidebar-logo">SN</div>
-          <div>
-            <strong>Salman Nizam</strong>
-            <span>Portfolio Admin</span>
-          </div>
-        </div>
+    <ThemeProvider>
+      <main className="admin-dashboard-layout">
+        {/* Animated background blobs */}
+        <div className="admin-bg-blob admin-bg-blob--1" aria-hidden="true" />
+        <div className="admin-bg-blob admin-bg-blob--2" aria-hidden="true" />
 
-        <AdminSidebarNav groups={navGroups} />
-
-        <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
-          <button type="submit">
-            <LogoutIcon />
-            <span>Logout</span>
-          </button>
-        </form>
-      </aside>
-
-      <section className="admin-dashboard-main">
-        <header className="admin-dashboard-topbar">
-          <div className="admin-search-bar">
-            <SearchIcon />
-            <input type="text" placeholder="Search anything..." />
-          </div>
-
-          <div className="admin-topbar-actions">
-            <button className="admin-notification-btn">
-              <BellIcon />
-              <span className="admin-notification-dot"></span>
-            </button>
-            <div className="admin-user-chip">
-              <div className="admin-avatar">{initials}</div>
-              <div className="admin-user-chip-text">
-                <strong>{admin.name}</strong>
-                <span>Super Admin</span>
-              </div>
-              <ChevronDownIcon />
+        <aside className="admin-sidebar">
+          <div className="admin-sidebar-brand">
+            <div className="admin-sidebar-logo">
+              <span>SN</span>
+              <div className="admin-sidebar-logo-ring" />
+            </div>
+            <div>
+              <strong>Salman Nizam</strong>
+              <span>Portfolio Admin</span>
             </div>
           </div>
-        </header>
 
-        {children}
-      </section>
-    </main>
+          <AdminSidebarNav groups={navGroups} />
+
+          <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
+            <button type="submit">
+              <LogoutIcon />
+              <span>Logout</span>
+            </button>
+          </form>
+        </aside>
+
+        <section className="admin-dashboard-main">
+          <header className="admin-dashboard-topbar">
+            <div className="admin-search-bar">
+              <SearchIcon />
+              <input type="text" placeholder="Search anything..." />
+            </div>
+
+            <div className="admin-topbar-actions">
+              <ThemeToggle />
+              <button className="admin-notification-btn" aria-label="Notifications">
+                <BellIcon />
+                <span className="admin-notification-dot" />
+              </button>
+              <div className="admin-user-chip">
+                <div className="admin-avatar">{initials}</div>
+                <div className="admin-user-chip-text">
+                  <strong>{admin.name}</strong>
+                  <span>Super Admin</span>
+                </div>
+                <ChevronDownIcon />
+              </div>
+            </div>
+          </header>
+
+          {children}
+        </section>
+      </main>
+    </ThemeProvider>
   );
 }
