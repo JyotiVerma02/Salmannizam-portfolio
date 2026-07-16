@@ -297,3 +297,43 @@
   color: var(--adm-text-muted);
   margin-top: 5px;
 }
+
+/* ==========================================
+   TABLE ACTION BUTTONS
+   ========================================== */
+.admin-actions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.admin-action-btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--adm-text-muted);
+  cursor: pointer;
+  transition: all var(--adm-transition);
+}
+
+.admin-action-btn:hover {
+  background: var(--adm-accent-light);
+  color: var(--adm-accent);
+  border-color: var(--adm-accent);
+}
+
+.admin-action-btn.delete:hover {
+  background: #fee2e2; /* A light red for delete hover */
+  color: #ef4444;
+  border-color: #ef4444;
+}
+
+.admin-action-btn svg {
+  width: 16px;
+  height: 16px;
+  stroke-width: 2;
+}

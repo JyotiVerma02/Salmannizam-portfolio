@@ -13,8 +13,8 @@ export type BlogFormProps = {
   onPublish: () => void;
   isSubmitting: boolean;
   title: string;
-  publishButtonText?: string;
-  draftButtonText?: string;
+  publishButtonText: string; // Make these required as they will always be provided
+  draftButtonText: string;   // with default values from the parent
 };
 
 export default function BlogForm({
@@ -28,8 +28,8 @@ export default function BlogForm({
   onPublish,
   isSubmitting,
   title,
-  publishButtonText = "Publish",
-  draftButtonText = "Save Draft",
+  publishButtonText, // No default here, as they're passed from parent
+  draftButtonText,   // No default here, as they're passed from parent
 }: BlogFormProps) {
   const isPublishing = isSubmitting && publishButtonText.includes("Publish");
   const isSaving = isSubmitting && draftButtonText.includes("Save");
@@ -196,6 +196,20 @@ export default function BlogForm({
                 value={formData.tags || ""}
                 onChange={handleInputChange}
                 placeholder="React, Next.js, MongoDB"
+                className="new-blog-input"
+              />
+            </div>
+            <div>
+              <label htmlFor="readingTime" className="new-blog-label">
+                Reading Time
+              </label>
+              <input
+                type="text"
+                id="readingTime"
+                name="readingTime"
+                value={formData.readingTime || ""}
+                onChange={handleInputChange}
+                placeholder="e.g., 5 min read"
                 className="new-blog-input"
               />
             </div>

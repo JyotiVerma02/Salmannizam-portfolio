@@ -17,6 +17,7 @@ export default function NewBlogPostPage() {
     tags: "",
     featuredImage: "",
     status: "draft",
+  readingTime: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -204,8 +205,8 @@ export default function NewBlogPostPage() {
       onPublish={handlePublish}
       isSubmitting={isSubmitting}
       title="Create New Blog"
-      draftButtonText="Save Draft"
-      publishButtonText="Publish"
+      draftButtonText="Save Draft" // Default for new page
+      publishButtonText="Publish"  // Default for new page
     />
   );
 }

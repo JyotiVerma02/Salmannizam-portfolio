@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import "@/styles/admin/blogs.css";
 
 const DocumentIcon = () => (
@@ -28,6 +27,12 @@ const DeleteIcon = () => (
 export default function AdminBlogsPage() {
  const [blogs, setBlogs] = useState<any[]>([]);
 const [loading, setLoading] = useState(true);
+ const [searchQuery, setSearchQuery] = useState("");
+ const [selectedCategory, setSelectedCategory] = useState("All Categories");
+ const [selectedStatus, setSelectedStatus] = useState("All Status");
+ const [sortOrder, setSortOrder] = useState("newest");
+
+ const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
 async function fetchBlogs() {
   try {
@@ -50,13 +55,46 @@ useEffect(() => {
   fetchBlogs();
 }, []);
 
+ const filteredAndSortedBlogs = useMemo(() => {
+    return blogs
+      .filter((blog) => {
+        // Category filter
+        if (selectedCategory !== "All Categories" && blog.category !== selectedCategory) {
+          return false;
+        }
+        // Status filter
+        if (selectedStatus !== "All Status" && blog.status !== selectedStatus.toLowerCase()) {
+          return false;
+        }
+        // Search query filter
+        const query = searchQuery.toLowerCase();
+        return (
+          blog.title.toLowerCase().includes(query) ||
+          (blog.category && blog.category.toLowerCase().includes(query)) ||
+          (blog.tags && blog.tags.some((tag: string) => tag.toLowerCase().includes(query)))
+        );
+      })
+      .sort((a, b) => {
+        const dateA = new Date(a.createdAt).getTime();
+        const dateB = new Date(b.createdAt).getTime();
+        return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+      });
+  }, [blogs, searchQuery, selectedCategory, selectedStatus, sortOrder]);
 
+  const handleDropdown = (name: string) => {
+    setOpenDropdown(openDropdown === name ? null : name);
+  };
+
+  const handleFilterSelect = (setter: Function, value: string, dropdownName: string) => {
+    setter(value);
+    setOpenDropdown(null);
+  };
 
   // Calculate stats
-  const totalPosts = blogs.length;
-  const publishedPosts = blogs.filter(blog => blog.status === "published").length;
-  const draftPosts = blogs.filter(blog => blog.status === "draft").length;
-  const archivedPosts = blogs.filter(blog => blog.status === "archived").length;
+  const totalPosts = filteredAndSortedBlogs.length;
+  const publishedPosts = filteredAndSortedBlogs.filter(blog => blog.status === "published").length;
+  const draftPosts = filteredAndSortedBlogs.filter(blog => blog.status === "draft").length;
+  const archivedPosts = filteredAndSortedBlogs.filter(blog => blog.status === "archived").length;
 
   return (
     <div className="admin-content-wrapper">
@@ -79,20 +117,53 @@ useEffect(() => {
       <div className="admin-filters-row">
         <div className="admin-search-input">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          <input type="text" placeholder="Search blogs by title, category or tag..." />
+          <input 
+            type="text" 
+            placeholder="Search blogs by title, category or tag..." 
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
         </div>
-        <button className="admin-dropdown-btn">
-          All Categories
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <button className="admin-dropdown-btn">
-          All Status
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
-        <button className="admin-dropdown-btn">
-          Sort: Newest
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
-        </button>
+        <div className="admin-dropdown-wrapper">
+          <button className="admin-dropdown-btn" onClick={() => handleDropdown('category')}>
+            {selectedCategory}
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          {openDropdown === 'category' && (
+            <div className="admin-dropdown-menu">
+              <button onClick={() => handleFilterSelect(setSelectedCategory, 'All Categories', 'category')}>All Categories</button>
+              <button onClick={() => handleFilterSelect(setSelectedCategory, 'web-dev', 'category')}>Web Development</button>
+              <button onClick={() => handleFilterSelect(setSelectedCategory, 'devops', 'category')}>DevOps</button>
+              <button onClick={() => handleFilterSelect(setSelectedCategory, 'database', 'category')}>Database</button>
+              <button onClick={() => handleFilterSelect(setSelectedCategory, 'system-design', 'category')}>System Design</button>
+            </div>
+          )}
+        </div>
+        <div className="admin-dropdown-wrapper">
+          <button className="admin-dropdown-btn" onClick={() => handleDropdown('status')}>
+            {selectedStatus}
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          {openDropdown === 'status' && (
+            <div className="admin-dropdown-menu">
+              <button onClick={() => handleFilterSelect(setSelectedStatus, 'All Status', 'status')}>All Status</button>
+              <button onClick={() => handleFilterSelect(setSelectedStatus, 'Published', 'status')}>Published</button>
+              <button onClick={() => handleFilterSelect(setSelectedStatus, 'Draft', 'status')}>Draft</button>
+            </div>
+          )}
+        </div>
+        <div className="admin-dropdown-wrapper">
+          <button className="admin-dropdown-btn" onClick={() => handleDropdown('sort')}>
+            Sort: {sortOrder === 'newest' ? 'Newest' : 'Oldest'}
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          {openDropdown === 'sort' && (
+            <div className="admin-dropdown-menu">
+              <button onClick={() => handleFilterSelect(setSortOrder, 'newest', 'sort')}>Newest</button>
+              <button onClick={() => handleFilterSelect(setSortOrder, 'oldest', 'sort')}>Oldest</button>
+            </div>
+          )}
+        </div>
         <button className="admin-icon-btn">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/></svg>
         </button>
@@ -169,9 +240,9 @@ useEffect(() => {
                   </div>
                 </td>
               </tr>
-            ) : blogs.length > 0 ? (
+            ) : filteredAndSortedBlogs.length > 0 ? (
               // Step 3: Use real blogs data
-              blogs.map((blog) => (
+              filteredAndSortedBlogs.map((blog) => (
                 <tr key={blog._id}>
                   <td>
                     <div className="admin-table-post">
@@ -180,7 +251,7 @@ useEffect(() => {
                       </div>
                       <div className="admin-table-post-info">
                         <strong>{blog.title}</strong>
-                        {/* Step 4: Use excerpt instead of description */}
+                        
                         <span>{blog.excerpt || blog.description || "No excerpt available"}</span>
                       </div>
                     </div>
@@ -197,7 +268,7 @@ useEffect(() => {
                   </td>
                   <td>
                     <div className="admin-date">
-                      {/* Step 5: Fix date */}
+                      
                       <strong>
                         {blog.createdAt ? new Date(blog.createdAt).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -205,13 +276,14 @@ useEffect(() => {
                           day: 'numeric'
                         }) : 'No date'}
                       </strong>
-                      {/* Step 6: Read time */}
                       <span>{blog.readTime || '3 min read'}</span>
                     </div>
                   </td>
                   <td>
                     <div className="admin-actions">
-                      <button className="admin-action-btn"><EditIcon /></button>
+                      <Link href={`/admin/blogs/${blog._id}/edit`} className="admin-action-btn">
+                        <EditIcon />
+                      </Link>
                       <button className="admin-action-btn"><ViewIcon /></button>
                       <button className="admin-action-btn delete"><DeleteIcon /></button>
                     </div>
