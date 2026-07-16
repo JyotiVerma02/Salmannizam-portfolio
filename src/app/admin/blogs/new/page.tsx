@@ -17,7 +17,7 @@ export default function NewBlogPostPage() {
     tags: "",
     featuredImage: "",
     status: "draft",
-  readingTime: "",
+    readTime: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);

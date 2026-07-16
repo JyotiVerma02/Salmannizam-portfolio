@@ -20,7 +20,7 @@ export default function EditBlogPage() {
     tags: "",
     featuredImage: "",
     status: "draft",
-    readingTime: "",
+    readTime: "",
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -52,6 +52,8 @@ export default function EditBlogPage() {
         setFormData({
           ...result.data,
           tags: result.data.tags ? result.data.tags.join(", ") : "",
+          readTime: result.data.readTime || "",
+          featuredImage: result.data.featuredImage || "",
         });
       } else {
         alert(`Failed to load blog: ${result.message}`);

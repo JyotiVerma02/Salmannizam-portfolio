@@ -141,7 +141,10 @@ export default function BlogForm({
         <div className="new-blog-col">
           <div className="new-blog-card">
             <h3 className="new-blog-card-title">Featured Image</h3>
-            <div className="new-blog-image-upload" onClick={handleImageClick}>
+            <div
+              className={`new-blog-image-upload${formData.featuredImage ? " has-image" : ""}`}
+              onClick={handleImageClick}
+            >
               <input
                 type="file"
                 ref={fileInputRef}
@@ -150,11 +153,16 @@ export default function BlogForm({
                 className="hidden"
               />
               {formData.featuredImage ? (
-                <img
-                  src={formData.featuredImage}
-                  alt="Featured"
-                  className="w-full h-auto rounded-lg object-cover"
-                />
+                <>
+                  <img
+                    src={formData.featuredImage}
+                    alt="Featured"
+                  />
+                  <div className="new-blog-image-overlay">
+                    <UploadCloud size={28} />
+                    <span>Change Image</span>
+                  </div>
+                </>
               ) : (
                 <>
                   <UploadCloud size={32} />
@@ -200,14 +208,14 @@ export default function BlogForm({
               />
             </div>
             <div>
-              <label htmlFor="readingTime" className="new-blog-label">
+              <label htmlFor="readTime" className="new-blog-label">
                 Reading Time
               </label>
               <input
                 type="text"
-                id="readingTime"
-                name="readingTime"
-                value={formData.readingTime || ""}
+                id="readTime"
+                name="readTime"
+                value={formData.readTime || ""}
                 onChange={handleInputChange}
                 placeholder="e.g., 5 min read"
                 className="new-blog-input"
