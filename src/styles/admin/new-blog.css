@@ -352,30 +352,42 @@
 .admin-action-btn {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
   background: transparent;
   border: 1px solid transparent;
   color: var(--adm-text-muted);
   cursor: pointer;
-  transition: all var(--adm-transition);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .admin-action-btn:hover {
-  background: var(--adm-accent-light);
-  color: var(--adm-accent);
+  background: var(--adm-accent-light, rgba(var(--adm-accent-rgb), 0.1));
   border-color: var(--adm-accent);
+  color: var(--adm-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.admin-action-btn:active {
+  transform: translateY(0) scale(0.96);
 }
 
 .admin-action-btn.delete:hover {
-  background: #fee2e2; /* A light red for delete hover */
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.5);
   color: #ef4444;
-  border-color: #ef4444;
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.15), 0 2px 4px rgba(239, 68, 68, 0.05);
 }
 
 .admin-action-btn svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
   stroke-width: 2;
+  transition: transform 0.25s ease;
+}
+
+.admin-action-btn:hover svg {
+  transform: scale(1.1);
 }

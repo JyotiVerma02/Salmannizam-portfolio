@@ -413,29 +413,47 @@
 }
 
 .admin-action-btn {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--adm-border);
-  border-radius: 8px;
+  border-radius: 10px;
   background: var(--adm-bg-input);
   color: var(--adm-text-secondary);
   display: grid;
   place-items: center;
   cursor: pointer;
-  transition: all var(--adm-transition);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
 }
 
 .admin-action-btn:hover {
-  background: var(--adm-accent-light);
+  background: var(--adm-accent-light, rgba(var(--adm-accent-rgb), 0.1));
   border-color: var(--adm-accent);
   color: var(--adm-accent);
-  transform: scale(1.05);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.admin-action-btn:active {
+  transform: translateY(0) scale(0.96);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
 }
 
 .admin-action-btn.delete:hover {
-  background: rgba(220,38,38,0.1);
-  border-color: rgba(220,38,38,0.4);
-  color: #dc2626;
+  background: rgba(239, 68, 68, 0.05);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ef4444;
+  box-shadow: 0 6px 15px rgba(239, 68, 68, 0.15), 0 2px 4px rgba(239, 68, 68, 0.05);
+}
+
+.admin-action-btn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.25s ease;
+}
+
+.admin-action-btn:hover svg {
+  transform: scale(1.1);
 }
 
 /* ==========================================
@@ -586,7 +604,12 @@
 .blog-preview-scroll-area {
   flex: 1;
   overflow-y: auto;
-  /* hide scrollbar visually if desired, but good for usability */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.blog-preview-scroll-area::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 /* Featured image */
