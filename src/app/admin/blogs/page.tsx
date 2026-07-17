@@ -731,83 +731,78 @@ export default function AdminBlogsPage() {
               </button>
             </div>
 
-            {/* Featured image */}
-            {previewBlog.featuredImage && (
-              <div className="blog-preview-image-wrap">
-                <img
-                  src={previewBlog.featuredImage}
-                  alt={previewBlog.title}
-                  className="blog-preview-image"
-                />
-              </div>
-            )}
-
-            {/* Body */}
-            <div className="blog-preview-body">
-              <div className="blog-preview-meta">
-                {previewBlog.readTime && (
-                  <span>⏱ {previewBlog.readTime}</span>
-                )}
-                <span>
-                  📅{" "}
-                  {new Date(
-                    previewBlog.publishedAt || previewBlog.createdAt
-                  ).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </span>
-              </div>
-
-              <h2 className="blog-preview-title">{previewBlog.title}</h2>
-
-              {previewBlog.excerpt && (
-                <p className="blog-preview-excerpt">{previewBlog.excerpt}</p>
-              )}
-
-              {previewBlog.tags && previewBlog.tags.length > 0 && (
-                <div className="blog-preview-tags">
-                  {previewBlog.tags.map((tag: string) => (
-                    <span key={tag} className="blog-preview-tag">
-                      {tag}
-                    </span>
-                  ))}
+            {/* Scrollable Content Area */}
+            <div className="blog-preview-scroll-area">
+              {/* Featured image */}
+              {previewBlog.featuredImage && (
+                <div className="blog-preview-image-wrap">
+                  <img
+                    src={previewBlog.featuredImage}
+                    alt={previewBlog.title}
+                    className="blog-preview-image"
+                  />
                 </div>
               )}
 
-              {previewBlog.content && (
-                <div className="blog-preview-content">
-                  {previewBlog.content.split("\n").map(
-                    (line: string, idx: number) =>
-                      line.trim() ? (
-                        <p key={idx}>{line}</p>
-                      ) : (
-                        <br key={idx} />
-                      )
+              {/* Body */}
+              <div className="blog-preview-body">
+                <div className="blog-preview-meta">
+                  {previewBlog.readTime && (
+                    <span>⏱ {previewBlog.readTime}</span>
                   )}
+                  <span>
+                    📅{" "}
+                    {new Date(
+                      previewBlog.publishedAt || previewBlog.createdAt
+                    ).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </span>
                 </div>
-              )}
 
-              <div className="blog-preview-footer">
-                <Link
-                  href={`/admin/blogs/${previewBlog._id}/edit`}
-                  className="admin-primary-btn"
-                  onClick={() => setPreviewBlog(null)}
-                >
-                  Edit this post
-                </Link>
-                {previewBlog.status === "published" && (
-                  <a
-                    href={`/blog/${previewBlog.slug}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="admin-primary-btn blog-preview-open-btn"
-                  >
-                    Open public page ↗
-                  </a>
+                <h2 className="blog-preview-title">{previewBlog.title}</h2>
+
+                {previewBlog.excerpt ? (
+                  <p className="blog-preview-excerpt">{previewBlog.excerpt}</p>
+                ) : previewBlog.content ? (
+                  <p className="blog-preview-excerpt">
+                    {previewBlog.content.substring(0, 120)}...
+                  </p>
+                ) : null}
+
+                {previewBlog.tags && previewBlog.tags.length > 0 && (
+                  <div className="blog-preview-tags">
+                    {previewBlog.tags.map((tag: string) => (
+                      <span key={tag} className="blog-preview-tag">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 )}
               </div>
+            </div>
+
+            {/* Sticky Footer */}
+            <div className="blog-preview-footer">
+              <Link
+                href={`/admin/blogs/${previewBlog._id}/edit`}
+                className="admin-primary-btn"
+                onClick={() => setPreviewBlog(null)}
+              >
+                Edit this post
+              </Link>
+              {previewBlog.status === "published" && (
+                <a
+                  href={`/blog/${previewBlog.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="admin-primary-btn blog-preview-open-btn"
+                >
+                  Open public page ↗
+                </a>
+              )}
             </div>
           </div>
         </div>
