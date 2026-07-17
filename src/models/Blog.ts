@@ -47,9 +47,12 @@ const BlogSchema = new Schema(
     publishedAt: {
       type: Date,
     },
-  },
-  {
-    timestamps: true,
+    isFeatured: {
+      type: Boolean,
+      default: false,
+    },
+  }, {
+    timestamps: true
   }
 );
 

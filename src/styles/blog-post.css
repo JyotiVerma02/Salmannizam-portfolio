@@ -1,0 +1,232 @@
+/* ============================================
+   INDIVIDUAL BLOG POST PAGE — blog-post.css
+   ============================================ */
+
+/* ── Loading & Not-Found States ── */
+.blog-post-loading,
+.blog-post-notfound {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  min-height: 60vh;
+  text-align: center;
+  color: var(--text-color);
+}
+
+.blog-post-notfound-icon {
+  font-size: 3.5rem;
+}
+
+.blog-post-notfound h2 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--white-color);
+}
+
+.blog-post-notfound p {
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+/* ── Page wrapper ── */
+.blog-post-page {
+  min-height: 100vh;
+  padding-bottom: 5rem;
+  background: var(--body-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Hero section ── */
+.blog-post-hero {
+  position: relative;
+  width: 100%;
+  height: clamp(260px, 40vw, 480px);
+  overflow: hidden;
+  margin-bottom: 0;
+  background: var(--body-color);
+}
+
+.blog-post-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-post-hero-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--first-color) 30%, var(--body-color, #0b0f1a)) 0%,
+    var(--body-color, #0b0f1a) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+}
+
+.blog-post-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    var(--body-color, #0b0f1a) 100%
+  );
+}
+
+/* ── Main content container ── */
+.blog-post-container {
+  width: min(780px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding-top: 3rem;
+  background: var(--body-color);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Back link ── */
+.blog-post-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-color);
+  text-decoration: none;
+  margin-bottom: 1.6rem;
+  transition: color 0.25s ease;
+}
+
+.blog-post-back:hover {
+  color: var(--first-color);
+}
+
+/* ── Meta row ── */
+.blog-post-meta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.blog-post-status-badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+}
+
+.blog-post-status-badge.published {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.blog-post-status-badge.draft {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* ── Title ── */
+.blog-post-title {
+  font-size: clamp(1.75rem, 4.5vw, 2.8rem);
+  font-weight: 800;
+  color: var(--white-color);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+/* ── Lead / excerpt ── */
+.blog-post-lead {
+  font-size: 1.05rem;
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 1.25rem;
+  border-left: 3px solid var(--first-color);
+  padding-left: 1rem;
+}
+
+/* ── Tags ── */
+.blog-post-tags {
+  margin-bottom: 1.25rem;
+}
+
+/* ── Divider ── */
+.blog-post-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(var(--first-color-rgb), 0.35),
+    transparent
+  );
+  margin: 1.5rem 0 2rem;
+}
+
+/* ── Article body ── */
+.blog-post-body {
+  font-size: 1rem;
+  color: var(--text-color);
+  line-height: 1.85;
+}
+
+.blog-post-body p {
+  margin-bottom: 1.15rem;
+}
+
+.blog-post-body p:last-child {
+  margin-bottom: 0;
+}
+
+/* ── Empty content placeholder ── */
+.blog-post-empty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 3rem 0;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.blog-post-empty-content span {
+  font-size: 2.5rem;
+}
+
+/* ── Footer ── */
+.blog-post-footer {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .blog-post-hero {
+    height: 220px;
+  }
+
+  .blog-post-container {
+    padding-top: 1.5rem;
+  }
+
+  .blog-post-lead {
+    font-size: 0.92rem;
+  }
+
+  .blog-post-body {
+    font-size: 0.93rem;
+  }
+}

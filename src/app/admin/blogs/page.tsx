@@ -72,6 +72,7 @@ export default function AdminBlogsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedStatus, setSelectedStatus] = useState("All Status");
   const [sortOrder, setSortOrder] = useState("newest");
+  const [previewBlog, setPreviewBlog] = useState<any | null>(null);
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
@@ -614,7 +615,10 @@ export default function AdminBlogsPage() {
                       >
                         <EditIcon />
                       </Link>
-                      <button className="admin-action-btn">
+                      <button
+                        className="admin-action-btn"
+                        onClick={() => setPreviewBlog(blog)}
+                      >
                         <ViewIcon />
                       </button>
                       <button
@@ -691,6 +695,123 @@ export default function AdminBlogsPage() {
           <button className="admin-page-btn">&gt;</button>
         </div>
       </div>
+
+      {/* ── Blog Preview Modal ── */}
+      {previewBlog && (
+        <div
+          className="blog-preview-backdrop"
+          onClick={() => setPreviewBlog(null)}
+        >
+          <div
+            className="blog-preview-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal header */}
+            <div className="blog-preview-header">
+              <div className="blog-preview-header-left">
+                <span
+                  className={`admin-status ${
+                    previewBlog.status === "published"
+                      ? "status-published"
+                      : "status-draft"
+                  }`}
+                >
+                  {previewBlog.status === "published" ? "Published" : "Draft"}
+                </span>
+                <span className="blog-preview-category">
+                  {previewBlog.category || "Uncategorized"}
+                </span>
+              </div>
+              <button
+                className="blog-preview-close"
+                onClick={() => setPreviewBlog(null)}
+                title="Close preview"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Featured image */}
+            {previewBlog.featuredImage && (
+              <div className="blog-preview-image-wrap">
+                <img
+                  src={previewBlog.featuredImage}
+                  alt={previewBlog.title}
+                  className="blog-preview-image"
+                />
+              </div>
+            )}
+
+            {/* Body */}
+            <div className="blog-preview-body">
+              <div className="blog-preview-meta">
+                {previewBlog.readTime && (
+                  <span>⏱ {previewBlog.readTime}</span>
+                )}
+                <span>
+                  📅{" "}
+                  {new Date(
+                    previewBlog.publishedAt || previewBlog.createdAt
+                  ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+
+              <h2 className="blog-preview-title">{previewBlog.title}</h2>
+
+              {previewBlog.excerpt && (
+                <p className="blog-preview-excerpt">{previewBlog.excerpt}</p>
+              )}
+
+              {previewBlog.tags && previewBlog.tags.length > 0 && (
+                <div className="blog-preview-tags">
+                  {previewBlog.tags.map((tag: string) => (
+                    <span key={tag} className="blog-preview-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+
+              {previewBlog.content && (
+                <div className="blog-preview-content">
+                  {previewBlog.content.split("\n").map(
+                    (line: string, idx: number) =>
+                      line.trim() ? (
+                        <p key={idx}>{line}</p>
+                      ) : (
+                        <br key={idx} />
+                      )
+                  )}
+                </div>
+              )}
+
+              <div className="blog-preview-footer">
+                <Link
+                  href={`/admin/blogs/${previewBlog._id}/edit`}
+                  className="admin-primary-btn"
+                  onClick={() => setPreviewBlog(null)}
+                >
+                  Edit this post
+                </Link>
+                {previewBlog.status === "published" && (
+                  <a
+                    href={`/blog/${previewBlog.slug}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="admin-primary-btn blog-preview-open-btn"
+                  >
+                    Open public page ↗
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

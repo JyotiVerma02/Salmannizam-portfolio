@@ -487,3 +487,198 @@
   border-color: var(--adm-accent);
   color: var(--adm-accent);
 }
+
+/* ==========================================
+   BLOG PREVIEW MODAL
+   ========================================== */
+
+.blog-preview-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 20px;
+  animation: fadeInBackdrop 0.2s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeInBackdrop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.blog-preview-modal {
+  background: var(--adm-bg-card);
+  border: 1px solid var(--adm-border);
+  border-radius: 18px;
+  width: 100%;
+  max-width: 720px;
+  margin: auto;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+  animation: slideUpModal 0.25s cubic-bezier(0.34,1.56,0.64,1);
+  font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
+  position: relative;
+}
+
+@keyframes slideUpModal {
+  from { opacity: 0; transform: translateY(40px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Header */
+.blog-preview-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px 14px;
+  border-bottom: 1px solid var(--adm-border);
+  position: sticky;
+  top: 0;
+  background: var(--adm-bg-card);
+  z-index: 10;
+  border-radius: 18px 18px 0 0;
+}
+
+.blog-preview-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.blog-preview-category {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--adm-text-muted);
+  background: var(--adm-bg-muted);
+  padding: 3px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--adm-border);
+}
+
+.blog-preview-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--adm-border);
+  background: var(--adm-bg-muted);
+  color: var(--adm-text-muted);
+  font-size: 16px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: all 0.18s ease;
+}
+
+.blog-preview-close:hover {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #dc2626;
+}
+
+/* Featured image */
+.blog-preview-image-wrap {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.blog-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body */
+.blog-preview-body {
+  padding: 22px 28px 28px;
+}
+
+.blog-preview-meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  font-size: 12.5px;
+  color: var(--adm-text-muted);
+  margin-bottom: 12px;
+}
+
+.blog-preview-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--adm-text-primary);
+  line-height: 1.35;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.blog-preview-excerpt {
+  font-size: 15.5px;
+  color: var(--adm-text-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+  padding: 14px 18px;
+  background: var(--adm-bg-muted);
+  border-left: 3px solid var(--adm-accent);
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+}
+
+/* Tags */
+.blog-preview-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.blog-preview-tag {
+  font-size: 12px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--adm-accent-light);
+  color: var(--adm-accent);
+  border: 1px solid rgba(var(--adm-accent-rgb, 99,102,241), 0.15);
+  font-weight: 500;
+}
+
+/* Full content */
+.blog-preview-content {
+  font-size: 16px;
+  color: var(--adm-text-primary);
+  line-height: 1.8;
+  border-top: 1px solid var(--adm-border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+}
+
+.blog-preview-content p {
+  margin-bottom: 12px;
+}
+
+/* Footer actions */
+.blog-preview-footer {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding-top: 4px;
+  border-top: 1px solid var(--adm-border);
+  margin-top: 4px;
+  padding-top: 18px;
+}
+
+.blog-preview-open-btn {
+  background: var(--adm-bg-muted) !important;
+  border: 1px solid var(--adm-border) !important;
+  color: var(--adm-text-secondary) !important;
+  box-shadow: none !important;
+}
+
+.blog-preview-open-btn:hover {
+  border-color: var(--adm-accent) !important;
+  color: var(--adm-accent) !important;
+  background: var(--adm-accent-light) !important;
+}
