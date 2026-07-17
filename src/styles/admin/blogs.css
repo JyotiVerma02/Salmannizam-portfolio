@@ -604,12 +604,25 @@
 .blog-preview-scroll-area {
   flex: 1;
   overflow-y: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width:thin; /* Firefox */
+  scrollbar-color: rgba(21, 242, 76, 0.5) transparent; /* Firefox */
 }
 
 .blog-preview-scroll-area::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
+  width: 4px; /* Very thin scrollbar */
+}
+
+.blog-preview-scroll-area::-webkit-scrollbar-track {
+  background: transparent; 
+}
+
+.blog-preview-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.4); /* Subtle gray */
+  border-radius: 10px;
+}
+
+.blog-preview-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.7); /* Darker on hover */
 }
 
 /* Featured image */

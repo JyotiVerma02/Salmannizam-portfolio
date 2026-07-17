@@ -96,6 +96,17 @@ export default function AdminBlogsPage() {
     fetchBlogs();
   }, []);
 
+  useEffect(() => {
+    if (previewBlog) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [previewBlog]);
+
   const filteredAndSortedBlogs = useMemo(() => {
     return blogs
       .filter((blog) => {

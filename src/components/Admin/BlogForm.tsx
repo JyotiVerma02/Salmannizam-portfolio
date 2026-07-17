@@ -1,11 +1,13 @@
 "use client";
 
 import { Bold, Italic, Link, List, Code, UploadCloud } from "lucide-react";
+import RichTextEditor from "@/components/editor/RichTextEditor"; // ← ADD THIS
 
 export type BlogFormProps = {
   formData: any;
   handleInputChange: any;
   handleSelectChange: any;
+  handleContentChange: (content: string) => void; // ← ADD THIS
   handleImageUpload: any;
   handleImageClick: any;
   fileInputRef: any;
@@ -13,14 +15,15 @@ export type BlogFormProps = {
   onPublish: () => void;
   isSubmitting: boolean;
   title: string;
-  publishButtonText: string; // Make these required as they will always be provided
-  draftButtonText: string;   // with default values from the parent
+  publishButtonText: string;
+  draftButtonText: string;
 };
 
 export default function BlogForm({
   formData,
   handleInputChange,
   handleSelectChange,
+  handleContentChange, // ← ADD THIS
   handleImageUpload,
   handleImageClick,
   fileInputRef,
@@ -28,8 +31,8 @@ export default function BlogForm({
   onPublish,
   isSubmitting,
   title,
-  publishButtonText, // No default here, as they're passed from parent
-  draftButtonText,   // No default here, as they're passed from parent
+  publishButtonText,
+  draftButtonText,
 }: BlogFormProps) {
   const isPublishing = isSubmitting && publishButtonText.includes("Publish");
   const isSaving = isSubmitting && draftButtonText.includes("Save");
@@ -91,34 +94,11 @@ export default function BlogForm({
 
           <div className="new-blog-card">
             <h3 className="new-blog-card-title">Content</h3>
+            {/* REPLACE the entire editor wrapper with this */}
             <div className="new-blog-editor-wrapper">
-              <div className="new-blog-editor-toolbar">
-                <button type="button" className="new-blog-editor-tool">
-                  <Bold />
-                </button>
-                <button type="button" className="new-blog-editor-tool">
-                  <Italic />
-                </button>
-                <button type="button" className="new-blog-editor-tool">
-                  <Link />
-                </button>
-                <button type="button" className="new-blog-editor-tool">
-                  <List />
-                </button>
-                <button type="button" className="new-blog-editor-tool">
-                  <Code />
-                </button>
-                <button type="button" className="new-blog-editor-tool">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-                </button>
-              </div>
-              <textarea
-                id="content"
-                name="content"
+              <RichTextEditor
                 value={formData.content || ""}
-                onChange={handleInputChange}
-                className="new-blog-editor-textarea"
-                placeholder="Write your blog content here in Markdown..."
+                onChange={handleContentChange}
               />
             </div>
           </div>

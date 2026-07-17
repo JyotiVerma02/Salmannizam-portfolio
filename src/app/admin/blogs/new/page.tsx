@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import BlogForm from "@/components/Admin/BlogForm";
+import RichTextEditor from "@/components/editor/RichTextEditor";
 import "@/styles/admin/new-blog.css";
 
 export default function NewBlogPostPage() {
@@ -42,6 +43,13 @@ export default function NewBlogPostPage() {
     setFormData((prev) => ({
       ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleContentChange = (content: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      content: content,
     }));
   };
 
@@ -198,6 +206,7 @@ export default function NewBlogPostPage() {
       formData={formData}
       handleInputChange={handleInputChange}
       handleSelectChange={handleSelectChange}
+      handleContentChange={handleContentChange} // ✅ ADD THIS LINE
       handleImageUpload={handleImageUpload}
       handleImageClick={handleImageClick}
       fileInputRef={fileInputRef}
@@ -205,8 +214,8 @@ export default function NewBlogPostPage() {
       onPublish={handlePublish}
       isSubmitting={isSubmitting}
       title="Create New Blog"
-      draftButtonText="Save Draft" // Default for new page
-      publishButtonText="Publish"  // Default for new page
+      draftButtonText="Save Draft"
+      publishButtonText="Publish"
     />
   );
 }

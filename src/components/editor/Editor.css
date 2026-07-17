@@ -1,0 +1,308 @@
+/* components/editor/Editor.css */
+
+.editor-container {
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+}
+
+.editor-content {
+  padding: 1rem;
+  min-height: 300px;
+}
+
+.editor-content .ProseMirror {
+  outline: none;
+  min-height: 250px;
+  padding: 0.5rem;
+  color: #1f2937;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.editor-content .ProseMirror p {
+  margin: 0 0 1rem 0;
+}
+
+/* ===== FORMATTING STYLES ===== */
+.editor-content .ProseMirror strong,
+.editor-content .ProseMirror b,
+.editor-bold {
+  font-weight: 700 !important;
+  color: #000 !important;
+}
+
+.editor-content .ProseMirror em,
+.editor-content .ProseMirror i,
+.editor-italic {
+  font-style: italic !important;
+}
+
+.editor-content .ProseMirror u,
+.editor-underline {
+  text-decoration: underline !important;
+}
+
+.editor-content .ProseMirror s,
+.editor-strike {
+  text-decoration: line-through !important;
+}
+
+/* ===== HEADINGS ===== */
+.editor-content .ProseMirror h1,
+.editor-heading[level="1"] {
+  font-size: 2.5em !important;
+  font-weight: 700 !important;
+  margin: 1rem 0 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror h2,
+.editor-heading[level="2"] {
+  font-size: 2em !important;
+  font-weight: 700 !important;
+  margin: 0.8rem 0 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror h3,
+.editor-heading[level="3"] {
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+  margin: 0.6rem 0 0.4rem 0 !important;
+}
+
+.editor-content .ProseMirror h4,
+.editor-heading[level="4"] {
+  font-size: 1.25em !important;
+  font-weight: 700 !important;
+  margin: 0.5rem 0 0.3rem 0 !important;
+}
+
+/* ===== LISTS ===== */
+.editor-content .ProseMirror ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem !important;
+  margin: 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror li {
+  margin: 0.2rem 0 !important;
+}
+
+/* ===== BLOCKQUOTE ===== */
+.editor-content .ProseMirror blockquote,
+.editor-blockquote {
+  border-left: 4px solid #3b82f6 !important;
+  padding-left: 1rem !important;
+  margin: 1rem 0 !important;
+  color: #4b5563 !important;
+  font-style: italic !important;
+}
+
+/* ===== CODE BLOCK ===== */
+.editor-content .ProseMirror pre,
+.editor-code-block {
+  background: #1f2937 !important;
+  color: #e5e7eb !important;
+  padding: 1rem !important;
+  border-radius: 6px !important;
+  overflow-x: auto !important;
+  font-family: 'Courier New', monospace !important;
+  margin: 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror code {
+  background: #e5e7eb !important;
+  color: #1f2937 !important;
+  padding: 0.2rem 0.4rem !important;
+  border-radius: 4px !important;
+  font-family: 'Courier New', monospace !important;
+}
+
+/* ===== LINKS ===== */
+.editor-content .ProseMirror a,
+.editor-link {
+  color: #2563eb !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.editor-content .ProseMirror a:hover,
+.editor-link:hover {
+  color: #1d4ed8 !important;
+}
+
+/* ===== IMAGES ===== */
+.editor-content .ProseMirror img,
+.editor-image {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 6px !important;
+  margin: 0.5rem 0 !important;
+}
+
+/* ===== TABLES ===== */
+.editor-content .ProseMirror table,
+.editor-table {
+  border-collapse: collapse !important;
+  width: 100% !important;
+  margin: 0.5rem 0 !important;
+}
+
+.editor-content .ProseMirror th,
+.editor-content .ProseMirror td {
+  border: 1px solid #d1d5db !important;
+  padding: 0.5rem !important;
+  text-align: left !important;
+}
+
+.editor-content .ProseMirror th {
+  background: #f3f4f6 !important;
+  font-weight: 600 !important;
+}
+
+/* ===== TEXT ALIGNMENT ===== */
+.editor-content .ProseMirror [style*="text-align: left"] {
+  text-align: left !important;
+}
+
+.editor-content .ProseMirror [style*="text-align: center"] {
+  text-align: center !important;
+}
+
+.editor-content .ProseMirror [style*="text-align: right"] {
+  text-align: right !important;
+}
+
+.editor-content .ProseMirror [style*="text-align: justify"] {
+  text-align: justify !important;
+}
+
+/* ===== HIGHLIGHT ===== */
+.editor-content .ProseMirror .editor-highlight {
+  background-color: #fef08a !important;
+  padding: 0.1rem 0.2rem !important;
+  border-radius: 2px !important;
+}
+
+/* ===== COLOR ===== */
+.editor-content .ProseMirror .editor-color {
+  /* Color is applied inline via the extension */
+}
+
+/* ===== PLACEHOLDER ===== */
+.editor-content .ProseMirror p.is-editor-empty:first-child::before {
+  color: #9ca3af;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* ===== LOADING ===== */
+.editor-loading {
+  padding: 2rem;
+  text-align: center;
+  color: #6b7280;
+}
+
+/* ===== TOOLBAR ===== */
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background: #f9fafb;
+  border-bottom: 1px solid #d1d5db;
+  flex-wrap: wrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.toolbar-btn {
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  transition: all 0.2s;
+  min-width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  user-select: none;
+}
+
+.toolbar-btn:hover {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+
+.toolbar-btn.is-active {
+  background: #3b82f6;
+  color: white;
+  border-color: #2563eb;
+}
+
+.toolbar-btn.is-active:hover {
+  background: #2563eb;
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.toolbar-btn:disabled:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background: #d1d5db;
+  margin: 0 4px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .toolbar {
+    padding: 4px 8px;
+    gap: 2px;
+  }
+
+  .toolbar-btn {
+    padding: 4px 6px;
+    min-width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .toolbar-divider {
+    margin: 0 2px;
+  }
+
+  .editor-content {
+    padding: 0.5rem;
+    min-height: 200px;
+  }
+}
