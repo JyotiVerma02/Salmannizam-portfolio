@@ -24,8 +24,9 @@ import {
   Heading2,
   Heading3,
   Highlighter,
-  Palette,
 } from 'lucide-react';
+// ✅ Import the ColorPicker component
+import ColorPicker from './ColorPicker';
 
 interface ToolbarProps {
   editor: Editor | null;
@@ -299,20 +300,8 @@ export default function Toolbar({ editor }: ToolbarProps) {
           <Highlighter size={16} />
         </button>
 
-        <button
-          onMouseDown={(e) => e.preventDefault()}
-          onClick={() => {
-            const color = window.prompt('Enter a color (hex, rgb, or color name)');
-            if (color) {
-              editor.chain().focus().setColor(color).run();
-            }
-          }}
-          className="toolbar-btn"
-          type="button"
-          title="Text Color"
-        >
-          <Palette size={16} />
-        </button>
+        {/* ✅ Replace the old color button with the ColorPicker */}
+        <ColorPicker editor={editor} />
       </div>
 
       <div className="toolbar-divider" />

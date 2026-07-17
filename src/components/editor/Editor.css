@@ -306,3 +306,40 @@
     min-height: 200px;
   }
 }
+/* components/editor/Editor.css - Add at the end */
+
+/* ===== COLOR PICKER ===== */
+.color-picker-container {
+  position: relative;
+  display: inline-block;
+}
+
+.color-picker-popover {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  margin-top: 8px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+}
+
+.color-picker-wrapper {
+  background: white;
+  border-radius: 4px;
+}
+
+/* Override ChromePicker styles to match your design */
+.color-picker-popover .chrome-picker {
+  box-shadow: none !important;
+  border-radius: 4px !important;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .color-picker-popover {
+    left: -100px;
+  }
+}
