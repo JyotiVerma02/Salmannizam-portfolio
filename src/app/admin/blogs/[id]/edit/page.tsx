@@ -75,6 +75,10 @@ export default function EditBlogPage() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const handleContentChange = (content: string) => {
+    setFormData((prev) => ({ ...prev, content }));
+  };
+
   const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -173,6 +177,7 @@ export default function EditBlogPage() {
       formData={formData}
       handleInputChange={handleInputChange}
       handleSelectChange={handleSelectChange}
+      handleContentChange={handleContentChange}
       handleImageUpload={handleImageUpload}
       handleImageClick={handleImageClick}
       fileInputRef={fileInputRef}

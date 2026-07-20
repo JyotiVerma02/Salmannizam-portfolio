@@ -1,8 +1,7 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
 import { getCurrentAdmin } from "@/lib/auth";
 import AdminSidebarNav from "@/components/Admin/AdminSidebarNav";
-import { ThemeProvider } from "@/components/Admin/ThemeProvider";
 import ThemeToggle from "@/components/Admin/ThemeToggle";
 import "@/styles/admin/admin-layout.css";
 import "@/styles/admin/admin-sidebar.css";
@@ -91,61 +90,59 @@ export default async function AdminDashboardLayout({ children }: AdminDashboardL
     .join("") || "SN";
 
   return (
-    <ThemeProvider>
-      <main className="admin-dashboard-layout">
-        {/* Animated background blobs */}
-        <div className="admin-bg-blob admin-bg-blob--1" aria-hidden="true" />
-        <div className="admin-bg-blob admin-bg-blob--2" aria-hidden="true" />
+    <main className="admin-dashboard-layout">
+      {/* Animated background blobs */}
+      <div className="admin-bg-blob admin-bg-blob--1" aria-hidden="true" />
+      <div className="admin-bg-blob admin-bg-blob--2" aria-hidden="true" />
 
-        <aside className="admin-sidebar">
-          <div className="admin-sidebar-brand">
-            <div className="admin-sidebar-logo">
-              <span>SN</span>
-              <div className="admin-sidebar-logo-ring" />
-            </div>
-            <div>
-              <strong>Salman Nizam</strong>
-              <span>Portfolio Admin</span>
-            </div>
+      <aside className="admin-sidebar">
+        <div className="admin-sidebar-brand">
+          <div className="admin-sidebar-logo">
+            <span>SN</span>
+            <div className="admin-sidebar-logo-ring" />
+          </div>
+          <div>
+            <strong>Salman Nizam</strong>
+            <span>Portfolio Admin</span>
+          </div>
+        </div>
+
+        <AdminSidebarNav groups={navGroups} />
+
+        <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
+          <button type="submit">
+            <LogoutIcon />
+            <span>Logout</span>
+          </button>
+        </form>
+      </aside>
+
+      <section className="admin-dashboard-main">
+        <header className="admin-dashboard-topbar">
+          <div className="admin-search-bar">
+            <SearchIcon />
+            <input type="text" placeholder="Search anything..." />
           </div>
 
-          <AdminSidebarNav groups={navGroups} />
-
-          <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
-            <button type="submit">
-              <LogoutIcon />
-              <span>Logout</span>
+          <div className="admin-topbar-actions">
+            <ThemeToggle />
+            <button className="admin-notification-btn" aria-label="Notifications">
+              <BellIcon />
+              <span className="admin-notification-dot" />
             </button>
-          </form>
-        </aside>
-
-        <section className="admin-dashboard-main">
-          <header className="admin-dashboard-topbar">
-            <div className="admin-search-bar">
-              <SearchIcon />
-              <input type="text" placeholder="Search anything..." />
-            </div>
-
-            <div className="admin-topbar-actions">
-              <ThemeToggle />
-              <button className="admin-notification-btn" aria-label="Notifications">
-                <BellIcon />
-                <span className="admin-notification-dot" />
-              </button>
-              <div className="admin-user-chip">
-                <div className="admin-avatar">{initials}</div>
-                <div className="admin-user-chip-text">
-                  <strong>{admin.name}</strong>
-                  <span>Super Admin</span>
-                </div>
-                <ChevronDownIcon />
+            <div className="admin-user-chip">
+              <div className="admin-avatar">{initials}</div>
+              <div className="admin-user-chip-text">
+                <strong>{admin.name}</strong>
+                <span>Super Admin</span>
               </div>
+              <ChevronDownIcon />
             </div>
-          </header>
+          </div>
+        </header>
 
-          {children}
-        </section>
-      </main>
-    </ThemeProvider>
+        {children}
+      </section>
+    </main>
   );
 }

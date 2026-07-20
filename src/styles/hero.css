@@ -309,10 +309,10 @@
 }
 
 .btn--outline {
-  background: #ffffff;
+  background: var(--container-color);
   color: var(--white-color);
   border: 1px solid var(--border-color);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+  box-shadow: var(--shadow);
   height: 58px;
   padding: 0 32px;
   border-radius: 16px;
@@ -378,8 +378,8 @@
   margin: 0 auto;
   padding: 2rem 2.5rem;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
   text-align: center;
   backdrop-filter: blur(10px);
 }
@@ -580,9 +580,9 @@
   width: fit-content;
   padding: 14px; /* Space for outer rings */
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e7e3ff;
-  box-shadow: 0 40px 60px -20px rgba(0, 0, 0, 0.12);
+  background: var(--container-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
 }
 
 /* Availability Card */
@@ -596,11 +596,11 @@
   gap: 12px;
   padding: 1rem 1.25rem;
   border-radius: 24px;
-  background: rgba(255, 255, 255, 0.85);
+  background: var(--glass);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow);
   animation: float-card 6s ease-in-out infinite;
   transition: transform 300ms ease;
 }
@@ -619,14 +619,14 @@
 
 .availability-text strong {
   display: block;
-  color: #111;
+  color: var(--white-color);
   font-weight: 600;
   font-size: 0.9rem;
 }
 
 .availability-text span {
   display: block;
-  color: #6b7280;
+  color: var(--text-color);
   font-size: 0.8rem;
 }
 
@@ -683,6 +683,12 @@
   filter: blur(100px);
   opacity: 0.8;
   z-index: -1;
+}
+
+[data-theme="dark"] .hero-image-stage::before {
+  background: radial-gradient(circle, rgba(124, 92, 246, 0.24), transparent 65%),
+              radial-gradient(circle, rgba(255, 255, 255, 0.06), transparent 72%);
+  opacity: 0.55;
 }
 
 .effect-circle {

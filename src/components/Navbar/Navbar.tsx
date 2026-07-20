@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useTheme } from "@/components/Common/ThemeProvider";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -14,11 +15,26 @@ const navItems = [
   { label: "Contact", href: "/contact" },
 ];
 
+const SunIcon = () => (
+  <span className="theme-sun-icon" aria-hidden="true">
+    <span className="theme-sun-core" />
+  </span>
+);
+
+const MoonIcon = () => (
+  <span className="theme-moon-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+    </svg>
+  </span>
+);
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("/");
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -89,10 +105,14 @@ export default function Navbar() {
           </div>
 
           <div className="navbar-right">
-            <button type="button" className="navbar-icon-btn" aria-label="Toggle theme">
-              <span className="theme-sun-icon" aria-hidden="true">
-                <span className="theme-sun-core" />
-              </span>
+            <button
+              type="button"
+              className="navbar-icon-btn"
+              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              onClick={toggleTheme}
+            >
+              {theme === "light" ? <SunIcon /> : <MoonIcon />}
             </button>
 
             <Link href="/admin-login" className="navbar-admin-btn" onClick={closeMenu}>

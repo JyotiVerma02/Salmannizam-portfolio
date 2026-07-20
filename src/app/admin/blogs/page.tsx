@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
@@ -65,6 +65,34 @@ const DeleteIcon = () => (
   </svg>
 );
 
+const CATEGORY_BADGE_CLASSES: Record<string, string> = {
+  "web-dev": "badge-blue",
+  devops: "badge-orange",
+  database: "badge-purple",
+  "system-design": "badge-green",
+  cloud: "badge-cyan",
+  "ai-ml": "badge-pink",
+  backend: "badge-amber",
+};
+
+const FALLBACK_BADGE_CLASSES = [
+  "badge-blue",
+  "badge-orange",
+  "badge-purple",
+  "badge-green",
+] as const;
+
+function getCategoryBadgeClass(category?: string, index?: number) {
+  if (category && CATEGORY_BADGE_CLASSES[category]) {
+    return CATEGORY_BADGE_CLASSES[category];
+  }
+
+  if (typeof index === "number") {
+    return FALLBACK_BADGE_CLASSES[index % FALLBACK_BADGE_CLASSES.length];
+  }
+
+  return "badge-gray";
+}
 export default function AdminBlogsPage() {
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -539,7 +567,7 @@ export default function AdminBlogsPage() {
               </tr>
             ) : filteredAndSortedBlogs.length > 0 ? (
               // Step 3: Use real blogs data
-              filteredAndSortedBlogs.map((blog) => (
+              filteredAndSortedBlogs.map((blog, index) => (
                 <tr key={blog._id}>
                   <td>
                     <div className="admin-table-post">
@@ -585,7 +613,7 @@ export default function AdminBlogsPage() {
                   </td>
                   <td>
                     {/* Step 8: Category */}
-                    <span className={`admin-badge ${blog.color || "gray"}`}>
+                    <span className={`admin-badge ${getCategoryBadgeClass(blog.category, index)}`}>
                       {blog.category || "Uncategorized"}
                     </span>
                   </td>
@@ -707,7 +735,7 @@ export default function AdminBlogsPage() {
         </div>
       </div>
 
-      {/* ── Blog Preview Modal ── */}
+      {/* â”€â”€ Blog Preview Modal â”€â”€ */}
       {previewBlog && (
         <div
           className="blog-preview-backdrop"
@@ -729,7 +757,7 @@ export default function AdminBlogsPage() {
                 >
                   {previewBlog.status === "published" ? "Published" : "Draft"}
                 </span>
-                <span className="blog-preview-category">
+                <span className={`blog-preview-category ${getCategoryBadgeClass(previewBlog.category)}`}>
                   {previewBlog.category || "Uncategorized"}
                 </span>
               </div>
@@ -738,7 +766,7 @@ export default function AdminBlogsPage() {
                 onClick={() => setPreviewBlog(null)}
                 title="Close preview"
               >
-                ✕
+                âœ•
               </button>
             </div>
 
@@ -759,10 +787,10 @@ export default function AdminBlogsPage() {
               <div className="blog-preview-body">
                 <div className="blog-preview-meta">
                   {previewBlog.readTime && (
-                    <span>⏱ {previewBlog.readTime}</span>
+                    <span>â± {previewBlog.readTime}</span>
                   )}
                   <span>
-                    📅{" "}
+                    ðŸ“…{" "}
                     {new Date(
                       previewBlog.publishedAt || previewBlog.createdAt
                     ).toLocaleDateString("en-US", {
@@ -811,7 +839,7 @@ export default function AdminBlogsPage() {
                   rel="noopener noreferrer"
                   className="admin-primary-btn blog-preview-open-btn"
                 >
-                  Open public page ↗
+                  Open public page â†—
                 </a>
               )}
             </div>
@@ -821,3 +849,7 @@ export default function AdminBlogsPage() {
     </div>
   );
 }
+
+
+
+
