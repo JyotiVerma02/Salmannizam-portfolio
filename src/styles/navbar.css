@@ -735,3 +735,70 @@
     height: 1.5px;
   }
 }
+/*==================================
+  DARK THEME - HERO/NAVBAR NEON OVERRIDES
+==================================*/
+
+[data-theme="dark"] .navbar-shell {
+  background: linear-gradient(180deg, rgba(9, 13, 27, 0.9), rgba(5, 8, 20, 0.88));
+  border-color: rgba(139, 92, 246, 0.22);
+  box-shadow: 0 0 0 1px rgba(79, 209, 255, 0.05), 0 18px 60px rgba(0, 0, 0, 0.45);
+}
+
+[data-theme="dark"] .navbar-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(124, 92, 255, 0.08), rgba(79, 209, 255, 0.04), transparent 65%);
+  pointer-events: none;
+  opacity: 0.9;
+}
+
+[data-theme="dark"] .navbar-progress {
+  height: 3px;
+  background: linear-gradient(90deg, #22d3ee, #8b5cf6, #f472b6);
+  box-shadow: 0 0 14px rgba(34, 211, 238, 0.55), 0 0 30px rgba(139, 92, 246, 0.45);
+}
+
+[data-theme="dark"] .navbar-link-active {
+  color: #ddd6fe;
+  text-shadow: 0 0 14px rgba(139, 92, 246, 0.35);
+}
+
+[data-theme="dark"] .navbar-link:hover {
+  color: #f8fafc;
+  text-shadow: 0 0 16px rgba(34, 211, 238, 0.28);
+}
+
+[data-theme="dark"] .navbar-icon-btn {
+  background: linear-gradient(180deg, rgba(16, 23, 42, 0.96), rgba(8, 11, 24, 0.98));
+  border-color: rgba(139, 92, 246, 0.2);
+  box-shadow: 0 0 0 1px rgba(79, 209, 255, 0.05), 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="dark"] .navbar-icon-btn:hover {
+  background: linear-gradient(180deg, rgba(22, 29, 54, 0.98), rgba(8, 11, 24, 0.98));
+  border-color: rgba(34, 211, 238, 0.22);
+  box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.1), 0 18px 36px rgba(0, 0, 0, 0.42);
+}
+
+[data-theme="dark"] .navbar-admin-btn {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(34, 211, 238, 0.08));
+  border-color: rgba(139, 92, 246, 0.26);
+}
+
+[data-theme="dark"] .navbar-mobile-drawer {
+  background: rgba(6, 10, 22, 0.95);
+  border-left-color: rgba(139, 92, 246, 0.16);
+}
+
+[data-theme="dark"] .navbar-drawer-link {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .navbar-drawer-link:hover,
+[data-theme="dark"] .navbar-drawer-link-active {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(139, 92, 246, 0.2);
+}

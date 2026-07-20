@@ -43,7 +43,7 @@ const Hero = () => {
         <section id="home" className="hero--center">
           <div className="blob-big blob-left" />
           <div className="blob-big blob-right" />
-          
+
           <div className="hero__container">
             <div className="hero__inner">
               <div className="hero__left">
@@ -56,14 +56,10 @@ const Hero = () => {
                   <span className="badge-dot" />
                   <span className="badge-text">Senior Developer</span>
                 </motion.div>
-                
+
                 <h1 className="hero-headline">
-                  <span className="line">
-                    Building Scalable
-                  </span>
-                  <span className="line">
-                    Backend Systems
-                  </span>
+                  <span className="line">Building Scalable</span>
+                  <span className="line">Backend Systems</span>
                   <span className="line line--accent">
                     with <span className="accent">Precision</span> <span className="glow-line"></span>
                   </span>
@@ -76,7 +72,7 @@ const Hero = () => {
                   transition={{ delay: 0.72, duration: 0.6 }}
                 >
                   I design high-performance backend systems, APIs, and cloud
-                  infrastructure—building resilient services and developer tools
+                  infrastructure, building resilient services and developer tools
                   that scale to millions of users.
                 </motion.p>
 
@@ -90,7 +86,7 @@ const Hero = () => {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.98 }}
                   >
-                    View Projects →
+                    View Projects &rarr;
                     <div className="ripple" />
                   </motion.a>
                   <motion.a
@@ -106,7 +102,6 @@ const Hero = () => {
                     <div className="ripple" />
                   </motion.a>
                 </div>
-
               </div>
 
               <div className="hero__right">
@@ -116,7 +111,7 @@ const Hero = () => {
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ delay: 1.6, duration: 0.8 }}
                   whileHover={{ scale: 1.02 }}
-                >                  
+                >
                   <div className="hero-image-wrap">
                     <div>
                       <Image
@@ -128,7 +123,6 @@ const Hero = () => {
                         className="hero-image"
                       />
                     </div>
-
                   </div>
 
                   <div className="hero-image-effects">
@@ -151,38 +145,31 @@ const Hero = () => {
                 </motion.div>
               </div>
             </div>
+
+            <div className="hero-bottom-section">
+              <motion.div
+                className="trusted-by-card hero-trusted-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <span className="trusted-label">TRUSTED BY MODERN BUSINESSES</span>
+                <div className="trusted-logos">
+                  <span className="trusted-logo-item" style={{ fontSize: '1.8rem', fontWeight: 700 }}>aws</span>
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
+                  <div className="trusted-logo-item circle-logo-icon">N</div>
+                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </section>
       </main>
     </>
   );
 };
-
-const TrustedBy = () => (
-  <section className="trusted-by-section">
-    <div className="container">
-      <motion.div
-        className="trusted-by-card"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        <span className="trusted-label">
-          TRUSTED BY MODERN BUSINESSES
-        </span>
-        <div className="trusted-logos">
-          {/* Restored original logos */}
-          <span className="trusted-logo-item" style={{ fontSize: '1.8rem', fontWeight: 700 }}>aws</span>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-          <div className="trusted-logo-item circle-logo-icon">N</div>
-          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-        </div>
-      </motion.div>
-    </div>
-  </section>
-);
 
 const About = () => (
   <section id="about" className="about-hero about-hero--centered">
@@ -197,7 +184,7 @@ const About = () => (
           <p className="about-description-secondary">
             I partner with founders and teams to not just write code, but to build systems that are reliable, scalable, and a joy to use. My focus is on creating tangible value and a foundation for long-term success.
           </p>
-          
+
           <div className="hero-stats-wrapper" style={{ marginTop: '40px' }}>
             <div className="hero-stats">
               <div className="stat-card">
@@ -242,7 +229,6 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustedBy />
       <About />
     </>
   );
