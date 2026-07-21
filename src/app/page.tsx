@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar/Navbar";
+
 
 const ClockIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -33,203 +35,130 @@ const ChatIcon = () => (
   </svg>
 );
 
-const Hero = () => {
+const skillCategories = [
+  {
+    title: "Backend Architecture",
+    icon: "⚡",
+    description: "Building robust APIs and microservices with Node.js, NestJS & more.",
+    skills: ["Node.js", "NestJS", "PHP"],
+  },
+  {
+    title: "Frontend Engineering",
+    icon: "🎨",
+    description: "Crafting responsive and interactive interfaces with React, Next.js & TypeScript.",
+    skills: ["React", "Next.js", "TypeScript"],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: "☁️",
+    description: "Deploying with confidence using AWS, Docker and modern DevOps practices.",
+    skills: ["AWS", "Docker", "Kubernetes"],
+  },
+];
+
+export default function Home() {
   return (
     <>
       <div className="cursor-glow" />
       <main className="page">
-        <Navbar />
+        <Navbar/>
+        {/*================ NEW HERO (from About Page) ================*/}
+        <section id="home" className="about-hero" style={{ marginTop: '2rem' }}>
+          <div className="container">
+            <div className="blob-big blob-left" />
+            <div className="blob-big blob-right" />
+            <div className="about-hero__grid">
+              <motion.div
+                className="about-hero__left"
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.7, ease: "easeOut" }}
+                viewport={{ once: true }}
+              >
+                <div className="profile-card">
+                  <Image
+                    src="/image/salmannizam.jpg"
+                    alt="Salman Nizam"
+                    fill
+                    priority
+                    sizes="(max-width: 868px) 100vw, 40vw"
+                    className="profile-card__image"
+                  />
+                  <div className="profile-card__overlay"></div>
+                  <div className="profile-card__v-text">
+                    FOCUSED • PASSIONATE • DEDICATED
+                  </div>
+                  <div className="profile-card__floating-box">
+                    <h3 className="profile-card__title">
+                      Full-Stack Developer
+                    </h3>
+                    <p className="profile-card__tagline">
+                      Building scalable & impactful digital solutions.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
 
-        <section id="home" className="hero--center">
-          <div className="blob-big blob-left" />
-          <div className="blob-big blob-right" />
+              <motion.div
+                className="about-hero__right"
+                initial={{ opacity: 0, y: 45 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.2 }}
+                viewport={{ once: true }}
+              >
+             
 
-          <div className="hero__container">
-            <div className="hero__inner">
-              <div className="hero__left">
-                <motion.div
-                  className="hero-badge"
-                  initial={{ scale: 0.92, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.12, duration: 0.6 }}
-                >
-                  <span className="badge-dot" />
-                  <span className="badge-text">Senior Developer</span>
-                </motion.div>
-
-                <h1 className="hero-headline">
-                  <span className="line">Building Scalable</span>
-                  <span className="line">Backend Systems</span>
-                  <span className="line line--accent">
-                    with <span className="accent">Precision</span> <span className="glow-line"></span>
-                  </span>
+                <h1 className="about-heading">
+                  Building digital<br />
+                  products that <span>scale.</span>
                 </h1>
 
-                <motion.p
-                  className="hero-desc"
-                  initial={{ y: 18, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 0.72, duration: 0.6 }}
-                >
-                  I design high-performance backend systems, APIs, and cloud
-                  infrastructure, building resilient services and developer tools
-                  that scale to millions of users.
-                </motion.p>
+                <p className="about-description">
+                  I design and build scalable software with clean architecture and meaningful user experiences.
+                </p>
 
-                <div className="hero-actions">
-                  <motion.a
-                    href="/projects"
-                    className="btn btn--primary magnetic"
-                    initial={{ y: 18, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 0.88 }}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    View Projects &rarr;
-                    <div className="ripple" />
-                  </motion.a>
-                  <motion.a
-                    href="/contact"
-                    className="btn btn--outline magnetic"
-                    initial={{ y: 18, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ delay: 1.02 }}
-                    whileHover={{ scale: 1.03 }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    <ChatIcon /> Contact Me
-                    <div className="ripple" />
-                  </motion.a>
+                <p className="about-description-secondary">
+                  As a full-stack developer, I partner with ambitious teams to turn ideas into high-performance products.
+                </p>
+
+                <div className="feature-cards">
+                  {skillCategories.map((category, index) => (
+                    <motion.div
+                      key={category.title}
+                      className="feature-card"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.08 }}
+                    >
+                      <div className="feature-card__icon">{category.icon}</div>
+                      <div className="feature-card__content">
+                        <h4>{category.title}</h4>
+                        <p>{category.description}</p>
+                        <div className="feature-card__skills">
+                          {category.skills.map((skill) => (
+                            <span key={skill} className="feature-skill">• {skill}</span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
                 </div>
-              </div>
 
-              <div className="hero__right">
-                <motion.div
-                  className="hero-image-stage"
-                  initial={{ scale: 0.98, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 1.6, duration: 0.8 }}
-                  whileHover={{ scale: 1.02 }}
-                >
-                  <div className="hero-image-wrap">
-                    <div>
-                      <Image
-                        src="/image/salmannizam.jpg"
-                        alt="Salman Nizam"
-                        width={820}
-                        height={820}
-                        priority
-                        className="hero-image"
-                      />
-                    </div>
-                  </div>
+                <div className="about-actions">
+                  <a href="/resume.pdf" className="btn btn--primary" target="_blank" rel="noopener noreferrer">
+                    ⬇ Download Resume
+                  </a>
 
-                  <div className="hero-image-effects">
-                    <div className="effect-circle" />
-                    <div className="effect-circle small" />
-                    <div className="particles">
-                      <span className="p" />
-                      <span className="p" />
-                      <span className="p" />
-                    </div>
-                  </div>
-
-                  <div className="hero-availability-card">
-                    <div className="availability-dot"></div>
-                    <div className="availability-text">
-                      <strong>Available for new projects</strong>
-                      <span>Let's build something great together.</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-
-            <div className="hero-bottom-section">
-              <motion.div
-                className="trusted-by-card hero-trusted-card"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                <span className="trusted-label">TRUSTED BY MODERN BUSINESSES</span>
-                <div className="trusted-logos">
-                  <span className="trusted-logo-item" style={{ fontSize: '1.8rem', fontWeight: 700 }}>aws</span>
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"></polygon></svg>
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg>
-                  <div className="trusted-logo-item circle-logo-icon">N</div>
-                  <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" className="trusted-logo-item"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  <Link href="/contact" className="btn btn--outline">
+                    <ChatIcon /> Let's Connect
+                  </Link>
                 </div>
               </motion.div>
             </div>
           </div>
         </section>
       </main>
-    </>
-  );
-};
-
-const About = () => (
-  <section id="about" className="about-hero about-hero--centered">
-    <div className="container">
-      <div className="about-hero__grid">
-        <div className="about-hero__right">
-          <span className="about-label">My Philosophy</span>
-          <h2 className="about-heading">Engineering with <span>Purpose</span></h2>
-          <p className="about-description">
-            My journey into technology was driven by a fascination with solving complex problems. I believe the best digital products are built at the intersection of elegant code, user-centric design, and strategic business goals.
-          </p>
-          <p className="about-description-secondary">
-            I partner with founders and teams to not just write code, but to build systems that are reliable, scalable, and a joy to use. My focus is on creating tangible value and a foundation for long-term success.
-          </p>
-
-          <div className="hero-stats-wrapper" style={{ marginTop: '40px' }}>
-            <div className="hero-stats">
-              <div className="stat-card">
-                <div className="stat-icon-wrapper"><ClockIcon /></div>
-                <div className="stat-content">
-                  <div className="stat-number">3+</div>
-                  <div className="stat-labels">
-                    <span className="stat-label-main">Years</span>
-                    <span className="stat-label-sub">Experience</span>
-                  </div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon-wrapper"><CodeIcon /></div>
-                <div className="stat-content">
-                  <div className="stat-number">20+</div>
-                  <div className="stat-labels">
-                    <span className="stat-label-main">Successful</span>
-                    <span className="stat-label-sub">Projects</span>
-                  </div>
-                </div>
-              </div>
-              <div className="stat-card">
-                <div className="stat-icon-wrapper"><UsersIcon /></div>
-                <div className="stat-content">
-                  <div className="stat-number">10K+</div>
-                  <div className="stat-labels">
-                    <span className="stat-label-main">Happy</span>
-                    <span className="stat-label-sub">Users</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-export default function Home() {
-  return (
-    <>
-      <Hero />
-      <About />
     </>
   );
 }

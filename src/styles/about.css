@@ -209,7 +209,6 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   margin-bottom: 2rem;
-  max-width: 580px;
 }
 
 .feature-card {
@@ -274,7 +273,6 @@ body {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  max-width: 580px;
 }
 
 .btn {
@@ -293,7 +291,7 @@ body {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, #7c5cff, #4f8bff);
+  background: var(--first-color);
   color: var(--white-color);
   border: none;
   box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
@@ -650,25 +648,6 @@ body {
   background: linear-gradient(90deg, var(--first-color), transparent);
 }
 
-/*==================================
-  CENTERED ABOUT HERO (FOR HOME PAGE)
-==================================*/
-
-.about-hero--centered .about-hero__grid {
-  grid-template-columns: 1fr;
-  justify-items: center;
-  text-align: center;
-}
-
-.about-hero--centered .about-hero__right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.about-hero--centered .hero-stats-wrapper {
-  justify-content: center;
-}
 /*==================================
   RESPONSIVE
 ==================================*/
