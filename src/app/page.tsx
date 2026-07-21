@@ -63,7 +63,7 @@ export default function Home() {
       <main className="page">
         <Navbar/>
         {/*================ NEW HERO (from About Page) ================*/}
-        <section id="home" className="about-hero" style={{ marginTop: '2rem' }}>
+        <section id="home" className="about-hero">
           <div className="container">
             <div className="blob-big blob-left" />
             <div className="blob-big blob-right" />

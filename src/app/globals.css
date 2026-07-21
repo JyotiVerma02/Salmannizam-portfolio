@@ -4,6 +4,7 @@
 /* Inspired by Vercel, Linear, and Raycast */
 :root {
   --header-height: 5rem;
+  --page-shell-offset: 6rem;
 
   /* New Premium Color Palette */
   --first-color-rgb: 99, 102, 241; /* Primary Accent: #6366F1 */
@@ -192,13 +193,14 @@ body::before {
 }
 
 .btn--primary {
-  background: linear-gradient(135deg, #7c5cff, #4f8bff);
+  background: var(--first-color);
   color: #ffffff;
   box-shadow: 0 8px 30px rgba(99, 102, 241, 0.25);
 }
 
 [data-theme="dark"] .btn--primary {
   background: var(--gradient-color);
+  background: var(--first-color);
   color: #ffffff;
 }
 
@@ -356,16 +358,6 @@ body::before {
   }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .section__title {
-    font-size: 1.75rem;
-  }
-}
-
 @keyframes dark-ambient-drift {
   0% {
     transform: scale(1) translate3d(0, 0, 0);
@@ -433,3 +425,7 @@ body::before {
   transform: translate3d(0, 0, 0);
   animation: dark-orb-drift 24s ease-in-out infinite alternate;
 }
+
+
+
+

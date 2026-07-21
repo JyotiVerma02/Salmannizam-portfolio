@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Link from "next/link";
@@ -52,6 +52,8 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+
+
   useEffect(() => {
     setOpen(false);
 
@@ -59,6 +61,28 @@ export default function Navbar() {
     const matchedItem = navItems.find((item) => item.href === currentPath);
     setActiveSection(matchedItem ? matchedItem.href : "/");
   }, [pathname]);
+
+  useEffect(() => {
+    if (!open) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        closeMenu();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [open]);
 
   const closeMenu = () => setOpen(false);
 
@@ -139,7 +163,7 @@ export default function Navbar() {
               type="button"
               className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
               onClick={() => setOpen((prev) => !prev)}
-              aria-label="Open navigation menu"
+              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={open}
             >
               <span className="navbar-burger-line" />
@@ -179,7 +203,7 @@ export default function Navbar() {
                   onClick={closeMenu}
                   aria-label="Close navigation menu"
                 >
-                  x
+                  ×
                 </button>
               </div>
 
@@ -229,3 +253,9 @@ export default function Navbar() {
     </>
   );
 }
+
+
+
+
+
+

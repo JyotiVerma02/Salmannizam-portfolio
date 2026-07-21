@@ -3,9 +3,10 @@ import Navbar from "@/components/Navbar/Navbar";
 
 export default function PageShell({ children }: { children: ReactNode }) {
   return (
-    <main className="page" style={{ paddingTop: 'calc(0.6rem + 80px + 1rem)' }}>
+    <main className="page" style={{ paddingTop: 'var(--page-shell-offset, 6rem)' }}>
       <Navbar />
       {children}
     </main>
   );
 }
+

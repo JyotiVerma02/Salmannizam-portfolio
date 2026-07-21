@@ -55,8 +55,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${syne.variable}`}>
+    <html lang="en" className={`${poppins.variable} ${syne.variable}`} suppressHydrationWarning>
       <head>
+        <meta charSet="utf-8" />
         <Script id="theme-bootstrap" strategy="beforeInteractive">
           {themeBootstrap}
         </Script>

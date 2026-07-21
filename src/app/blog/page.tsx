@@ -96,6 +96,13 @@ const BookmarkIcon = () => (
   </svg>
 );
 
+const SearchIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="11" cy="11" r="7" />
+    <line x1="16.65" y1="16.65" x2="21" y2="21" />
+  </svg>
+);
+
 /* ════════════════════════════════════
    LEFT HERO CARD
 ════════════════════════════════════ */
@@ -295,6 +302,7 @@ export default function BlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState("All Posts");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetch("/api/blogs")
@@ -319,13 +327,24 @@ export default function BlogPage() {
 
   const filterButtons = ["All Posts", ...Object.keys(filterMap)];
   const source = blogs.length > 0 ? blogs : PLACEHOLDER_BLOGS;
-  const filtered = activeFilter === "All Posts"
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  const filteredByCategory = activeFilter === "All Posts"
     ? source
     : source.filter((b) => b.category === filterMap[activeFilter]);
+  const filtered = normalizedQuery
+    ? filteredByCategory.filter((blog) => {
+        const haystack = [blog.title, blog.excerpt, blog.category, blog.tags?.join(" ")]
+          .filter(Boolean)
+          .join(" ")
+          .toLowerCase();
+
+        return haystack.includes(normalizedQuery);
+      })
+    : filteredByCategory;
 
   const [featured, ...sidebarBlogs] = filtered;
-  const topSidebarBlogs = sidebarBlogs.slice(0, 2);
-  const remainingBlogs = sidebarBlogs.slice(2);
+  const topSidebarBlogs = sidebarBlogs.slice(0, 3);
+  const remainingBlogs = sidebarBlogs.slice(3);
 
   return (
     <PageShell>
@@ -377,16 +396,29 @@ export default function BlogPage() {
         <div className="blog-container" id="blog-grid">
 
           {/* ══ FILTER PILLS ══ */}
-          <div className="blog-filters">
-            {filterButtons.map((btn) => (
-              <button
-                key={btn}
-                className={`filter-btn${activeFilter === btn ? " active" : ""}`}
-                onClick={() => setActiveFilter(btn)}
-              >
-                {btn}
-              </button>
-            ))}
+          <div className="blog-toolbar">
+            <div className="blog-filters">
+              {filterButtons.map((btn) => (
+                <button
+                  key={btn}
+                  className={`filter-btn${activeFilter === btn ? " active" : ""}`}
+                  onClick={() => setActiveFilter(btn)}
+                >
+                  {btn}
+                </button>
+              ))}
+            </div>
+
+            <label className="blog-search" htmlFor="blog-search-input">
+              <SearchIcon />
+              <input
+                id="blog-search-input"
+                type="search"
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(event) => setSearchQuery(event.target.value)}
+              />
+            </label>
           </div>
 
           {/* ══ CONTENT ══ */}
@@ -428,3 +460,5 @@ export default function BlogPage() {
     </PageShell>
   );
 }
+
+
