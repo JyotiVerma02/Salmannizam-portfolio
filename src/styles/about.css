@@ -204,18 +204,22 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
 }
 
 .feature-card {
   display: flex;
   flex-direction: column;
-  padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  transition: 0.3s ease;
-  gap: 0.3rem;
+  padding: 1.25rem;
+  border-radius: 1rem;
+  background: var(--container-color);
+  border: 1px solid var(--border-color);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(var(--first-color-rgb), 0.2);
 }
 
 .feature-card:hover {
@@ -526,15 +530,14 @@ body {
 }
 
 .skills-row {
-  display: flex;
-  justify-content: center;
-  gap: 1.4rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
 }
 
 .expertise-card {
   position: relative;
-  width: 320px;
+  width: 100%;
   min-height: 200px;
   padding: 1.5rem;
   border-radius: 1rem;
@@ -886,6 +889,12 @@ body {
 
 .about-actions .btn {
   min-height: 58px;
+}
+
+.about-me-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(var(--first-color-rgb), 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 900px) {

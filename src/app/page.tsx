@@ -87,14 +87,14 @@ export default function Home() {
                   />
                   <div className="profile-card__overlay"></div>
                   <div className="profile-card__v-text">
-                    FOCUSED • PASSIONATE • DEDICATED
+                    AVAILABLE FOR NEW PROJECTS
                   </div>
                   <div className="profile-card__floating-box">
                     <h3 className="profile-card__title">
-                      Full-Stack Developer
+                      Salman Nizam
                     </h3>
                     <p className="profile-card__tagline">
-                      Building scalable & impactful digital solutions.
+                      Senior Full-Stack Developer
                     </p>
                   </div>
                 </div>
@@ -110,17 +110,21 @@ export default function Home() {
              
 
                 <h1 className="about-heading">
-                  Building digital<br />
-                  products that <span>scale.</span>
+                  Backend Systems<br />
+                  <div style={{ display: 'inline-block', whiteSpace: 'nowrap', fontSize: '0.8em', color: 'var(--first-color)' }}>
+                    & Scalability <span>Expert.</span>
+                  </div>
                 </h1>
 
                 <p className="about-description">
-                  I design and build scalable software with clean architecture and meaningful user experiences.
+                  I architect and build high-performance backend systems that scale to millions of users, combining deep technical expertise with product thinking.
                 </p>
 
                 <p className="about-description-secondary">
-                  As a full-stack developer, I partner with ambitious teams to turn ideas into high-performance products.
+                  As <span style={{ color: "var(--first-color)", fontWeight: "700", fontSize: "1.25em" }}>Director at CoderLala Technologies</span>, I lead engineering teams to deliver robust, maintainable solutions that solve real business problems.
                 </p>
+
+
 
                 <div className="feature-cards">
                   {skillCategories.map((category, index) => (

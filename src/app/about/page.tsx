@@ -91,16 +91,84 @@ const skillCategories = [
     skills: ["React", "Next.js", "TypeScript"],
   },
   {
-    title: "Cloud & DevOps",
+    title: "Databases",
+    icon: "🗄️",
+    description: "Designing efficient database schemas and optimizing query performance.",
+    skills: ["MySQL", "MongoDB", "Redis"],
+  },
+  {
+    title: "DevOps / Cloud",
     icon: "☁️",
-    description: "Deploying with confidence using AWS, Docker and modern DevOps practices.",
-    skills: ["AWS", "Docker", "Kubernetes"],
+    description: "Infrastructure as code, containerization, and observability.",
+    skills: ["AWS", "Azure", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"],
+  },
+  {
+    title: "Tools & Platforms",
+    icon: "🛠️",
+    description: "Development workflow, collaboration tools, and methodologies.",
+    skills: ["Git", "GitHub", "Postman", "Linux", "Agile/Scrum", "API Integration"],
   },
 ];
 
 export default function AboutPage() {
   return (
     <PageShell>
+      {/*================ OVERVIEW ================*/}
+      <section id="overview" className="section container" style={{ marginTop: '2rem' }}>
+        <h2 className="section__title">
+          About <span style={{ color: "var(--first-color)" }}>Me</span>
+        </h2>
+
+        {/* <p
+          style={{
+            textAlign: "center",
+            color: "var(--text-color)",
+            maxWidth: "700px",
+            margin: "0 auto 4rem",
+            lineHeight: 1.8,
+          }}
+        >
+          A senior full-stack developer passionate about building scalable, user-focused products and solving complex engineering challenges across various domains.
+        </p> */}
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
+          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
+            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: 'var(--first-color)' }}>❖</span> Professional Background
+            </h3>
+            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I am a senior full-stack developer with extensive experience in building scalable backend systems, robust infrastructure, and user-focused products. My career has been focused on solving complex engineering challenges across various domains.</p>
+          </div>
+          
+          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
+            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: 'var(--first-color)' }}>❖</span> Career Journey
+            </h3>
+            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I've worked with startups and established companies, building products that serve thousands to millions of users.</p>
+          </div>
+
+          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
+            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: 'var(--first-color)' }}>❖</span> Engineering Philosophy
+            </h3>
+            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I believe in writing clean, maintainable code that solves real problems. I prioritize scalability, performance, and developer experience. Every system should be built with future growth in mind, but not over-engineered for current needs.</p>
+          </div>
+
+          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
+            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <span style={{ color: 'var(--first-color)' }}>❖</span> Types of Problems I Solve
+            </h3>
+            <ul style={{ color: 'var(--text-color)', paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.8, fontSize: '0.9rem' }}>
+              <li>Backend architecture and API design</li>
+              <li>Database optimization and scaling</li>
+              <li>Infrastructure setup and DevOps</li>
+              <li>Product development from concept to launch</li>
+              <li>Performance optimization</li>
+              <li>System reliability and monitoring</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/*================ EXPERIENCE ================*/}
       <section id="experience" className="section container" style={{ marginTop: '2rem' }}>
         <h2 className="section__title">
@@ -110,7 +178,7 @@ export default function AboutPage() {
         <p
           style={{
             textAlign: "center",
-            color: "#bcbcbc",
+            color: "var(--text-color)",
             maxWidth: "700px",
             margin: "0 auto 4rem",
             lineHeight: 1.8,
