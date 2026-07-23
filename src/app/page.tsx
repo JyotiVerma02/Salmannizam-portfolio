@@ -81,6 +81,7 @@ export default function Home() {
                     alt="Salman Nizam"
                     fill
                     priority
+                    quality={100}
                     sizes="(max-width: 868px) 100vw, 40vw"
                     className="profile-card__image"
                   />

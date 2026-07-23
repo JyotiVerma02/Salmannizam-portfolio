@@ -13,7 +13,7 @@ const projects = [
     description:
       "Comprehensive B2B transaction platform featuring wallet, air, bus, and rail booking with multiple payment gateways.",
     tech: ["Next.js", "NestJS", "MongoDB", "Redis", "AWS", "Docker"],
-    image: "/blog-hero.png",
+    image: "/projects/saarthii.png",
     stats: [
       { label: "Users", value: "10K+" },
       { label: "Uptime", value: "99.9%" },
@@ -28,7 +28,7 @@ const projects = [
     description:
       "Enterprise-grade CRM platform built with microservices architecture, RabbitMQ, and real-time processing.",
     tech: ["Next.js", "NestJS", "MongoDB", "Redis", "RabbitMQ", "Docker"],
-    image: "/image/developer-3d.png",
+    image: "/projects/coderlala.png",
     stats: [
       { label: "Scalable", value: "Architecture" },
       { label: "Processing", value: "Real-time" },
@@ -43,7 +43,7 @@ const projects = [
     description:
       "Advanced healthcare analytics dashboard for tracking patient metrics, scheduling, and medical resource management in real time.",
     tech: ["React", "Node.js", "PostgreSQL", "GraphQL", "AWS"],
-    image: "/image/download.png",
+    image: "/projects/neohealth.png",
     stats: [
       { label: "Data", value: "Real-time" },
       { label: "Compliance", value: "HIPAA" },
@@ -58,7 +58,7 @@ const projects = [
     description:
       "Next-generation financial application providing seamless peer-to-peer transfers, investment tracking, and automated portfolio management.",
     tech: ["Next.js", "Go", "PostgreSQL", "Kafka", "Docker"],
-    image: "/image/salmannizam.jpg",
+    image: "/projects/fintechflow.png",
     stats: [
       { label: "Transfers", value: "Instant" },
       { label: "Security", value: "Bank-grade" },
@@ -73,7 +73,7 @@ const projects = [
     description:
       "This is a placeholder for an exciting new project. Details will be revealed soon, showcasing innovative solutions and modern technology.",
     tech: ["Coming Soon"],
-    image: "/image/developer-3d.png",
+    image: "/projects/dummyproject.png",
     stats: [
       { label: "Status", value: "In-Progress" },
       { label: "Launch", value: "TBD" },
@@ -106,8 +106,7 @@ function ProjectThumbnail({ project, priority }: { project: ProjectItem; priorit
       <Image
         src={project.image}
         alt={project.title}
-        width={260}
-        height={180}
+        fill
         className="project-image-bg"
         priority={priority}
         sizes="(max-width: 1000px) 100vw, 50vw"

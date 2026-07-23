@@ -829,3 +829,97 @@ body {
     font-size: 0.6rem;
   }
 }
+/*==================================
+  FULL HERO POLISH
+==================================*/
+
+.about-hero {
+  padding: 60px 0 40px;
+}
+
+.about-hero__grid {
+  gap: 72px;
+  max-width: 1280px;
+}
+
+.about-hero__right {
+  padding-top: 0.5rem;
+}
+
+.about-heading {
+  font-size: clamp(3rem, 5vw, 4.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+}
+
+.about-description,
+.about-description-secondary {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  max-width: 640px;
+}
+
+.feature-cards {
+  gap: 1.15rem;
+  margin-bottom: 2.25rem;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.1rem 1.35rem;
+}
+
+.feature-card h4 {
+  font-size: 0.92rem;
+}
+
+.feature-card p {
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.feature-skill {
+  font-size: 0.7rem;
+}
+
+.about-actions .btn {
+  min-height: 58px;
+}
+
+@media (max-width: 900px) {
+  .about-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .about-hero__left {
+    position: static;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    padding: 96px 0 56px;
+  }
+
+  .profile-card {
+    height: 520px;
+  }
+
+  .about-heading {
+    font-size: clamp(2.4rem, 8vw, 3.25rem);
+  }
+
+  .feature-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .about-actions {
+    flex-direction: column;
+  }
+
+  .about-actions .btn {
+    width: 100%;
+  }
+}

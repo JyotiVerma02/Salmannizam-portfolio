@@ -4,7 +4,7 @@
 /* Inspired by Vercel, Linear, and Raycast */
 :root {
   --header-height: 5rem;
-  --page-shell-offset: 6rem;
+  --page-shell-offset: 6.75rem;
 
   /* New Premium Color Palette */
   --first-color-rgb: 99, 102, 241; /* Primary Accent: #6366F1 */
@@ -429,3 +429,64 @@ body::before {
 
 
 
+
+/*==================================
+  FULL SITE POLISH
+==================================*/
+
+body {
+  font-size: 16.5px;
+  line-height: 1.75;
+}
+
+.container {
+  max-width: 1280px;
+  padding: 0 1.75rem;
+}
+
+.section {
+  padding-top: 4rem;
+  padding-bottom: 5rem;
+}
+
+.page {
+  padding-top: 7.25rem;
+}
+
+.section__title {
+  line-height: 1.12;
+}
+
+.section-description {
+  max-width: 760px;
+}
+
+[data-theme="dark"] {
+  --body-color: #04050a;
+  --container-color: rgba(11, 14, 24, 0.82);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --glass: rgba(9, 12, 20, 0.58);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --text-color: #d1d7e6;
+}
+
+[data-theme="dark"] body::before {
+  background:
+    linear-gradient(180deg, rgba(4, 5, 10, 0.98) 0%, rgba(7, 8, 15, 0.96) 58%, rgba(10, 10, 14, 0.98) 100%),
+    radial-gradient(circle at 86% 68%, rgba(139, 92, 246, 0.24), transparent 18%),
+    radial-gradient(circle at 78% 72%, rgba(124, 92, 255, 0.14), transparent 22%),
+    radial-gradient(circle at 18% 82%, rgba(255, 255, 255, 0.06), transparent 20%),
+    radial-gradient(circle at 6% 84%, rgba(255, 255, 255, 0.1), transparent 10%),
+    radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.03), transparent 42%);
+}
+
+[data-theme="dark"] body::after {
+  background:
+    radial-gradient(circle at 85% 18%, rgba(255, 255, 255, 0.08), transparent 1.5px) 0 0 / 160px 160px,
+    radial-gradient(circle at 35% 42%, rgba(255, 255, 255, 0.05), transparent 1.2px) 72px 56px / 210px 210px,
+    radial-gradient(circle at 30% 30%, rgba(124, 92, 255, 0.08), transparent 24%),
+    radial-gradient(circle at 72% 24%, rgba(79, 209, 255, 0.05), transparent 22%),
+    radial-gradient(circle at 60% 70%, rgba(45, 212, 191, 0.03), transparent 26%);
+  filter: blur(4px);
+  opacity: 0.55;
+}
