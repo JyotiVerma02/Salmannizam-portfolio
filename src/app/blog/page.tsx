@@ -343,8 +343,8 @@ export default function BlogPage() {
     : filteredByCategory;
 
   const [featured, ...sidebarBlogs] = filtered;
-  const topSidebarBlogs = sidebarBlogs.slice(0, 3);
-  const remainingBlogs = sidebarBlogs.slice(3);
+  const topSidebarBlogs = sidebarBlogs.slice(0, 2);
+  const remainingBlogs = sidebarBlogs.slice(2);
 
   return (
     <PageShell>

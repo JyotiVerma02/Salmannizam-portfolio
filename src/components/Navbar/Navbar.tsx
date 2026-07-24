@@ -201,7 +201,7 @@ useEffect(() => {
 
               <ul className="navbar-drawer-list">
                 {navItems.map((item, index) => {
-                  const isActive = activeSection === item.href;
+                  const isActive = currentPath === item.href;
 
                   return (
                     <motion.li
