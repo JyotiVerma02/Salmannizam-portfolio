@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import transporter from "@/lib/mailer";
+import { contactEmailTemplate } from "@/templates/contactEmail";
 
 
 export async function POST(req: Request) {
@@ -19,25 +20,11 @@ export async function POST(req: Request) {
 
       subject: `New Contact Message from ${name}`,
 
-      html: `
-        <h2>New Contact Request</h2>
-
-        <p>
-          <strong>Name:</strong> ${name}
-        </p>
-
-        <p>
-          <strong>Email:</strong> ${email}
-        </p>
-
-        <p>
-          <strong>Message:</strong>
-        </p>
-
-        <p>
-          ${message}
-        </p>
-      `,
+      html: contactEmailTemplate(
+        name,
+        email,
+        message
+      ),
 
     });
 
