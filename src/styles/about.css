@@ -11,15 +11,15 @@ body {
 .section {
   position: relative;
   scroll-margin-top: 90px;
-  padding-block: 6rem;
+  padding-block: 4.5rem;
 }
 
 .section:first-child {
-  padding-top: 3rem;
+  padding-top: 2.5rem;
 }
 
 .section + .section {
-  padding-top: 2rem;
+  padding-top: 1.5rem;
 }
 
 .container {
@@ -129,15 +129,28 @@ body {
 .profile-card {
   position: relative;
   height: 620px;
-  border-radius: 16px;
+  border-radius: 20px;
   overflow: hidden;
   background: #1a1a1a;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--border-light);
+  animation: imageFloat 6s ease-in-out infinite, borderAnimation 4s ease-in-out infinite;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-8px) scale(1.01);
+  box-shadow: var(--shadow-glow), 0 30px 70px rgba(99, 102, 241, 0.25);
 }
 
 .profile-card__image {
   object-fit: cover;
   object-position: center;
+  transition: transform 0.6s ease;
+}
+
+.profile-card:hover .profile-card__image {
+  transform: scale(1.04);
 }
 
 .profile-card__overlay {
@@ -370,15 +383,16 @@ body {
 }
 
 .about-me-card {
-  padding: 2rem;
-  border-radius: 20px;
+  padding: 1.75rem;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  min-height: 250px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  transition: 0.3s ease;
+  gap: 0.85rem;
+  min-height: 220px;
+  background: var(--container-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .about-me-card:hover {
@@ -480,13 +494,14 @@ body {
 
 .experience__item {
   position: relative;
-  margin-bottom: 2.5rem;
-  padding: 2rem;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(var(--first-color-rgb), 0.12);
-  backdrop-filter: blur(16px);
-  transition: 0.4s ease;
+  margin-bottom: 2rem;
+  padding: 1.75rem;
+  border-radius: 18px;
+  background: var(--container-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   overflow: hidden;
 }
 
@@ -525,9 +540,9 @@ body {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: linear-gradient(180deg, var(--first-color), var(--first-color));
-  border: 4px solid #0d0d0d;
-  box-shadow: 0 0 25px rgba(var(--first-color-rgb), 0.8);
+  background: var(--first-color);
+  border: 4px solid var(--body-color);
+  box-shadow: 0 0 20px rgba(var(--first-color-rgb), 0.6);
   animation: pulseDot 2.5s ease-in-out infinite;
 }
 
@@ -617,19 +632,16 @@ body {
 .expertise-card {
   position: relative;
   width: calc(33.333% - 1rem);
-  min-height: 220px;
-  padding: 1.75rem;
-  border-radius: 1rem;
+  min-height: 210px;
+  padding: 1.6rem;
+  border-radius: 16px;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.05),
-    rgba(255, 255, 255, 0.025)
-  );
-  border: 1px solid rgba(var(--first-color-rgb), 0.12);
-  backdrop-filter: blur(18px);
-  transition: 0.35s ease;
+  background: var(--container-color);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
   overflow: hidden;
 }
 
@@ -713,10 +725,10 @@ body {
 }
 
 .skill-pill:hover {
-  background: linear-gradient(135deg, var(--first-color), var(--first-color));
-  color: var(--black-color);
+  background: var(--first-color);
+  color: #ffffff;
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(var(--first-color-rgb), 0.3);
+  box-shadow: 0 8px 22px rgba(var(--first-color-rgb), 0.3);
 }
 
 /*==================================
@@ -959,3 +971,49 @@ body {
     padding: 0.35rem 0.7rem;
   }
 }
+
+/*==================================
+  DARK THEME OVERRIDES
+==================================*/
+
+[data-theme="dark"] .about-me-card {
+  background: rgba(18, 22, 40, 0.78);
+  border-color: rgba(255,255,255,0.07);
+}
+
+[data-theme="dark"] .experience__item {
+  background: rgba(18, 22, 40, 0.75);
+  border-color: rgba(var(--first-color-rgb), 0.14);
+}
+
+[data-theme="dark"] .expertise-card {
+  background: rgba(18, 22, 40, 0.72);
+  border-color: rgba(var(--first-color-rgb), 0.12);
+}
+
+[data-theme="dark"] .stat-card {
+  background: rgba(18, 22, 40, 0.65);
+  border-color: rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .feature-card {
+  background: rgba(18, 22, 40, 0.72);
+  border-color: rgba(255,255,255,0.07);
+}
+
+[data-theme="dark"] .skills-layout {
+  border-top-color: rgba(255,255,255,0.06);
+}
+
+[data-theme="dark"] .profile-card__floating-box {
+  background: rgba(20, 24, 44, 0.92);
+  border-color: rgba(255,255,255,0.08);
+}
+
+[data-theme="dark"] .profile-card__title {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .profile-card__tagline {
+  color: #94a3b8;
+}
