@@ -39,13 +39,20 @@ FOOTER
   opacity: 0.9;
 }
 
-[data-theme="dark"] .footer {
-  background:
-    radial-gradient(circle at 12% 15%, rgba(129, 102, 255, 0.14), transparent 26%),
-    radial-gradient(circle at 86% 18%, rgba(79, 209, 255, 0.08), transparent 22%),
-    radial-gradient(circle at 50% 110%, rgba(8, 12, 24, 0.22), transparent 34%),
-    linear-gradient(180deg, rgba(5, 8, 20, 0.99), rgba(2, 5, 13, 0.99));
-  border-top-color: rgba(255, 255, 255, 0.08);
+[data-theme="dark"] .footer{
+
+background:
+radial-gradient(circle at top,
+rgba(124,92,255,.18),
+transparent 35%),
+
+linear-gradient(
+180deg,
+#1d2435,
+#192231,
+#161d2b
+);
+
 }
 
 [data-theme="dark"] .footer::before {

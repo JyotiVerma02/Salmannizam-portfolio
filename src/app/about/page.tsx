@@ -170,7 +170,7 @@ export default function AboutPage() {
       </section>
 
       {/*================ EXPERIENCE ================*/}
-      <section id="experience" className="section container" style={{ marginTop: '2rem' }}>
+      <section id="experience" className="section container">
         <h2 className="section__title">
           Professional <span style={{ color: "var(--first-color)" }}>Experience</span>
         </h2>
