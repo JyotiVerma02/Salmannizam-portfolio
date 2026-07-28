@@ -329,3 +329,46 @@
   }
 }
 
+.password-field {
+  position: relative;
+}
+
+.password-field input {
+  padding-right: 3rem;
+}
+
+.password-toggle {
+  position: absolute;
+  top: 50%;
+  right: 0.85rem;
+  transform: translateY(-50%);
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: none;
+  border-radius: 0.6rem;
+  background: transparent;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+}
+
+.password-toggle:hover {
+  background: rgba(var(--first-color-rgb), 0.08);
+  color: var(--white-color);
+}
+
+[data-theme="dark"] .password-toggle:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.password-toggle:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.password-toggle:focus-visible {
+  outline: 2px solid rgba(var(--first-color-rgb), 0.45);
+  outline-offset: 2px;
+}
