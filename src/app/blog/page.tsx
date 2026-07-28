@@ -67,7 +67,7 @@ function formatDate(dateStr: string) {
   });
 }
 
-/* ─── Icons ─── */
+/*  Icons  */
 const ArrowRight = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
     stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -103,9 +103,9 @@ const SearchIcon = () => (
   </svg>
 );
 
-/* ════════════════════════════════════
+/* 
    LEFT HERO CARD
-════════════════════════════════════ */
+ */
 function HeroCard({ blog }: { blog: Blog }) {
   const catLabel = CATEGORY_LABELS[blog.category || ""] || blog.category || "Article";
   const catColor = categoryColor(blog.category);
@@ -149,9 +149,9 @@ function HeroCard({ blog }: { blog: Blog }) {
   );
 }
 
-/* ════════════════════════════════════
+/* 
    RIGHT SIDEBAR CARD  (dark preview + light footer)
-════════════════════════════════════ */
+ */
 function SideCard({ blog, index }: { blog: Blog; index: number }) {
   const catLabel = CATEGORY_LABELS[blog.category || ""] || blog.category || "Article";
   const catColor = categoryColor(blog.category);
@@ -166,7 +166,7 @@ function SideCard({ blog, index }: { blog: Blog; index: number }) {
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.12 }}
     >
-      {/* ── Dark preview section ── */}
+      {/*  Dark preview section  */}
       <div className="blog-side-preview" style={{ background: gradient }}>
         <div className="blog-side-preview-left">
           <span className="blog-side-cat"
@@ -174,16 +174,16 @@ function SideCard({ blog, index }: { blog: Blog; index: number }) {
             {catLabel.toUpperCase()}
           </span>
           <h4 className="blog-side-preview-title">
-            {blog.title.length > 55 ? blog.title.slice(0, 55) + "…" : blog.title}
+            {blog.title.length > 55 ? blog.title.slice(0, 55) + "" : blog.title}
           </h4>
           {blog.excerpt && (
             <p className="blog-side-preview-desc">
-              {blog.excerpt.slice(0, 100)}…
+              {blog.excerpt.slice(0, 100)}
             </p>
           )}
           <div className="blog-side-meta">
             {blog.readTime && <span><ClockIcon /> {blog.readTime}</span>}
-            <span className="blog-side-meta-dot">•</span>
+            <span className="blog-side-meta-dot"></span>
             <span><CalIcon /> {formatDate(blog.publishedAt || blog.createdAt)}</span>
           </div>
         </div>
@@ -198,7 +198,7 @@ function SideCard({ blog, index }: { blog: Blog; index: number }) {
         </div>
       </div>
 
-      {/* ── Light footer section ── */}
+      {/*  Light footer section  */}
       <div className="blog-side-footer">
         <div className="blog-side-footer-left">
           <p className="blog-side-footer-title">{blog.title}</p>
@@ -212,9 +212,9 @@ function SideCard({ blog, index }: { blog: Blog; index: number }) {
   );
 }
 
-/* ════════════════════════════════════
+/* 
    GRID CARD (For remaining blogs)
-════════════════════════════════════ */
+ */
 function GridCard({ blog, index }: { blog: Blog; index: number }) {
   const catLabel = CATEGORY_LABELS[blog.category || ""] || blog.category || "Article";
   const catColor = categoryColor(blog.category);
@@ -255,12 +255,12 @@ function GridCard({ blog, index }: { blog: Blog; index: number }) {
   );
 }
 
-/* ─── Placeholder data shown when no published blogs ─── */
+/*  Placeholder data shown when no published blogs  */
 const PLACEHOLDER_BLOGS: Blog[] = [
   {
     _id: "p1", slug: "#", status: "published", category: "web-dev",
     title: "Building a Modern Full-Stack Developer Portfolio with Next.js 15, TypeScript, Tailwind CSS, and MongoDB",
-    excerpt: "Learn how I built a modern full-stack developer portfolio using Next.js 15, React, TypeScript, Tailwind CSS, MongoDB, and Framer Motion. This article covers planning, project structure, responsive UI design, animations, dynamic routing, authentication, blog management…",
+    excerpt: "Learn how I built a modern full-stack developer portfolio using Next.js 15, React, TypeScript, Tailwind CSS, MongoDB, and Framer Motion. This article covers planning, project structure, responsive UI design, animations, dynamic routing, authentication, blog management",
     readTime: "8 min read", publishedAt: "2025-07-15T00:00:00Z", createdAt: "2025-07-15T00:00:00Z",
   },
   {
@@ -295,9 +295,9 @@ const PLACEHOLDER_BLOGS: Blog[] = [
   },
 ];
 
-/* ════════════════════════════════════
+/* 
    PAGE
-════════════════════════════════════ */
+ */
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -350,14 +350,14 @@ export default function BlogPage() {
     <PageShell>
       <section id="blog" className="blog-section">
 
-        {/* ══ HERO BANNER ══ */}
+        {/*  HERO BANNER  */}
         <div className="blog-hero-banner">
           {/* Decorative particles */}
-          <span className="bp bp-orange bp-1">◆</span>
-          <span className="bp bp-purple bp-2">◆</span>
-          <span className="bp bp-blue bp-3">×</span>
-          <span className="bp bp-orange bp-4">○</span>
-          <span className="bp bp-purple bp-5">×</span>
+          <span className="bp bp-orange bp-1"></span>
+          <span className="bp bp-purple bp-2"></span>
+          <span className="bp bp-blue bp-3"></span>
+          <span className="bp bp-orange bp-4"></span>
+          <span className="bp bp-purple bp-5"></span>
 
           <div className="blog-banner-inner">
             {/* Left */}
@@ -367,7 +367,7 @@ export default function BlogPage() {
               transition={{ duration: 0.6 }}>
               <h1 className="blog-banner-title">
                 Latest <span className="blog-title-accent">Blog</span> Insights
-                <span className="blog-title-sparkle" aria-hidden="true">✦</span>
+                <span className="blog-title-sparkle" aria-hidden="true"></span>
               </h1>
               <p className="blog-banner-desc">
                 Expert articles, tutorials and deep-dives on full-stack development,
@@ -395,7 +395,7 @@ export default function BlogPage() {
 
         <div className="blog-container" id="blog-grid">
 
-          {/* ══ FILTER PILLS ══ */}
+          {/*  FILTER PILLS  */}
           <div className="blog-toolbar">
             <div className="blog-filters">
               {filterButtons.map((btn) => (
@@ -421,11 +421,11 @@ export default function BlogPage() {
             </label>
           </div>
 
-          {/* ══ CONTENT ══ */}
+          {/*  CONTENT  */}
           {loading ? (
             <div className="blog-loading">
               <div className="blog-spinner" />
-              <p>Loading posts…</p>
+              <p>Loading posts</p>
             </div>
           ) : filtered.length > 0 ? (
             <>
@@ -440,7 +440,7 @@ export default function BlogPage() {
                 )}
               </div>
 
-              {/* ══ REMAINING BLOGS GRID ══ */}
+              {/*  REMAINING BLOGS GRID  */}
               {remainingBlogs.length > 0 && (
                 <div className="more-blogs-section">
                   <h3 className="more-blogs-title">More Articles</h3>

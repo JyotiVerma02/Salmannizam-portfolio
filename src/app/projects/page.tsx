@@ -95,7 +95,7 @@ function ProjectThumbnail({ project, priority }: { project: ProjectItem; priorit
         <div className="project-image-fallback">
           <span className="project-image-kicker">Featured case study</span>
           <strong className="project-image-title">{project.title}</strong>
-          <span className="project-image-subtitle">{project.features.join(" � ")}</span>
+          <span className="project-image-subtitle">{project.features.join(" • ")}</span>
         </div>
       </div>
     );

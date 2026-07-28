@@ -14,7 +14,7 @@ const experiences = [
       "Design scalable backend architectures with focus on performance and security",
       "Develop SaaS products, APIs, dashboards, and automations",
       "Integrate AI tools and APIs to enhance product capabilities",
-      "Lead product development from concept ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ MVP ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ Production",
+      "Lead product development from concept  MVP  Production",
       "Work directly with clients to gather requirements and deliver solutions",
       "Oversee code quality, deployments, and development processes",
     ],
@@ -80,31 +80,31 @@ const experiences = [
 const skillCategories = [
   {
     title: "Backend Architecture",
-    icon: "ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡Ãƒâ€šÃ‚Â¡",
+    icon: "",
     description: "Building robust APIs and microservices with Node.js, NestJS & more.",
     skills: ["Node.js", "NestJS", "PHP"],
   },
   {
     title: "Frontend Engineering",
-    icon: "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸Ãƒâ€¦Ã‚Â½Ãƒâ€šÃ‚Â¨",
+    icon: "",
     description: "Crafting responsive and interactive interfaces with React, Next.js & TypeScript.",
     skills: ["React", "Next.js", "TypeScript"],
   },
   {
     title: "Databases",
-    icon: "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬ÂÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â",
+    icon: "",
     description: "Designing efficient database schemas and optimizing query performance.",
     skills: ["MySQL", "MongoDB", "Redis"],
   },
   {
     title: "DevOps / Cloud",
-    icon: "ÃƒÆ’Ã‚Â¢Ãƒâ€¹Ã…â€œÃƒâ€šÃ‚ÂÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â",
+    icon: "",
     description: "Infrastructure as code, containerization, and observability.",
     skills: ["AWS", "Azure", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"],
   },
   {
     title: "Tools & Platforms",
-    icon: "ÃƒÆ’Ã‚Â°Ãƒâ€¦Ã‚Â¸ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂºÃƒâ€šÃ‚Â ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¸Ãƒâ€šÃ‚Â",
+    icon: "",
     description: "Development workflow, collaboration tools, and methodologies.",
     skills: ["Git", "GitHub", "Postman", "Linux", "Agile/Scrum", "API Integration"],
   },
@@ -134,28 +134,28 @@ export default function AboutPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
           <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
             <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: 'var(--first-color)' }}>ÃƒÆ’Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“</span> Professional Background
+              Professional Background
             </h3>
             <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I am a senior full-stack developer with extensive experience in building scalable backend systems, robust infrastructure, and user-focused products. My career has been focused on solving complex engineering challenges across various domains.</p>
           </div>
           
           <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
             <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: 'var(--first-color)' }}>ÃƒÆ’Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“</span> Career Journey
+              Career Journey
             </h3>
             <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I've worked with startups and established companies, building products that serve thousands to millions of users.</p>
           </div>
 
           <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
             <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: 'var(--first-color)' }}>ÃƒÆ’Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“</span> Engineering Philosophy
+              Engineering Philosophy
             </h3>
             <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I believe in writing clean, maintainable code that solves real problems. I prioritize scalability, performance, and developer experience. Every system should be built with future growth in mind, but not over-engineered for current needs.</p>
           </div>
 
           <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
             <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span style={{ color: 'var(--first-color)' }}>ÃƒÆ’Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒÂ¢Ã¢â€šÂ¬Ã¢â‚¬Å“</span> Types of Problems I Solve
+              Types of Problems I Solve
             </h3>
             <ul style={{ color: 'var(--text-color)', paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.8, fontSize: '0.9rem' }}>
               <li>Backend architecture and API design</li>
@@ -204,7 +204,7 @@ export default function AboutPage() {
               <h4>{job.company}</h4>
 
               <small>
-                {job.duration} ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¢ {job.location}
+                {job.duration} - {job.location}
               </small>
 
               <h5>Responsibilities</h5>
@@ -230,7 +230,7 @@ export default function AboutPage() {
       {/*================ SKILLS ================*/}
       <section id="skills" className="section container">
         <h2 className="section__title">
-          Skills <span style={{ color: "var(--first-color)" }}>& Expertise</span>
+          Skills and Expertise
         </h2>
 
         <p className="skills-subtitle">
@@ -252,7 +252,7 @@ export default function AboutPage() {
                 }}
               >
                 <h3>
-                  <span className="expertise-card__icon">{category.icon}</span>
+                  
                   {category.title}
                 </h3>
 

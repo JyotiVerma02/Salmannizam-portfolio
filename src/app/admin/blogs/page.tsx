@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
@@ -735,7 +735,7 @@ export default function AdminBlogsPage() {
         </div>
       </div>
 
-      {/* â”€â”€ Blog Preview Modal â”€â”€ */}
+      {/*  Blog Preview Modal  */}
       {previewBlog && (
         <div
           className="blog-preview-backdrop"
@@ -766,7 +766,7 @@ export default function AdminBlogsPage() {
                 onClick={() => setPreviewBlog(null)}
                 title="Close preview"
               >
-                âœ•
+                
               </button>
             </div>
 
@@ -787,10 +787,10 @@ export default function AdminBlogsPage() {
               <div className="blog-preview-body">
                 <div className="blog-preview-meta">
                   {previewBlog.readTime && (
-                    <span>â± {previewBlog.readTime}</span>
+                    <span> {previewBlog.readTime}</span>
                   )}
                   <span>
-                    ðŸ“…{" "}
+                    {" "}
                     {new Date(
                       previewBlog.publishedAt || previewBlog.createdAt
                     ).toLocaleDateString("en-US", {
@@ -839,7 +839,7 @@ export default function AdminBlogsPage() {
                   rel="noopener noreferrer"
                   className="admin-primary-btn blog-preview-open-btn"
                 >
-                  Open public page â†—
+                  Open public page 
                 </a>
               )}
             </div>

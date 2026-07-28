@@ -181,7 +181,7 @@ body {
   object-fit: cover;
   object-position: center top;
   transition: transform 0.6s ease;
-  /* Next.js fill images are position:absolute inset:0 â€” no aspect-ratio override needed */
+  /* Next.js fill images are position:absolute inset:0  no aspect-ratio override needed */
 }
 
 .profile-card:hover .profile-card__image {
