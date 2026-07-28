@@ -15,6 +15,26 @@
   1. GLOBALS / LAYOUT / TYPOGRAPHY
 =============================================================*/
 
+/* LARGE SCREENS — keep content centered, scale up */
+@media (min-width: 1440px) {
+  .container {
+    padding: 0 2.5rem;
+  }
+
+  :root {
+    --biggest-font-size: 5rem;
+    --bigger-font-size: 3.5rem;
+    --h1-font-size: 2.5rem;
+    --h2-font-size: 1.75rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .container {
+    padding: 0 3rem;
+  }
+}
+
 @media (max-width: 1200px) {
   .container {
     max-width: 960px;
@@ -123,6 +143,46 @@
 /*=============================================================
   3. HERO SECTION
 =============================================================*/
+
+/* Large screens — hero scales up nicely */
+@media (min-width: 1440px) {
+  .hero--center {
+    padding-top: 120px;
+  }
+
+  .hero__container {
+    width: min(1500px, 92%);
+  }
+
+  .hero-headline {
+    font-size: clamp(4rem, 4.5vw, 6rem);
+    width: 800px;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    max-width: 700px;
+  }
+
+  .hero-image {
+    width: 580px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .hero__inner {
+    grid-template-columns: 60fr 40fr;
+  }
+
+  .hero-headline {
+    font-size: clamp(5rem, 5vw, 7rem);
+  }
+
+  .hero-image {
+    width: 640px;
+  }
+}
+
 
 @media (max-width: 1200px) {
   .hero__inner {
@@ -379,8 +439,29 @@
 }
 
 /*=============================================================
-  4. ABOUT SECTION
+  4. ABOUT / HOME HERO SECTION
 =============================================================*/
+
+/* Large screens */
+@media (min-width: 1440px) {
+  .about-hero {
+    padding: 100px 0 80px;
+  }
+
+  .about-description,
+  .about-description-secondary {
+    font-size: 1.1rem;
+    max-width: 680px;
+  }
+
+  .feature-card {
+    padding: 1.5rem 1.75rem;
+  }
+
+  .feature-card__icon { font-size: 2.5rem; }
+  .feature-card h4 { font-size: 1rem; }
+  .feature-card p  { font-size: 0.9rem; }
+}
 
 @media (max-width: 1024px) {
   .hero-title {
@@ -406,6 +487,18 @@
   .hero-title {
     font-size: clamp(2rem, 5vw, 3.2rem);
     letter-spacing: -1.5px;
+  }
+}
+
+/* Feature cards — 2 columns between 650–868px instead of 1 */
+@media (min-width: 650px) and (max-width: 868px) {
+  .feature-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature-card {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

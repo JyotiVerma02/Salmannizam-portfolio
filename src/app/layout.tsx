@@ -36,10 +36,21 @@ const themeBootstrap = `
 (function () {
   try {
     var storageKey = 'portfolio-theme';
+    var versionKey = 'portfolio-theme-v';
+    var currentVersion = '2';
+
+    // Migration: first time with v2, reset to dark unless user explicitly saved dark already
+    var storedVersion = localStorage.getItem(versionKey);
+    if (storedVersion !== currentVersion) {
+      // New visitor or migrating from v1 — force dark as default
+      localStorage.removeItem(storageKey);
+      localStorage.setItem(versionKey, currentVersion);
+    }
+
     var savedTheme = localStorage.getItem(storageKey);
     var theme = savedTheme === 'dark' || savedTheme === 'light'
       ? savedTheme
-      : (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      : 'dark';
 
     var root = document.documentElement;
     root.setAttribute('data-theme', theme);

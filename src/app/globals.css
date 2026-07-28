@@ -135,7 +135,8 @@ body::after {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 2rem;
+  width: 100%;
 }
 
 /*==================================
@@ -454,6 +455,36 @@ body::after {
   .card { padding: 1.25rem; }
 
   .cursor-glow { display: none; }
+}
+
+/*==================================
+  LARGE SCREENS (1440px+)
+==================================*/
+@media (min-width: 1440px) {
+  .container {
+    max-width: 1360px;
+  }
+
+  body {
+    font-size: 17px;
+  }
+
+  .section__title {
+    font-size: clamp(2rem, 2.5vw, 3rem);
+  }
+}
+
+/*==================================
+  ULTRA-WIDE (1920px+)
+==================================*/
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  body {
+    font-size: 18px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
