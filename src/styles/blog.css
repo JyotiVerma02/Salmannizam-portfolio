@@ -988,3 +988,60 @@
 .blog-grid-excerpt {
   font-size: 0.88rem;
 }
+
+/* ===== DARK THEME BLOG CARD OVERRIDES ===== */
+[data-theme="dark"] .blog-hero-card,
+[data-theme="dark"] .blog-side-card,
+[data-theme="dark"] .blog-grid-card {
+  background: rgba(18, 22, 40, 0.82);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+}
+
+[data-theme="dark"] .blog-hero-body,
+[data-theme="dark"] .blog-grid-body,
+[data-theme="dark"] .blog-side-footer {
+  text-align: left;
+}
+
+[data-theme="dark"] .blog-hero-title,
+[data-theme="dark"] .blog-grid-title,
+[data-theme="dark"] .blog-side-footer-title {
+  color: #f8fafc;
+}
+
+[data-theme="dark"] .blog-hero-excerpt,
+[data-theme="dark"] .blog-grid-excerpt,
+[data-theme="dark"] .blog-side-footer-left .blog-read-more.small,
+[data-theme="dark"] .blog-hero-meta {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .blog-read-more {
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .blog-side-footer {
+  background: rgba(18, 22, 40, 0.88);
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .blog-bookmark-btn {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .blog-bookmark-btn:hover {
+  color: #818cf8;
+  background: rgba(129, 140, 248, 0.12);
+}
+
+[data-theme="dark"] .blog-hero-card:hover .blog-hero-title,
+[data-theme="dark"] .blog-grid-card:hover .blog-grid-title {
+  color: #a5b4fc;
+}
+
+[data-theme="dark"] .blog-grid-card .blog-hero-footer,
+[data-theme="dark"] .blog-side-footer-left {
+  text-align: left;
+}
+

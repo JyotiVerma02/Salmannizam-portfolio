@@ -347,3 +347,101 @@
     left: -100px;
   }
 }
+/* ===== DARK MODE OVERRIDES ===== */
+[data-theme="dark"] .editor-container {
+  background: var(--adm-bg-card);
+  border-color: var(--adm-border);
+  box-shadow: var(--adm-shadow-md);
+}
+
+[data-theme="dark"] .editor-content {
+  background: var(--adm-bg-card);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror {
+  color: var(--adm-text-primary);
+  background: transparent;
+}
+
+[data-theme="dark"] .editor-content .ProseMirror p.is-editor-empty:first-child::before {
+  color: var(--adm-text-muted);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror strong,
+[data-theme="dark"] .editor-content .ProseMirror b,
+[data-theme="dark"] .editor-bold {
+  color: var(--adm-text-primary) !important;
+}
+
+[data-theme="dark"] .editor-content .ProseMirror blockquote,
+[data-theme="dark"] .editor-blockquote {
+  border-left-color: var(--adm-accent) !important;
+  color: var(--adm-text-secondary) !important;
+  background: rgba(99, 102, 241, 0.08);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror pre,
+[data-theme="dark"] .editor-code-block {
+  background: #0f172a !important;
+  color: #e2e8f0 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror code {
+  background: rgba(148, 163, 184, 0.12);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .editor-content .ProseMirror th {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--adm-text-primary);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror th,
+[data-theme="dark"] .editor-content .ProseMirror td {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .editor-content .ProseMirror .editor-highlight {
+  background-color: rgba(250, 204, 21, 0.22) !important;
+  color: var(--adm-text-primary);
+}
+
+[data-theme="dark"] .toolbar {
+  background: var(--adm-bg-muted);
+  border-bottom-color: var(--adm-border);
+}
+
+[data-theme="dark"] .toolbar-btn {
+  color: var(--adm-text-secondary);
+}
+
+[data-theme="dark"] .toolbar-btn:hover {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.16);
+  color: var(--adm-text-primary);
+}
+
+[data-theme="dark"] .toolbar-btn.is-active {
+  background: linear-gradient(135deg, var(--adm-accent), var(--adm-accent-2));
+  color: #fff;
+  border-color: transparent;
+}
+
+[data-theme="dark"] .toolbar-divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .color-picker-popover {
+  background: var(--adm-bg-card);
+  border: 1px solid var(--adm-border);
+  box-shadow: var(--adm-shadow-lg);
+}
+
+[data-theme="dark"] .color-picker-wrapper {
+  background: transparent;
+}
+
+[data-theme="dark"] .color-picker-popover .chrome-picker {
+  background: transparent !important;
+}
