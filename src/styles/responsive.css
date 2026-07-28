@@ -504,7 +504,11 @@
 
 @media (max-width: 768px) {
   .about-hero {
-    padding: 1rem 0 2.5rem;
+    padding: 2rem 0 2.5rem;   /* enough top gap below the floating navbar */
+  }
+
+  .about-hero__grid {
+    gap: 2rem;
   }
 
   .hero-title {
@@ -556,6 +560,18 @@
   .hero-label {
     font-size: clamp(1.5rem, 5vw, 2rem);
   }
+
+  /* Profile card — keep image visible on small phones */
+  .about-hero__left {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+  }
+
+  .profile-card {
+    width: 100%;
+    height: 380px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -572,6 +588,31 @@
     padding: 0 1.5rem;
     font-size: 13px;
   }
+
+  /* Profile card — compact on very small phones */
+  .about-hero__left {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .profile-card {
+    width: 100%;
+    height: 340px;
+  }
+
+  .profile-card__floating-box {
+    padding: 0.85rem;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+  }
+
+  .profile-card__v-text {
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    top: 16px;
+    left: 16px;
+  }
 }
 
 @media (max-width: 360px) {
@@ -582,6 +623,17 @@
 
   .hero-copy {
     font-size: 0.82rem;
+  }
+
+  /* Profile card — minimum viable on tiny screens */
+  .about-hero__left {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .profile-card {
+    width: 100%;
+    height: 300px;
   }
 }
 

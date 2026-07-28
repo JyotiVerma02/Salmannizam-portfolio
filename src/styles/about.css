@@ -153,6 +153,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;        /* critical: gives profile-card a concrete width to fill */
 }
 
 .profile-card {
@@ -174,8 +175,9 @@ body {
 
 .profile-card__image {
   object-fit: cover;
-  object-position: center;
+  object-position: center top;
   transition: transform 0.6s ease;
+  /* Next.js fill images are position:absolute inset:0 — no aspect-ratio override needed */
 }
 
 .profile-card:hover .profile-card__image {
@@ -811,16 +813,18 @@ body {
   .about-hero__left {
     position: static;
     top: 0;
-    max-width: 340px;
+    width: 100%;          /* must be 100% so profile-card width:100% resolves */
+    max-width: 400px;
     margin: 0 auto;
   }
 
   .profile-card {
-    height: 520px;
+    height: 460px;
+    width: 100%;          /* explicit: Next.js fill image needs parent width */
   }
 
   .profile-card__image {
-    aspect-ratio: 1 / 1;
+    /* Do NOT set aspect-ratio — fill images use inset:0 already */
   }
 
   .about-heading {
