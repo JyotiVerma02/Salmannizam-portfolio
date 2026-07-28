@@ -1,11 +1,11 @@
-﻿﻿/* ============================================
+/* ============================================
    BLOG DETAIL PAGE - reference-inspired layout
    ============================================ */
 
 .blog-detail-page {
   position: relative;
   min-height: 100vh;
-  padding: 80px 0 4rem;
+  padding: 64px 0 3rem;
   color: #0f172a;
   background:
     radial-gradient(circle at top left, rgba(91, 94, 247, 0.09), transparent 34%),
@@ -15,11 +15,11 @@
 
 .blog-detail-progress-wrap {
   position: fixed;
-  top: 88px;
+  top: 74px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 35;
-  width: min(1280px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 1.5rem));
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -28,7 +28,7 @@
 
 .blog-detail-progress-track {
   flex: 1;
-  height: 7px;
+  height: 5px;
   border-radius: 999px;
   background: rgba(99, 102, 241, 0.12);
   overflow: hidden;
@@ -53,17 +53,17 @@
 }
 
 .blog-detail-hero {
-  width: min(1280px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 1.5rem));
   margin: 0 auto 1.5rem;
 }
 
 .blog-detail-hero-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
   overflow: hidden;
-  min-height: 360px;
-  border-radius: 26px;
+  min-height: 300px;
+  border-radius: 22px;
   background:
     linear-gradient(140deg, rgba(10, 14, 37, 0.98) 0%, rgba(17, 24, 39, 0.96) 55%, rgba(117, 79, 164, 0.82) 100%);
   box-shadow: 0 28px 70px rgba(15, 23, 42, 0.16);
@@ -82,7 +82,7 @@
 .blog-detail-hero-copy {
   position: relative;
   z-index: 1;
-  padding: clamp(2rem, 4vw, 3.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,7 +111,7 @@
 .blog-detail-title {
   margin: 0;
   max-width: 13ch;
-  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 3rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
   font-weight: 800;
@@ -119,8 +119,8 @@
 
 .blog-detail-excerpt {
   margin: 0;
-  max-width: 44rem;
-  font-size: clamp(1rem, 1.7vw, 1.08rem);
+  max-width: 38rem;
+  font-size: clamp(0.88rem, 1.5vw, 0.98rem);
   line-height: 1.75;
   color: rgba(255, 255, 255, 0.82);
 }
@@ -245,10 +245,10 @@
 }
 
 .blog-detail-shell {
-  width: min(1280px, calc(100% - 2rem));
+  width: min(1180px, calc(100% - 1.5rem));
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr) 316px;
+  grid-template-columns: 60px minmax(0, 1fr) 280px;
   gap: 1.2rem;
   align-items: start;
 }
@@ -260,7 +260,7 @@
   flex-direction: column;
   gap: 0.75rem;
   align-items: center;
-  padding: 1rem 0;
+  padding: 0.8rem 0;
 }
 
 .blog-detail-share-label {
@@ -323,9 +323,9 @@
 .blog-detail-main {
   background: rgba(255, 255, 255, 0.96);
   border: 1px solid rgba(148, 163, 184, 0.18);
-  border-radius: 26px;
+  border-radius: 22px;
   box-shadow: 0 24px 64px rgba(15, 23, 42, 0.08);
-  padding: 1.5rem 1.5rem 1.25rem;
+  padding: 1.15rem 1.15rem 1rem;
 }
 
 .blog-detail-main-header {
@@ -554,7 +554,7 @@
 }
 
 .blog-detail-empty-copy {
-  padding: 1.4rem 0;
+  padding: 1rem 0;
   color: #64748b;
 }
 
@@ -889,7 +889,7 @@
 }
 
 .blog-detail-state {
-  min-height: 55vh;
+  min-height: 48vh;
   width: min(720px, calc(100% - 2rem));
   margin: 0 auto;
   display: grid;
@@ -903,7 +903,7 @@
   background: rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(148, 163, 184, 0.18);
   border-radius: 24px;
-  padding: 2.5rem 1.5rem;
+  padding: 2rem 1.25rem;
   box-shadow: 0 24px 54px rgba(15, 23, 42, 0.08);
 }
 
@@ -919,7 +919,7 @@
 
 .blog-detail-state-icon {
   width: 4rem;
-  height: 4rem;
+  height: 3.2rem;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -931,7 +931,7 @@
 
 .blog-detail-spinner {
   width: 46px;
-  height: 46px;
+  height: 40px;
   border-radius: 50%;
   border: 3px solid rgba(148, 163, 184, 0.24);
   border-top-color: #5b5ef7;
@@ -1037,7 +1037,7 @@
 
   .blog-detail-related-thumb {
     width: 4rem;
-    height: 4rem;
+    height: 3.2rem;
   }
 }
 
@@ -1230,3 +1230,5 @@
 [data-theme="dark"] .blog-detail-primary-action {
   box-shadow: 0 18px 34px rgba(129, 140, 248, 0.18);
 }
+
+

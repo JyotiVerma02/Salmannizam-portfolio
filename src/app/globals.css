@@ -70,13 +70,14 @@
 }
 
 html {
+  font-size: 12px;
   scroll-behavior: smooth;
 }
 
 body {
   background: var(--body-color);
   color: var(--text-color);
-  font-size: 16px;
+  font-size: 12px;
   font-family: 'Inter', 'Outfit', system-ui, -apple-system, sans-serif;
   line-height: 1.75;
   min-height: 100vh;
@@ -132,28 +133,28 @@ body::after {
 /*==================================
   CONTAINER
 ==================================*/
-.container {
-  max-width: 1200px;
+  .container {
+  max-width: 980px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.25rem;
   width: 100%;
 }
 
 /*==================================
   SECTION
 ==================================*/
-.section {
-  padding-top: 4rem;
-  padding-bottom: 4.5rem;
+  .section {
+  padding-top: 3rem;
+  padding-bottom: 3.5rem;
   position: relative;
 }
 
 .page {
-  padding-top: 7rem;
+  padding-top: 5.5rem;
 }
 
 .page--home {
-  padding-top: calc(var(--page-shell-offset, 6rem) - 1rem);
+  padding-top: calc(var(--page-shell-offset, 5.6rem) - 1rem);
 }
 
 /*==================================
@@ -354,7 +355,7 @@ body::after {
 ==================================*/
 .section--divided {
   border-top: 1px solid var(--border-color);
-  padding-top: 3.5rem;
+  padding-top: 3rem;
   margin-top: 3.5rem;
 }
 
@@ -497,6 +498,13 @@ body::after {
     animation: none;
   }
 }
+
+
+
+
+
+
+
 
 
 

@@ -7,14 +7,20 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 28px 18px;
+  padding: 22px 14px;
   background: var(--adm-bg-sidebar);
   border-right: 1px solid var(--adm-border);
   z-index: 10;
   overflow-y: auto;
-  min-width: 220px;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  min-width: 200px;
+  align-self: start;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 4px 0 30px rgba(0,0,0,0.06);
@@ -34,17 +40,17 @@
 .admin-sidebar-brand {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding-bottom: 28px;
+  gap: 12px;
+  padding-bottom: 22px;
   border-bottom: 1px solid var(--adm-border);
-  margin-bottom: 20px;
+  margin-bottom: 16px;
   position: relative;
 }
 
 .admin-sidebar-logo {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   flex-shrink: 0;
   display: grid;
   place-items: center;
@@ -53,15 +59,15 @@
 .admin-sidebar-logo span {
   position: relative;
   z-index: 2;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   background: linear-gradient(135deg, var(--adm-accent), var(--adm-accent-2));
   color: #ffffff;
   display: grid;
   place-items: center;
   border-radius: 13px;
   font-weight: 900;
-  font-size: 15px;
+  font-size: 13px;
   letter-spacing: -0.02em;
   box-shadow: var(--adm-shadow-accent);
   transition: transform var(--adm-transition), box-shadow var(--adm-transition);
@@ -93,7 +99,7 @@
 
 .admin-sidebar-brand strong {
   display: block;
-  font-size: 15px;
+  font-size: 13px;
   color: var(--adm-text-primary);
   font-weight: 700;
   line-height: 1.2;
@@ -156,11 +162,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  padding: 10px 12px;
   border-radius: 12px;
   color: var(--adm-text-secondary);
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   transition: all var(--adm-transition);
   position: relative;
@@ -243,7 +249,7 @@
 .admin-sidebar-logout {
   margin-top: auto;
   border-top: 1px solid var(--adm-border);
-  padding-top: 18px;
+  padding-top: 14px;
 }
 
 .admin-sidebar-logout button {
@@ -251,11 +257,11 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 11px 14px;
+  padding: 10px 12px;
   background: transparent;
   border: 1px solid var(--adm-border);
   color: var(--adm-text-secondary);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   cursor: pointer;
   border-radius: 12px;
@@ -311,3 +317,4 @@
     padding: 20px 14px;
   }
 }
+
