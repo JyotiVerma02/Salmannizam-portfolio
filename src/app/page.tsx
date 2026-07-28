@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <>
       <div className="cursor-glow" />
-      <main className="page">
+      <main className="page page--home">
         <Navbar/>
         {/*================ NEW HERO (from About Page) ================*/}
         <section id="home" className="about-hero">
@@ -167,3 +167,4 @@ export default function Home() {
     </>
   );
 }
+

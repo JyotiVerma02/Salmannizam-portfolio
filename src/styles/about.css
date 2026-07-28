@@ -72,11 +72,15 @@ body {
 
 .about-hero {
   min-height: auto;
-  padding: 80px 0 60px;
+  padding: 56px 0;
   scroll-margin-top: 96px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
+}
+
+.page--home .about-hero {
+  padding-top: 42px;
 }
 
 /* Subtle background glow */
@@ -115,7 +119,7 @@ body {
 
 .about-hero__grid {
   display: grid;
-  grid-template-columns: 42% 1fr;
+  grid-template-columns: minmax(300px, 42%) minmax(0, 1fr);
   gap: 64px;
   max-width: 1280px;
   margin: 0 auto;
@@ -182,17 +186,6 @@ body {
 
 .profile-card:hover .profile-card__image {
   transform: scale(1.04);
-}
-
-.profile-card__overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(12, 12, 12, 0.8) 0%,
-    rgba(12, 12, 12, 0.4) 25%,
-    transparent 50%
-  );
 }
 
 .profile-card__v-text {
@@ -776,8 +769,12 @@ body {
   }
 
   .about-hero__grid {
-    grid-template-columns: 280px 1fr;
-    gap: 60px;
+    grid-template-columns: minmax(280px, 38%) minmax(0, 1fr);
+    gap: 40px;
+  }
+
+  .feature-cards {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .expertise-card {
@@ -787,7 +784,7 @@ body {
 
 @media (max-width: 900px) {
   .about-hero__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(260px, 36%) minmax(0, 1fr);
     gap: 2.5rem;
   }
 
@@ -800,9 +797,9 @@ body {
   }
 }
 
-@media (max-width: 868px) {
+@media (max-width: 640px) {
   .about-hero {
-    padding: 96px 0 56px;
+    padding: 80px 0 56px;
   }
 
   .about-hero__grid {
@@ -814,17 +811,17 @@ body {
     position: static;
     top: 0;
     width: 100%;          /* must be 100% so profile-card width:100% resolves */
-    max-width: 400px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
   }
 
   .profile-card {
-    height: 460px;
+    height: 480px;
     width: 100%;          /* explicit: Next.js fill image needs parent width */
   }
 
   .profile-card__image {
-    /* Do NOT set aspect-ratio — fill images use inset:0 already */
+    /* Do NOT set aspect-ratio - fill images use inset:0 already */
   }
 
   .about-heading {
@@ -1053,4 +1050,12 @@ body {
 
 [data-theme="dark"] .profile-card__tagline {
   color: #94a3b8;
-}
+}
+
+
+
+
+
+
+
+

@@ -152,6 +152,10 @@ body::after {
   padding-top: 7rem;
 }
 
+.page--home {
+  padding-top: calc(var(--page-shell-offset, 6rem) - 1rem);
+}
+
 /*==================================
   HEADER
 ==================================*/
@@ -493,3 +497,8 @@ body::after {
     animation: none;
   }
 }
+
+
+
+
+

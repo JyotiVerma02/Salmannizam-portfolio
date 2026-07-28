@@ -1,11 +1,11 @@
-﻿/* ============================================
+﻿﻿/* ============================================
    BLOG DETAIL PAGE - reference-inspired layout
    ============================================ */
 
 .blog-detail-page {
   position: relative;
   min-height: 100vh;
-  padding: 0 0 4rem;
+  padding: 80px 0 4rem;
   color: #0f172a;
   background:
     radial-gradient(circle at top left, rgba(91, 94, 247, 0.09), transparent 34%),
@@ -1070,6 +1070,3 @@
     font-size: 0.86rem;
   }
 }
-
-
-

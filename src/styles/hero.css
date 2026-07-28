@@ -18,7 +18,7 @@
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
-  padding-top: 100px;
+  padding-top: 80px;
   padding-bottom: 60px;
   position: relative;
   overflow: hidden;
@@ -596,7 +596,6 @@
   width: 100%;
   max-width: none;
   overflow: visible;
-  animation: float-image 8s ease-in-out infinite;
 }
 
 .hero-image-wrap {
@@ -606,7 +605,7 @@
   align-items: center;
   width: fit-content;
   padding: 14px;
-  border-radius: 50%;
+  border-radius: 36px;
   background: var(--container-color);
   border: 1px solid var(--border-color);
   box-shadow: var(--shadow);
@@ -692,7 +691,7 @@
   position: relative;
   z-index: 2;
   flex-shrink: 0;
-  border-radius: 50%;
+  border-radius: 28px;
   object-fit: cover;
   aspect-ratio: 1;
 }
@@ -871,11 +870,11 @@
   }
 
   .hero-image-stage {
-    max-width: 380px;
+    max-width: 420px;
     justify-content: center;
     margin: 0 auto;
   }
-
+  
   .hero__right {
     justify-content: center;
     margin-left: 0;
@@ -942,7 +941,7 @@
     max-width: 100%;
   }
 
-  .hero-image-wrap { padding: 8px; }
+  .hero-image-wrap { padding: 8px; border-radius: 24px; }
   .hero-image { width: 100%; }
 
   .hero-availability-card {
