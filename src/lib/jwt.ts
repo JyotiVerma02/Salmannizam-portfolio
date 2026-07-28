@@ -4,6 +4,7 @@ export type AdminJwtPayload = JwtPayload & {
   adminId: string;
   email: string;
   role: "super_admin";
+  name?: string;
 };
 
 function getJwtSecret() {

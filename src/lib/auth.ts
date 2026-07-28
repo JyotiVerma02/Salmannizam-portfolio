@@ -20,27 +20,82 @@ export async function verifyPassword(password: string, hashedPassword: string) {
   return bcrypt.compare(password, hashedPassword);
 }
 
-export async function getAdminByCredentials(email: string, password: string) {
-  await connectDB();
+function getConfiguredAdminName() {
+  return (
+    process.env.ADMIN_NAME?.trim() ||
+    process.env.ADMIN_DISPLAY_NAME?.trim() ||
+    "Salman Nizam"
+  );
+}
 
-  const admin = await Admin.findOne({ email: email.toLowerCase().trim() }).select("+password");
+function getConfiguredAdminId() {
+  return process.env.ADMIN_ID?.trim() || "admin";
+}
 
-  if (!admin) {
+async function authenticateFromEnvironment(email: string, password: string) {
+  const configuredEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase();
+
+  if (!configuredEmail || configuredEmail !== email.toLowerCase().trim()) {
     return null;
   }
 
-  const isPasswordValid = await verifyPassword(password, admin.password);
+  const passwordHash = process.env.ADMIN_PASSWORD_HASH?.trim();
+  const plainPassword = process.env.ADMIN_PASSWORD?.trim();
 
-  if (!isPasswordValid) {
+  if (passwordHash) {
+    const isPasswordValid = await verifyPassword(password, passwordHash);
+
+    if (!isPasswordValid) {
+      return null;
+    }
+  } else if (plainPassword) {
+    if (password !== plainPassword) {
+      return null;
+    }
+  } else {
     return null;
   }
 
   return {
-    id: admin._id.toString(),
-    name: admin.name,
-    email: admin.email,
-    role: admin.role,
+    id: getConfiguredAdminId(),
+    name: getConfiguredAdminName(),
+    email: configuredEmail,
+    role: "super_admin",
   } satisfies SafeAdmin;
+}
+
+export async function getAdminByCredentials(email: string, password: string) {
+  const envAdmin = await authenticateFromEnvironment(email, password);
+
+  if (envAdmin) {
+    return envAdmin;
+  }
+
+  try {
+    await connectDB();
+
+    const admin = await Admin.findOne({ email: email.toLowerCase().trim() }).select("+password");
+
+    if (!admin) {
+      return null;
+    }
+
+    const isPasswordValid = await verifyPassword(password, admin.password);
+
+    if (!isPasswordValid) {
+      return null;
+    }
+
+    return {
+      id: admin._id.toString(),
+      name: admin.name,
+      email: admin.email,
+      role: admin.role,
+    } satisfies SafeAdmin;
+  } catch (error) {
+    console.error("Admin database auth failed", error);
+    return null;
+  }
 }
 
 export async function getCurrentAdmin() {
@@ -57,19 +112,27 @@ export async function getCurrentAdmin() {
     return null;
   }
 
-  await connectDB();
+  try {
+    await connectDB();
 
-  const admin = await Admin.findById(payload.adminId).select("name email role");
+    const admin = await Admin.findById(payload.adminId).select("name email role");
 
-  if (!admin || admin.role !== "super_admin") {
-    return null;
+    if (admin && admin.role === "super_admin") {
+      return {
+        id: admin._id.toString(),
+        name: admin.name,
+        email: admin.email,
+        role: admin.role,
+      } satisfies SafeAdmin;
+    }
+  } catch (error) {
+    console.warn("Admin session DB lookup failed", error);
   }
 
   return {
-    id: admin._id.toString(),
-    name: admin.name,
-    email: admin.email,
-    role: admin.role,
+    id: payload.adminId,
+    name: typeof payload.name === "string" && payload.name.trim() ? payload.name : getConfiguredAdminName(),
+    email: payload.email,
+    role: "super_admin",
   } satisfies SafeAdmin;
 }
-

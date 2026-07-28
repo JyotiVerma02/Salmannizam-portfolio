@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Poppins, Syne } from "next/font/google";
 import "./globals.css";
@@ -30,6 +30,12 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "Salman Nizam - Senior Developer",
   description: "Portfolio of Salman Nizam, a senior full-stack developer.",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 const themeBootstrap = `

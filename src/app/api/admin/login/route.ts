@@ -1,5 +1,4 @@
 import { NextResponse, type NextRequest } from "next/server";
-import mongoose from "mongoose";
 import { getAdminByCredentials, isValidEmail } from "@/lib/auth";
 import { ADMIN_AUTH_COOKIE, adminCookieOptions } from "@/lib/cookies";
 import { signAdminToken } from "@/lib/jwt";
@@ -32,6 +31,7 @@ export async function POST(request: NextRequest) {
       adminId: admin.id,
       email: admin.email,
       role: admin.role,
+      name: admin.name,
     });
 
     const response = NextResponse.json({ admin });
@@ -41,13 +41,14 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Admin login failed", error);
 
-    if (error instanceof mongoose.Error.MongooseServerSelectionError) {
-      return NextResponse.json(
-        { message: "Cannot connect to MongoDB. Check MONGODB_URI or start MongoDB." },
-        { status: 503 }
-      );
-    }
-
-    return NextResponse.json({ message: "Unable to login right now." }, { status: 500 });
+    return NextResponse.json(
+      {
+        message:
+          error instanceof Error && error.message.includes("JWT_SECRET")
+            ? "JWT secret is not configured."
+            : "Unable to login right now.",
+      },
+      { status: 500 }
+    );
   }
 }
