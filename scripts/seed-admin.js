@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 
 function loadEnv() {
   const envPath = path.join(process.cwd(), ".env.local");
@@ -96,3 +96,4 @@ seedAdmin().catch((error) => {
   console.error(error.message);
   process.exit(1);
 });
+

@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { ADMIN_AUTH_COOKIE } from "@/lib/cookies";
 import { connectDB } from "@/lib/db";
@@ -72,3 +72,4 @@ export async function getCurrentAdmin() {
     role: admin.role,
   } satisfies SafeAdmin;
 }
+
