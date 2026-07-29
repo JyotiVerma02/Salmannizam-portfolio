@@ -134,8 +134,10 @@ export default function NewBlogPostPage() {
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Blog published successfully:", result);
-        router.push("/admin/blogs");
+        const publishedTitle = result.data?.title || formData.title;
+        const publishedSlug = result.data?.slug || formData.slug;
+        alert(`Blog "${publishedTitle}" published successfully!`);
+        router.push(`/admin/blogs?published=1&title=${encodeURIComponent(publishedTitle)}&slug=${encodeURIComponent(publishedSlug)}`);
       } else {
         const error = await response.json();
         alert(`Failed to publish post: ${error.message || "Unknown error"}`);
@@ -206,7 +208,7 @@ export default function NewBlogPostPage() {
       formData={formData}
       handleInputChange={handleInputChange}
       handleSelectChange={handleSelectChange}
-      handleContentChange={handleContentChange} // ✅ ADD THIS LINE
+      handleContentChange={handleContentChange} // Ã¢Å“â€¦ ADD THIS LINE
       handleImageUpload={handleImageUpload}
       handleImageClick={handleImageClick}
       fileInputRef={fileInputRef}

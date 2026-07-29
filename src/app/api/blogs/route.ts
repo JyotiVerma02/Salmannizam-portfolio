@@ -2,13 +2,36 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
 
+function slugify(value: string) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/<[^>]*>/g, "")
+    .replace(/&[^;]+;/g, " ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 72);
+}
+
+async function getUniqueSlug(inputSlug: string, title: string) {
+  const baseSlug = slugify(inputSlug || title) || "blog-post";
+  let candidate = baseSlug;
+  let counter = 2;
+
+  while (await Blog.exists({ slug: candidate })) {
+    candidate = `${baseSlug}-${counter}`;
+    counter += 1;
+  }
+
+  return candidate;
+}
+
 // GET all blogs
 export async function GET() {
   try {
     await connectDB();
 
     const blogs = await Blog.find().sort({ createdAt: -1 });
-  
 
     return NextResponse.json({
       success: true,
@@ -33,8 +56,21 @@ export async function POST(request: NextRequest) {
     await connectDB();
 
     const body = await request.json();
+    const title = String(body.title || "").trim();
+    const slug = await getUniqueSlug(body.slug, title);
 
-    const blog = await Blog.create(body);
+    if (!title) {
+      return NextResponse.json(
+        { success: false, message: "Title is required" },
+        { status: 400 }
+      );
+    }
+
+    const blog = await Blog.create({
+      ...body,
+      title,
+      slug,
+    });
 
     return NextResponse.json(
       {
@@ -47,10 +83,12 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error("Blog Create Error:", error);
 
+    const message = error instanceof Error ? error.message : "Failed to create blog";
+
     return NextResponse.json(
       {
         success: false,
-        message: "Failed to create blog",
+        message,
       },
       { status: 500 }
     );

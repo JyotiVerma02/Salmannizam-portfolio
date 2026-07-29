@@ -301,18 +301,22 @@ const PLACEHOLDER_BLOGS: Blog[] = [
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All Posts");
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch("/api/blogs")
+    fetch("/api/blogs", { cache: "no-store" })
       .then((r) => r.json())
       .then((result) => {
         if (result.success) {
           setBlogs(result.data.filter((b: Blog) => b.status === "published"));
         }
       })
-      .catch(console.error)
+      .catch((error) => {
+        console.error(error);
+        setLoadError(true);
+      })
       .finally(() => setLoading(false));
   }, []);
 
@@ -326,7 +330,7 @@ export default function BlogPage() {
   };
 
   const filterButtons = ["All Posts", ...Object.keys(filterMap)];
-  const source = blogs.length > 0 ? blogs : PLACEHOLDER_BLOGS;
+  const source = blogs.length > 0 ? blogs : loadError ? [] : PLACEHOLDER_BLOGS;
   const normalizedQuery = searchQuery.trim().toLowerCase();
   const filteredByCategory = activeFilter === "All Posts"
     ? source
@@ -394,7 +398,11 @@ export default function BlogPage() {
         </div>
 
         <div className="blog-container" id="blog-grid">
-
+          {loadError && (
+            <div className="blog-live-error" role="alert">
+              Live blog posts could not be loaded right now. Showing sample content instead.
+            </div>
+          )}
           {/*  FILTER PILLS  */}
           <div className="blog-toolbar">
             <div className="blog-filters">

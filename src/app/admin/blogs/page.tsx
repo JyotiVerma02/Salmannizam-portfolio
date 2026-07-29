@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import "@/styles/admin/blogs.css";
 
 const DocumentIcon = () => (
@@ -94,6 +95,7 @@ function getCategoryBadgeClass(category?: string, index?: number) {
   return "badge-gray";
 }
 export default function AdminBlogsPage() {
+  const searchParams = useSearchParams();
   const [blogs, setBlogs] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
@@ -103,6 +105,9 @@ export default function AdminBlogsPage() {
   const [previewBlog, setPreviewBlog] = useState<any | null>(null);
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const publishedTitle = searchParams.get("title");
+  const publishedSlug = searchParams.get("slug");
+  const publishSuccess = searchParams.get("published") === "1";
 
   async function fetchBlogs() {
     try {
@@ -223,6 +228,19 @@ export default function AdminBlogsPage() {
 
   return (
     <div className="admin-content-wrapper">
+      {publishSuccess && (
+        <div className="admin-success-banner">
+          <div>
+            <strong>Blog published successfully.</strong>
+            <p>{publishedTitle ? `"${publishedTitle}" is now live.` : "Your new post is now live."}</p>
+          </div>
+          {publishedSlug && (
+            <Link href={`/blog/${publishedSlug}`} className="admin-success-link">
+              View live post
+            </Link>
+          )}
+        </div>
+      )}
       <div className="admin-page-header">
         <div className="admin-page-header-text">
           <div className="admin-page-icon">
