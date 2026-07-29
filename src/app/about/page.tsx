@@ -2,6 +2,11 @@
 
 import { motion } from "framer-motion";
 import PageShell from "@/components/Common/PageShell";
+import { 
+  Award, Briefcase, Smile, Monitor, 
+  Settings, Users, Server, PenTool, LayoutTemplate, Database, Cloud, Cog, Download 
+} from "lucide-react";
+import "@/styles/about-redesign.css";
 
 const experiences = [
   {
@@ -80,31 +85,31 @@ const experiences = [
 const skillCategories = [
   {
     title: "Backend Architecture",
-    icon: "",
+    icon: <Server className="skill-icon" />,
     description: "Building robust APIs and microservices with Node.js, NestJS & more.",
     skills: ["Node.js", "NestJS", "PHP"],
   },
   {
     title: "Frontend Engineering",
-    icon: "",
+    icon: <LayoutTemplate className="skill-icon" />,
     description: "Crafting responsive and interactive interfaces with React, Next.js & TypeScript.",
     skills: ["React", "Next.js", "TypeScript"],
   },
   {
     title: "Databases",
-    icon: "",
+    icon: <Database className="skill-icon" />,
     description: "Designing efficient database schemas and optimizing query performance.",
     skills: ["MySQL", "MongoDB", "Redis"],
   },
   {
     title: "DevOps / Cloud",
-    icon: "",
+    icon: <Cloud className="skill-icon" />,
     description: "Infrastructure as code, containerization, and observability.",
     skills: ["AWS", "Azure", "Docker", "Kubernetes", "Linux", "CI/CD", "Prometheus", "Grafana"],
   },
   {
     title: "Tools & Platforms",
-    icon: "",
+    icon: <Cog className="skill-icon" />,
     description: "Development workflow, collaboration tools, and methodologies.",
     skills: ["Git", "GitHub", "Postman", "Linux", "Agile/Scrum", "API Integration"],
   },
@@ -113,51 +118,80 @@ const skillCategories = [
 export default function AboutPage() {
   return (
     <PageShell className="page--about" topPadding="calc(var(--page-shell-offset, 6rem) - 0.25rem)">
-      {/*================ OVERVIEW ================*/}
-      <section id="overview" className="section container" style={{ paddingTop: "1rem" }}>
-        <h2 className="section__title">
-          About <span style={{ color: "var(--first-color)" }}>Me</span>
-        </h2>
-
-        {/* <p
-          style={{
-            textAlign: "center",
-            color: "var(--text-color)",
-            maxWidth: "700px",
-            margin: "0 auto 4rem",
-            lineHeight: 1.8,
-          }}
-        >
-          A senior full-stack developer passionate about building scalable, user-focused products and solving complex engineering challenges across various domains.
-        </p> */}
-        
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', maxWidth: '1000px', margin: '0 auto' }}>
-          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
-            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              Professional Background
-            </h3>
-            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I am a senior full-stack developer with extensive experience in building scalable backend systems, robust infrastructure, and user-focused products. My career has been focused on solving complex engineering challenges across various domains.</p>
+      
+      {/*================ HERO SECTION ================*/}
+      <section className="section container about-hero-section">
+        <div className="about-hero-grid">
+          {/* Left Column */}
+          <div className="about-hero-left">
+            <span className="badge badge-primary">ABOUT ME</span>
+            <h1 className="about-title">
+              Building Scalable Solutions with <span className="text-accent">Clean Code & Purpose</span>
+            </h1>
+            <p className="about-desc">
+              I&apos;m a full-stack developer with a strong passion for building intuitive, high-performance web applications that solve real world problems and deliver meaningful impact.
+            </p>
+            
+            <div className="about-stats">
+              <div className="stat-item">
+                <div className="stat-icon-wrap"><Award /></div>
+                <div className="stat-number">1.5+</div>
+                <div className="stat-text">Years Experience</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-icon-wrap"><Briefcase /></div>
+                <div className="stat-number">20+</div>
+                <div className="stat-text">Projects Completed</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-icon-wrap"><Smile /></div>
+                <div className="stat-number">100%</div>
+                <div className="stat-text">Client Satisfaction</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-icon-wrap"><Monitor /></div>
+                <div className="stat-number">10+</div>
+                <div className="stat-text">Technologies</div>
+              </div>
+            </div>
           </div>
           
-          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
-            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              Career Journey
-            </h3>
-            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I&apos;ve worked with startups and established companies, building products that serve thousands to millions of users.</p>
+          {/* Right Column - Image Placeholder */}
+          <div className="about-hero-right">
+            <div className="hero-image-placeholder">
+              {/* Insert actual <img> tag here later */}
+              <div className="signature">Salman Nizam</div>
+              <div className="availability-badge">
+                <span className="dot"></span>
+                Available for opportunities
+              </div>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
-            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              Engineering Philosophy
-            </h3>
-            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>I believe in writing clean, maintainable code that solves real problems. I prioritize scalability, performance, and developer experience. Every system should be built with future growth in mind, but not over-engineered for current needs.</p>
+      {/*================ OVERVIEW CARDS ================*/}
+      <section className="section container">
+        <div className="overview-grid">
+          <div className="overview-card">
+            <div className="overview-icon-wrap"><Settings /></div>
+            <h3>Professional Background</h3>
+            <p>I am a senior full-stack developer with extensive experience in building scalable backend systems, robust infrastructure, and user-focused products. My career has been focused on solving complex engineering challenges across various domains.</p>
           </div>
-
-          <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">
-            <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
-              Types of Problems I Solve
-            </h3>
-            <ul style={{ color: 'var(--text-color)', paddingLeft: '1.5rem', listStyleType: 'disc', lineHeight: 1.8, fontSize: '0.9rem' }}>
+          <div className="overview-card">
+            <div className="overview-icon-wrap"><Users /></div>
+            <h3>Career Journey</h3>
+            <p>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I&apos;ve worked with startups and established companies, building products that serve thousands to millions of users.</p>
+          </div>
+          <div className="overview-card">
+            <div className="overview-icon-wrap"><Monitor /></div>
+            <h3>Engineering Philosophy</h3>
+            <p>I believe in writing clean, maintainable code that solves real problems. I prioritize scalability, performance, and developer experience. Every system should be built with future growth in mind, but not over-engineered for current needs.</p>
+          </div>
+          <div className="overview-card">
+            <div className="overview-icon-wrap"><PenTool /></div>
+            <h3>Types of Problems I Solve</h3>
+            <ul>
               <li>Backend architecture and API design</li>
               <li>Database optimization and scaling</li>
               <li>Infrastructure setup and DevOps</li>
@@ -169,107 +203,106 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/*================ EXPERIENCE ================*/}
-      <section id="experience" className="section container">
-        <h2 className="section__title">
-          Professional <span style={{ color: "var(--first-color)" }}>Experience</span>
-        </h2>
+      {/*================ EXPERIENCE SECTION ================*/}
+      <section className="section container">
+        <div className="section-header center">
+          <span className="badge badge-primary">EXPERIENCE</span>
+          <h2 className="section__title">Professional <span className="text-accent">Experience</span></h2>
+          <p className="section-subtitle">A timeline of my professional journey and key achievements.</p>
+        </div>
 
-        <p
-          style={{
-            textAlign: "center",
-            color: "var(--text-color)",
-            maxWidth: "700px",
-            margin: "0 auto 4rem",
-            lineHeight: 1.8,
-          }}
-        >
-          Professional journey and career milestones.
-        </p>
-
-        <div className="experience">
+        <div className="timeline-container">
           {experiences.map((job, index) => (
             <motion.div
-              key={job.company + index}
-              className="experience__item"
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
+              key={index}
+              className="timeline-item"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="experience__dot"></div>
+              <div className="timeline-date">
+                {job.duration.split(" - ")[0]} <br/>
+                <span className="text-muted">– {job.duration.split(" - ")[1]}</span>
+              </div>
+              
+              <div className="timeline-marker"></div>
+              
+              <div className="timeline-content">
+                <div className="timeline-header">
+                  <div>
+                    <h3>{job.role}</h3>
+                    <h4 className="company-name">{job.company} <span className="link-icon">↗</span></h4>
+                  </div>
+                  <div className="location">
+                    <span className="pin-icon">📍</span> {job.location}
+                  </div>
+                </div>
 
-              <h3>{job.role}</h3>
-
-              <h4>{job.company}</h4>
-
-              <small>
-                {job.duration} - {job.location}
-              </small>
-
-              <h5>Responsibilities</h5>
-
-              <ul>
-                {job.responsibilities.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-
-              <h5>Key Achievements</h5>
-
-              <ul>
-                {job.achievements.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
+                <div className="timeline-details">
+                  <div className="detail-column">
+                    <h5>Key Responsibilities</h5>
+                    <ul>
+                      {job.responsibilities.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="detail-column">
+                    <h5>Key Achievements</h5>
+                    <ul>
+                      {job.achievements.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/*================ SKILLS ================*/}
-      <section id="skills" className="section container">
-        <h2 className="section__title">
-          Skills and Expertise
-        </h2>
+      {/*================ SKILLS SECTION ================*/}
+      <section className="section container">
+        <div className="section-header center">
+          <span className="badge badge-primary">SKILLS</span>
+          <h2 className="section__title">Skills and Expertise</h2>
+          <p className="section-subtitle">A comprehensive overview of my technical skills and areas of expertise.</p>
+          <a href="#" className="btn-resume">
+            <Download size={16} /> Download Resume
+          </a>
+        </div>
 
-        <p className="skills-subtitle">
-          A comprehensive overview of my technical skills and areas of expertise.
-        </p>
-
-        <div className="skills-layout">
-          <div className="skills-row">
-            {skillCategories.map((category, index) => (
-              <motion.div
-                key={category.title}
-                className="expertise-card"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.15,
-                }}
-              >
-                <h3>
-                  
-                  {category.title}
-                </h3>
-
-                <p>{category.description}</p>
-
-                <div className="skills-tags">
-                  {category.skills.map((skill) => (
-                    <span key={skill} className="skill-pill">
-                      {skill}
-                    </span>
-                  ))}
+        <div className="skills-grid">
+          {skillCategories.map((category, index) => (
+            <motion.div
+              key={category.title}
+              className="skill-card"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="skill-card-header">
+                <div className="skill-icon-container">
+                  {category.icon}
                 </div>
-              </motion.div>
-            ))}
-          </div>
+                <h3>{category.title}</h3>
+              </div>
+              <p>{category.description}</p>
+              <div className="skill-tags">
+                {category.skills.map((skill) => (
+                  <span key={skill} className="skill-pill">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
+
     </PageShell>
   );
 }
