@@ -135,7 +135,7 @@ export default function AboutPage() {
             <div className="about-stats">
               <div className="stat-item">
                 <div className="stat-icon-wrap"><Award /></div>
-                <div className="stat-number">1.5+</div>
+                <div className="stat-number">6+</div>
                 <div className="stat-text">Years Experience</div>
               </div>
               <div className="stat-item">
@@ -159,7 +159,11 @@ export default function AboutPage() {
           {/* Right Column - Image Placeholder */}
           <div className="about-hero-right">
             <div className="hero-image-placeholder">
-              {/* Insert actual <img> tag here later */}
+              <img 
+                src="/image/salmannizam.jpg" 
+                alt="Salman Nizam"
+                className="hero-variant-image"
+              />
               <div className="signature">Salman Nizam</div>
               <div className="availability-badge">
                 <span className="dot"></span>
