@@ -42,14 +42,10 @@ const MoonIcon = () => (
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-const [open, setOpen] = useState(false);
-
-const pathname = usePathname();
-
-const currentPath =
-  pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
-
-const { theme, toggleTheme } = useTheme();
+  const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const currentPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
+  const { theme, toggleTheme } = useTheme();
 
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -67,10 +63,6 @@ const { theme, toggleTheme } = useTheme();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-useEffect(() => {
-  setOpen(false);
-}, [pathname]);
-
   useEffect(() => {
     if (!open) {
       return;
@@ -81,7 +73,7 @@ useEffect(() => {
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
-        closeMenu();
+        setOpen(false);
       }
     };
 
@@ -108,7 +100,6 @@ useEffect(() => {
         <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
           <div className="navbar-left">
             <Link href="/" className="navbar-logo" onClick={closeMenu}>
-              {" "}
               Salman <span className="navbar-logo-accent">Nizam</span>
             </Link>
           </div>
@@ -153,9 +144,7 @@ useEffect(() => {
               type="button"
               className={`navbar-burger ${open ? "navbar-burger-open" : ""}`}
               onClick={() => setOpen((prev) => !prev)}
-              aria-label={
-                open ? "Close navigation menu" : "Open navigation menu"
-              }
+              aria-label={open ? "Close navigation menu" : "Open navigation menu"}
               aria-expanded={open}
             >
               <span className="navbar-burger-line" />
@@ -195,7 +184,7 @@ useEffect(() => {
                   onClick={closeMenu}
                   aria-label="Close navigation menu"
                 >
-                  ×
+                  x
                 </button>
               </div>
 

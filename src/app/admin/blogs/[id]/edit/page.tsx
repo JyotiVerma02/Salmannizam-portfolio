@@ -11,6 +11,7 @@ export default function EditBlogPage() {
   const id = params.id as string;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(true);
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -24,55 +25,76 @@ export default function EditBlogPage() {
   });
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [slugManuallyEdited, setSlugManuallyEdited] = useState(true); // Default to true on edit page
 
   useEffect(() => {
-    if (id) {
-      fetchBlog();
+    if (!id) {
+      return;
     }
+
+    let cancelled = false;
+
+    const loadBlog = async () => {
+      try {
+        const res = await fetch(`/api/blogs/${id}`);
+        if (!res.ok) throw new Error("Failed to fetch blog");
+        const result = await res.json();
+
+        if (cancelled) {
+          return;
+        }
+
+        if (result.success) {
+          setFormData({
+            ...result.data,
+            tags: result.data.tags ? result.data.tags.join(", ") : "",
+            readTime: result.data.readTime || "",
+            featuredImage: result.data.featuredImage || "",
+          });
+        } else {
+          alert(`Failed to load blog: ${result.message}`);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          console.error("Error fetching blog:", error);
+          alert("An error occurred while loading the blog.");
+        }
+      }
+    };
+
+    void loadBlog();
+
+    return () => {
+      cancelled = true;
+    };
   }, [id]);
 
-  // Auto-generate slug from title, only if not manually edited
-  useEffect(() => {
-    if (formData.title && !slugManuallyEdited) {
-      const generatedSlug = formData.title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/^-+|-+$/g, "");
-      setFormData((prev) => ({ ...prev, slug: generatedSlug }));
-    }
-  }, [formData.title, slugManuallyEdited]);
-
-  async function fetchBlog() {
-    try {
-      const res = await fetch(`/api/blogs/${id}`);
-      if (!res.ok) throw new Error("Failed to fetch blog");
-      const result = await res.json();
-      if (result.success) {
-        setFormData({
-          ...result.data,
-          tags: result.data.tags ? result.data.tags.join(", ") : "",
-          readTime: result.data.readTime || "",
-          featuredImage: result.data.featuredImage || "",
-        });
-      } else {
-        alert(`Failed to load blog: ${result.message}`);
-      }
-    } catch (error) {
-      console.error("Error fetching blog:", error);
-      alert("An error occurred while loading the blog.");
-    }
-  }
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
+
     if (name === "slug") {
       setSlugManuallyEdited(true);
     }
+
     if (name === "title") {
-      setSlugManuallyEdited(false); // Allow slug to auto-update again if title changes
+      const generatedSlug = value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+        slug: slugManuallyEdited ? prev.slug : generatedSlug,
+      }));
+      return;
     }
-    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleContentChange = (content: string) => {
@@ -99,7 +121,6 @@ export default function EditBlogPage() {
 
       if (response.ok) {
         alert("Changes saved successfully!");
-        // No redirect, stay on the page to continue editing
       } else {
         const error = await response.json();
         alert(`Failed to save changes: ${error.message || "Unknown error"}`);
@@ -143,8 +164,6 @@ export default function EditBlogPage() {
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    // Add validation if needed
 
     try {
       const reader = new FileReader();

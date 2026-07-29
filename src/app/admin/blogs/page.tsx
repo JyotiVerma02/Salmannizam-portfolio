@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState, useMemo } from "react";
 import { useSearchParams } from "next/navigation";
@@ -83,6 +84,25 @@ const FALLBACK_BADGE_CLASSES = [
   "badge-green",
 ] as const;
 
+type AdminBlog = {
+  _id: string;
+  title: string;
+  excerpt?: string;
+  description?: string;
+  category?: string;
+  status?: string;
+  createdAt?: string;
+  readingTime?: string;
+  readTime?: string;
+  iconBg?: string;
+  iconColor?: string;
+  tags?: string[];
+  featuredImage?: string;
+  slug?: string;
+  publishedAt?: string;
+  content?: string;
+};
+
 function getCategoryBadgeClass(category?: string, index?: number) {
   if (category && CATEGORY_BADGE_CLASSES[category]) {
     return CATEGORY_BADGE_CLASSES[category];
@@ -96,40 +116,45 @@ function getCategoryBadgeClass(category?: string, index?: number) {
 }
 export default function AdminBlogsPage() {
   const searchParams = useSearchParams();
-  const [blogs, setBlogs] = useState<any[]>([]);
+  const [blogs, setBlogs] = useState<AdminBlog[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
   const [selectedStatus, setSelectedStatus] = useState("All Status");
   const [sortOrder, setSortOrder] = useState("newest");
-  const [previewBlog, setPreviewBlog] = useState<any | null>(null);
+  const [previewBlog, setPreviewBlog] = useState<AdminBlog | null>(null);
 
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const publishedTitle = searchParams.get("title");
   const publishedSlug = searchParams.get("slug");
   const publishSuccess = searchParams.get("published") === "1";
+  useEffect(() => {
+    let cancelled = false;
 
-  async function fetchBlogs() {
-    try {
-      const response = await fetch("/api/blogs");
+    const fetchBlogs = async () => {
+      try {
+        const response = await fetch("/api/blogs");
+        const result = await response.json();
 
-      const result = await response.json();
-
-      if (result.success) {
-        setBlogs(result.data);
+        if (!cancelled && result.success) {
+          setBlogs(result.data);
+        }
+      } catch (error) {
+        console.error("Failed to fetch blogs:", error);
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
-    } catch (error) {
-      console.error("Failed to fetch blogs:", error);
-    } finally {
-      setLoading(false);
-    }
-  }
+    };
 
-  useEffect(() => {
-    fetchBlogs();
+    void fetchBlogs();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
-
-  useEffect(() => {
+useEffect(() => {
     if (previewBlog) {
       document.body.style.overflow = "hidden";
     } else {
@@ -167,8 +192,8 @@ export default function AdminBlogsPage() {
         );
       })
       .sort((a, b) => {
-        const dateA = new Date(a.createdAt).getTime();
-        const dateB = new Date(b.createdAt).getTime();
+        const dateA = new Date(a.createdAt || 0).getTime();
+        const dateB = new Date(b.createdAt || 0).getTime();
         return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
       });
   }, [blogs, searchQuery, selectedCategory, selectedStatus, sortOrder]);
@@ -178,9 +203,8 @@ export default function AdminBlogsPage() {
   };
 
   const handleFilterSelect = (
-    setter: Function,
+    setter: (value: string) => void,
     value: string,
-    dropdownName: string,
   ) => {
     setter(value);
     setOpenDropdown(null);
@@ -318,8 +342,7 @@ export default function AdminBlogsPage() {
                 onClick={() =>
                   handleFilterSelect(
                     setSelectedCategory,
-                    "All Categories",
-                    "category",
+                    "All Categories"
                   )
                 }
               >
@@ -327,14 +350,14 @@ export default function AdminBlogsPage() {
               </button>
               <button
                 onClick={() =>
-                  handleFilterSelect(setSelectedCategory, "web-dev", "category")
+                  handleFilterSelect(setSelectedCategory, "web-dev")
                 }
               >
                 Web Development
               </button>
               <button
                 onClick={() =>
-                  handleFilterSelect(setSelectedCategory, "devops", "category")
+                  handleFilterSelect(setSelectedCategory, "devops")
                 }
               >
                 DevOps
@@ -343,8 +366,7 @@ export default function AdminBlogsPage() {
                 onClick={() =>
                   handleFilterSelect(
                     setSelectedCategory,
-                    "database",
-                    "category",
+                    "database"
                   )
                 }
               >
@@ -354,8 +376,7 @@ export default function AdminBlogsPage() {
                 onClick={() =>
                   handleFilterSelect(
                     setSelectedCategory,
-                    "system-design",
-                    "category",
+                    "system-design"
                   )
                 }
               >
@@ -389,21 +410,21 @@ export default function AdminBlogsPage() {
             <div className="admin-dropdown-menu">
               <button
                 onClick={() =>
-                  handleFilterSelect(setSelectedStatus, "All Status", "status")
+                  handleFilterSelect(setSelectedStatus, "All Status")
                 }
               >
                 All Status
               </button>
               <button
                 onClick={() =>
-                  handleFilterSelect(setSelectedStatus, "Published", "status")
+                  handleFilterSelect(setSelectedStatus, "Published")
                 }
               >
                 Published
               </button>
               <button
                 onClick={() =>
-                  handleFilterSelect(setSelectedStatus, "Draft", "status")
+                  handleFilterSelect(setSelectedStatus, "Draft")
                 }
               >
                 Draft
@@ -436,14 +457,14 @@ export default function AdminBlogsPage() {
             <div className="admin-dropdown-menu">
               <button
                 onClick={() =>
-                  handleFilterSelect(setSortOrder, "newest", "sort")
+                  handleFilterSelect(setSortOrder, "newest")
                 }
               >
                 Newest
               </button>
               <button
                 onClick={() =>
-                  handleFilterSelect(setSortOrder, "oldest", "sort")
+                  handleFilterSelect(setSortOrder, "oldest")
                 }
               >
                 Oldest
@@ -731,7 +752,7 @@ export default function AdminBlogsPage() {
                         No blog posts yet
                       </strong>
                       <span style={{ fontSize: 13 }}>
-                        Click the "New Blog Post" button to get started.
+                        Click the &quot;New Blog Post&quot; button to get started.
                       </span>
                     </div>
                   </div>
@@ -793,10 +814,13 @@ export default function AdminBlogsPage() {
               {/* Featured image */}
               {previewBlog.featuredImage && (
                 <div className="blog-preview-image-wrap">
-                  <img
+                  <Image
                     src={previewBlog.featuredImage}
                     alt={previewBlog.title}
+                    width={960}
+                    height={540}
                     className="blog-preview-image"
+                    unoptimized
                   />
                 </div>
               )}
@@ -810,7 +834,7 @@ export default function AdminBlogsPage() {
                   <span>
                     {" "}
                     {new Date(
-                      previewBlog.publishedAt || previewBlog.createdAt
+                      previewBlog.publishedAt || previewBlog.createdAt || 0
                     ).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "long",

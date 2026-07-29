@@ -90,12 +90,12 @@ export default function ContactPage() {
     <PageShell>
       <section id="contact" className="section container">
         <div className="section-heading">
-          <span className="section-tag">LET'S WORK TOGETHER</span>
+          <span className="section-tag">LET&apos;S WORK TOGETHER</span>
           <h2 className="section__title">
             Contact <span>Me</span>
           </h2>
           <p className="section-description">
-            Interested in collaborating? Send a message and I'll get back to you
+            Interested in collaborating? Send a message and I&apos;ll get back to you
             soon.
           </p>
         </div>
@@ -105,7 +105,7 @@ export default function ContactPage() {
           <div className="contact-card">
             <h3 className="contact-form-title">Send a Message</h3>
             <p className="contact-form-subtitle">
-              I'll reply as soon as possible
+              I&apos;ll reply as soon as possible
             </p>
 
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -174,12 +174,12 @@ export default function ContactPage() {
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                 </svg>
               </span>
-              <h3>Let's Connect</h3>
+              <h3>Let&apos;s Connect</h3>
             </div>
 
             <p className="contact-info-text">
-              I'm available for freelance projects, collaborations, and remote
-              roles. Let's build something great together.
+              I&apos;m available for freelance projects, collaborations, and remote
+              roles. Let&apos;s build something great together.
             </p>
 
             {/* Contact Details - Boxed Layout */}

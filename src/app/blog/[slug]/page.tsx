@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
@@ -186,13 +187,6 @@ function EyeIcon() {
   );
 }
 
-function HeartIcon() {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M20.8 7.8c0-2.3-1.9-4.2-4.2-4.2-1.6 0-3 .9-3.6 2.2-.6-1.3-2-2.2-3.6-2.2-2.3 0-4.2 1.9-4.2 4.2 0 6.2 7.8 10.6 7.8 10.6s7.8-4.4 7.8-10.6Z" />
-    </svg>
-  );
-}
 
 function LinkIcon() {
   return (
@@ -241,7 +235,7 @@ function ArticlePreview({ blog, compact = false }: { blog: Blog; compact?: boole
         }}
       >
         {blog.featuredImage ? (
-          <img src={blog.featuredImage} alt={blog.title} />
+          <Image src={blog.featuredImage} alt={blog.title} width={360} height={220} unoptimized />
         ) : (
           <span>{category.slice(0, 2).toUpperCase()}</span>
         )}
@@ -262,11 +256,10 @@ export default function BlogPostPage() {
   const [notFound, setNotFound] = useState(false);
   const progressFillRef = useRef<HTMLSpanElement>(null);
   const progressLabelRef = useRef<HTMLSpanElement>(null);
-  const [currentUrl, setCurrentUrl] = useState("");
+  const [currentUrl] = useState(() => (typeof window !== "undefined" ? window.location.href : ""));
   const [copied, setCopied] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  const slug = blog?.slug || "";
 
   useEffect(() => {
     let cancelled = false;
@@ -349,11 +342,6 @@ export default function BlogPostPage() {
   const heroHasImage = Boolean(blog?.featuredImage);
   const pageUrl = currentUrl || (blog ? `/blog/${blog.slug}` : "/blog");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      setCurrentUrl(window.location.href);
-    }
-  }, [blog?.slug]);
 
   useEffect(() => {
     const onScroll = () => {
@@ -512,7 +500,7 @@ export default function BlogPostPage() {
 
               {heroHasImage ? (
                 <div className="blog-detail-image-frame">
-                  <img src={blog.featuredImage} alt={blog.title} className="blog-detail-hero-image" />
+                  <Image src={blog.featuredImage!} alt={blog.title} width={1200} height={675} className="blog-detail-hero-image" unoptimized priority />
                 </div>
               ) : (
                 <div className="blog-detail-image-frame placeholder" style={{ background: `linear-gradient(135deg, ${accent} 0%, #111827 100%)` }}>

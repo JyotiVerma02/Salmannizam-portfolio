@@ -1,20 +1,19 @@
-// components/editor/ColorPicker.tsx
-'use client';
+"use client";
 
-import { useState, useRef, useEffect } from 'react';
-import { ChromePicker } from 'react-color';
-import { Palette } from 'lucide-react';
+import { useEffect, useRef, useState } from "react";
+import { ChromePicker, type ColorResult } from "react-color";
+import { Palette } from "lucide-react";
+import type { Editor } from "@tiptap/react";
 
-interface ColorPickerProps {
-  editor: any;
-}
+type ColorPickerProps = {
+  editor: Editor;
+};
 
 export default function ColorPicker({ editor }: ColorPickerProps) {
   const [showPicker, setShowPicker] = useState(false);
-  const [color, setColor] = useState('#000000');
+  const [color, setColor] = useState("#000000");
   const pickerRef = useRef<HTMLDivElement>(null);
 
-  // Close picker when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (pickerRef.current && !pickerRef.current.contains(event.target as Node)) {
@@ -22,15 +21,15 @@ export default function ColorPicker({ editor }: ColorPickerProps) {
       }
     };
 
-    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
-  const handleColorChange = (color: any) => {
-    setColor(color.hex);
-    editor.chain().focus().setColor(color.hex).run();
+  const handleColorChange = (nextColor: ColorResult) => {
+    setColor(nextColor.hex);
+    editor.chain().focus().setColor(nextColor.hex).run();
   };
 
   return (
@@ -41,9 +40,9 @@ export default function ColorPicker({ editor }: ColorPickerProps) {
         className="toolbar-btn"
         type="button"
         title="Text Color"
-        style={{ 
-          background: color !== '#000000' ? color : 'transparent',
-          borderColor: color !== '#000000' ? color : 'transparent',
+        style={{
+          background: color !== "#000000" ? color : "transparent",
+          borderColor: color !== "#000000" ? color : "transparent",
         }}
       >
         <Palette size={16} />
@@ -52,11 +51,7 @@ export default function ColorPicker({ editor }: ColorPickerProps) {
       {showPicker && (
         <div className="color-picker-popover">
           <div className="color-picker-wrapper">
-            <ChromePicker
-              color={color}
-              onChange={handleColorChange}
-              disableAlpha
-            />
+            <ChromePicker color={color} onChange={handleColorChange} disableAlpha />
           </div>
         </div>
       )}

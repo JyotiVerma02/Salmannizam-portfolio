@@ -143,7 +143,7 @@ export default function AboutPage() {
             <h3 style={{ color: 'var(--white-color)', fontSize: '1.25rem', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '10px' }}>
               Career Journey
             </h3>
-            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I've worked with startups and established companies, building products that serve thousands to millions of users.</p>
+            <p style={{ color: 'var(--text-color)', lineHeight: 1.8, fontSize: '0.9rem' }}>Starting from frontend development, I gradually moved into full-stack roles, with a strong focus on backend architecture, database design, and system scalability. I&apos;ve worked with startups and established companies, building products that serve thousands to millions of users.</p>
           </div>
 
           <div style={{ background: 'var(--container-color)', padding: '2rem', borderRadius: '16px', border: '1px solid var(--border-color)', boxShadow: 'var(--shadow)', transition: 'transform 0.3s ease' }} className="about-me-card">

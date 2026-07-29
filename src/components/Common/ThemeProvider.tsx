@@ -27,18 +27,15 @@ function getInitialTheme(): Theme {
     return savedTheme;
   }
 
-  // Default to dark if no preference saved
   return "dark";
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(() => getInitialTheme());
 
   useEffect(() => {
-    const initialTheme = getInitialTheme();
-    setTheme(initialTheme);
-    applyTheme(initialTheme);
-  }, []);
+    applyTheme(theme);
+  }, [theme]);
 
   useEffect(() => {
     const onStorage = (event: StorageEvent) => {
@@ -56,7 +53,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const nextTheme: Theme = theme === "light" ? "dark" : "light";
     setTheme(nextTheme);
     window.localStorage.setItem(STORAGE_KEY, nextTheme);
-    window.localStorage.setItem("portfolio-theme-v", "2"); // mark as user's explicit choice
+    window.localStorage.setItem("portfolio-theme-v", "2");
     applyTheme(nextTheme);
   };
 

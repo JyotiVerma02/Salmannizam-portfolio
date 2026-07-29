@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import PageShell from "@/components/Common/PageShell";
@@ -124,7 +125,7 @@ function HeroCard({ blog }: { blog: Blog }) {
       <div className="blog-hero-img"
         style={{ background: !blog.featuredImage ? gradient : undefined }}>
         {blog.featuredImage
-          ? <img src={blog.featuredImage} alt={blog.title} />
+          ? <Image src={blog.featuredImage} alt={blog.title} width={760} height={430} unoptimized />
           : <span className="blog-hero-placeholder-text">{catLabel}</span>}
         {/* Category badge overlaid on image */}
         <span className="blog-hero-cat-badge"
@@ -191,7 +192,7 @@ function SideCard({ blog, index }: { blog: Blog; index: number }) {
         <div className="blog-side-thumb"
           style={{ background: catColor + "22", border: `1px solid ${catColor}33` }}>
           {blog.featuredImage
-            ? <img src={blog.featuredImage} alt={blog.title} />
+            ? <Image src={blog.featuredImage} alt={blog.title} width={760} height={430} unoptimized />
             : <span className="blog-side-thumb-icon" style={{ color: catColor }}>
                 {catLabel.slice(0, 1)}
               </span>}
@@ -232,7 +233,7 @@ function GridCard({ blog, index }: { blog: Blog; index: number }) {
       <div className="blog-grid-img"
         style={{ background: !blog.featuredImage ? gradient : undefined }}>
         {blog.featuredImage
-          ? <img src={blog.featuredImage} alt={blog.title} />
+          ? <Image src={blog.featuredImage} alt={blog.title} width={760} height={430} unoptimized />
           : <span className="blog-hero-placeholder-text">{catLabel}</span>}
         <span className="blog-hero-cat-badge"
           style={{ color: catColor, borderColor: catColor + "40", background: catColor + "18" }}>
@@ -392,7 +393,7 @@ export default function BlogPage() {
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, delay: 0.15 }}>
-              <img src="/blog-hero.png" alt="Blog illustration" className="blog-banner-img" />
+              <Image src="/blog-hero.png" alt="Blog illustration" width={520} height={360} className="blog-banner-img" priority />
             </motion.div>
           </div>
         </div>

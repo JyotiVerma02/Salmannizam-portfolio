@@ -542,7 +542,6 @@
     padding: 0.35rem 0.7rem;
     font-size: 0.65rem;
     border-radius: 4px;
-    border-radius: 4px;
   }
 
   .project-view {
@@ -570,6 +569,12 @@
 
   .projects-cta h3 {
     font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -1182,6 +1187,12 @@
 
   .project-content h3 {
     font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
   }
 }
 

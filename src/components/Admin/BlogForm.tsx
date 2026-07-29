@@ -1,16 +1,30 @@
 "use client";
 
-import { Bold, Italic, Link, List, Code, UploadCloud } from "lucide-react";
-import RichTextEditor from "@/components/editor/RichTextEditor"; // ← ADD THIS
+import Image from "next/image";
+import type { ChangeEvent, RefObject } from "react";
+import { UploadCloud } from "lucide-react";
+import RichTextEditor from "@/components/editor/RichTextEditor";
+
+type BlogFormData = {
+  title?: string;
+  slug?: string;
+  content?: string;
+  excerpt?: string;
+  featuredImage?: string;
+  category?: string;
+  tags?: string;
+  readTime?: string;
+  status?: string;
+};
 
 export type BlogFormProps = {
-  formData: any;
-  handleInputChange: any;
-  handleSelectChange: any;
-  handleContentChange: (content: string) => void; // ← ADD THIS
-  handleImageUpload: any;
-  handleImageClick: any;
-  fileInputRef: any;
+  formData: BlogFormData;
+  handleInputChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleSelectChange: (event: ChangeEvent<HTMLSelectElement>) => void;
+  handleContentChange: (content: string) => void;
+  handleImageUpload: (event: ChangeEvent<HTMLInputElement>) => void;
+  handleImageClick: () => void;
+  fileInputRef: RefObject<HTMLInputElement | null>;
   onSaveDraft: () => void;
   onPublish: () => void;
   isSubmitting: boolean;
@@ -23,7 +37,7 @@ export default function BlogForm({
   formData,
   handleInputChange,
   handleSelectChange,
-  handleContentChange, // ← ADD THIS
+  handleContentChange,
   handleImageUpload,
   handleImageClick,
   fileInputRef,
@@ -38,7 +52,7 @@ export default function BlogForm({
   const isSaving = isSubmitting && draftButtonText.includes("Save");
 
   return (
-    <div className="new-blog-container">
+    <div className="new-blog-container" data-form-title={title}>
       <div className="new-blog-header-actions">
         <button
           type="button"
@@ -59,7 +73,6 @@ export default function BlogForm({
       </div>
 
       <div className="new-blog-grid">
-        {/* Main Content Column */}
         <div className="new-blog-col">
           <div className="new-blog-card">
             <div>
@@ -94,7 +107,6 @@ export default function BlogForm({
 
           <div className="new-blog-card">
             <h3 className="new-blog-card-title">Content</h3>
-            {/* REPLACE the entire editor wrapper with this */}
             <div className="new-blog-editor-wrapper">
               <RichTextEditor
                 value={formData.content || ""}
@@ -117,7 +129,6 @@ export default function BlogForm({
           </div>
         </div>
 
-        {/* Sidebar Column */}
         <div className="new-blog-col">
           <div className="new-blog-card">
             <h3 className="new-blog-card-title">Featured Image</h3>
@@ -134,10 +145,7 @@ export default function BlogForm({
               />
               {formData.featuredImage ? (
                 <>
-                  <img
-                    src={formData.featuredImage}
-                    alt="Featured"
-                  />
+                  <Image src={formData.featuredImage} alt="Featured" width={640} height={360} unoptimized />
                   <div className="new-blog-image-overlay">
                     <UploadCloud size={28} />
                     <span>Change Image</span>

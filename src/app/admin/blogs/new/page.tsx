@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { useRouter, useParams } from "next/navigation";
+import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 import BlogForm from "@/components/Admin/BlogForm";
-import RichTextEditor from "@/components/editor/RichTextEditor";
 import "@/styles/admin/new-blog.css";
 
 export default function NewBlogPostPage() {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState(false);
   const [formData, setFormData] = useState({
     title: "",
     slug: "",
@@ -23,23 +23,29 @@ export default function NewBlogPostPage() {
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-generate slug from title
-  useEffect(() => {
-    if (formData.title) {
-      const generatedSlug = formData.title
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+
+    if (name === "slug") {
+      setSlugManuallyEdited(true);
+    }
+
+    if (name === "title") {
+      const generatedSlug = value
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, "-")
         .replace(/^-+|-+$/g, "");
 
       setFormData((prev) => ({
         ...prev,
-        slug: generatedSlug,
+        [name]: value,
+        slug: slugManuallyEdited ? prev.slug : generatedSlug,
       }));
+      return;
     }
-  }, [formData.title]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -49,7 +55,7 @@ export default function NewBlogPostPage() {
   const handleContentChange = (content: string) => {
     setFormData((prev) => ({
       ...prev,
-      content: content,
+      content,
     }));
   };
 
@@ -137,7 +143,9 @@ export default function NewBlogPostPage() {
         const publishedTitle = result.data?.title || formData.title;
         const publishedSlug = result.data?.slug || formData.slug;
         alert(`Blog "${publishedTitle}" published successfully!`);
-        router.push(`/admin/blogs?published=1&title=${encodeURIComponent(publishedTitle)}&slug=${encodeURIComponent(publishedSlug)}`);
+        router.push(
+          `/admin/blogs?published=1&title=${encodeURIComponent(publishedTitle)}&slug=${encodeURIComponent(publishedSlug)}`,
+        );
       } else {
         const error = await response.json();
         alert(`Failed to publish post: ${error.message || "Unknown error"}`);
@@ -208,7 +216,7 @@ export default function NewBlogPostPage() {
       formData={formData}
       handleInputChange={handleInputChange}
       handleSelectChange={handleSelectChange}
-      handleContentChange={handleContentChange} // Ã¢Å“â€¦ ADD THIS LINE
+      handleContentChange={handleContentChange}
       handleImageUpload={handleImageUpload}
       handleImageClick={handleImageClick}
       fileInputRef={fileInputRef}
