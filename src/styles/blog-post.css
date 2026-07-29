@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    BLOG DETAIL PAGE - reference-inspired layout
    ============================================ */
 
@@ -15,7 +15,7 @@
 
 .blog-detail-progress-wrap {
   position: fixed;
-  top: 74px;
+  top: 70px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 35;
@@ -28,7 +28,7 @@
 
 .blog-detail-progress-track {
   flex: 1;
-  height: 5px;
+  height: 3px;
   border-radius: 999px;
   background: rgba(99, 102, 241, 0.12);
   overflow: hidden;
@@ -59,35 +59,87 @@
 
 .blog-detail-hero-card {
   position: relative;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.88fr);
   overflow: hidden;
-  min-height: 300px;
+  min-height: clamp(360px, 40vw, 470px);
   border-radius: 22px;
   background:
-    linear-gradient(140deg, rgba(10, 14, 37, 0.98) 0%, rgba(17, 24, 39, 0.96) 55%, rgba(117, 79, 164, 0.82) 100%);
+    linear-gradient(140deg, rgba(10, 14, 37, 0.98) 0%, rgba(17, 24, 39, 0.96) 58%, rgba(117, 79, 164, 0.82) 100%);
   box-shadow: 0 28px 70px rgba(15, 23, 42, 0.16);
+}
+
+/* Light theme: solid light base so image never bleeds fully */
+[data-theme="light"] .blog-detail-hero-card {
+  background: #f0f4ff;
+  box-shadow: 0 20px 56px rgba(99, 102, 241, 0.12);
 }
 
 .blog-detail-hero-card::before {
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(circle at 75% 25%, rgba(255, 255, 255, 0.09), transparent 18%),
-    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.08), transparent 16%);
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 35%,
+    rgba(10, 14, 37, 0.68) 56%,
+    rgba(10, 14, 37, 0.90) 74%,
+    rgba(10, 14, 37, 0.97) 100%
+  );
   pointer-events: none;
+}
+
+
+/* Light theme: overlay only on the bottom content zone — image stays visible above */
+[data-theme="light"] .blog-detail-hero-card::before {
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    transparent 38%,
+    rgba(240, 244, 255, 0.72) 58%,
+    rgba(240, 244, 255, 0.94) 76%,
+    rgba(240, 244, 255, 0.98) 100%
+  );
+}
+
+.blog-detail-hero-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.blog-detail-hero-bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.46;
+  filter: saturate(0.95) contrast(1.04);
 }
 
 .blog-detail-hero-copy {
   position: relative;
-  z-index: 1;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
+  z-index: 2;
+  min-height: inherit;
+  padding: clamp(1.6rem, 4vw, 3rem);
+  padding-bottom: clamp(2rem, 4.5vw, 3.5rem);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 1rem;
   color: #fff;
+  max-width: min(100%, 980px);
+}
+
+/* Light theme: use dark text since background is now light */
+[data-theme="light"] .blog-detail-hero-copy {
+  color: #0f172a;
+}
+
+/* Light theme: explicit title color to ensure maximum contrast */
+[data-theme="light"] .blog-detail-title {
+  color: #0f172a;
+  text-shadow: none;
 }
 
 .blog-detail-kicker {
@@ -110,10 +162,10 @@
 
 .blog-detail-title {
   margin: 0;
-  max-width: 13ch;
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  line-height: 1.02;
-  letter-spacing: -0.04em;
+  max-width: 100%;
+  font-size: clamp(1.9rem, 3.15vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: 0;
   font-weight: 800;
 }
 
@@ -972,21 +1024,12 @@
 
 @media (max-width: 920px) {
   .blog-detail-hero-card {
-    grid-template-columns: 1fr;
+    min-height: 430px;
   }
 
-  .blog-detail-hero-title {
-    max-width: none;
-  }
-
-  .blog-detail-hero-visual {
-    min-height: 290px;
-    padding-top: 0;
-  }
-
-  .blog-detail-image-frame {
-    transform: none;
-    width: min(100%, 500px);
+  .blog-detail-title {
+    max-width: 100%;
+    font-size: clamp(1.8rem, 4.5vw, 2.55rem);
   }
 
   .blog-detail-main {
@@ -1017,10 +1060,21 @@
 
   .blog-detail-hero-copy {
     padding: 1.4rem;
+    max-width: 100%;
+  }
+
+  .blog-detail-hero-card::before {
+    background: linear-gradient(180deg, rgba(10, 14, 37, 0.94) 0%, rgba(10, 14, 37, 0.86) 52%, rgba(10, 14, 37, 0.72) 100%);
+  }
+
+  .blog-detail-hero-bg-image {
+    opacity: 0.38;
   }
 
   .blog-detail-title {
-    font-size: clamp(1.95rem, 9vw, 3rem);
+    max-width: 100%;
+    font-size: clamp(1.55rem, 6vw, 2.15rem);
+    line-height: 1.14;
   }
 
   .blog-detail-excerpt {
@@ -1231,4 +1285,43 @@
   box-shadow: 0 18px 34px rgba(129, 140, 248, 0.18);
 }
 
+
+
+/* ===== LIGHT THEME BLOG DETAIL HERO ===== */
+
+/* Excerpt text */
+[data-theme="light"] .blog-detail-excerpt {
+  color: #1e293b;
+}
+
+/* Meta row (date, read-time, sections) */
+[data-theme="light"] .blog-detail-meta-row {
+  color: #374151;
+  font-weight: 500;
+}
+
+/* Icons in meta row */
+[data-theme="light"] .blog-detail-meta-icon {
+  color: #6366f1;
+  opacity: 1;
+}
+
+/* Tags & status badges */
+[data-theme="light"] .blog-detail-tag,
+[data-theme="light"] .blog-detail-status {
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.2);
+  color: #4338ca;
+}
+
+/* Category kicker badge */
+[data-theme="light"] .blog-detail-kicker {
+  background: rgba(99, 102, 241, 0.06);
+}
+
+/* Featured image — clearly visible in light theme, only content zone gets overlay */
+[data-theme="light"] .blog-detail-hero-bg-image {
+  opacity: 0.55;
+  filter: saturate(0.85) contrast(0.95);
+}
 

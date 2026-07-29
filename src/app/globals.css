@@ -4,8 +4,8 @@
   LIGHT THEME (Default)
 ==================================*/
 :root {
-  --header-height: 5rem;
-  --page-shell-offset: 6.75rem;
+  --header-height: 4rem;
+  --page-shell-offset: 5.5rem;
 
   /* Primary accent */
   --first-color-rgb: 99, 102, 241;

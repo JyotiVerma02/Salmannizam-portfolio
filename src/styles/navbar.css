@@ -15,8 +15,8 @@
   position: relative;
   width: min(96%, 1280px);
   margin: 0 auto;
-  height: 72px;
-  border-radius: 999px;
+  height: 58px;
+  border-radius: 20px;
   background: var(--glass);
   border: 1px solid var(--glass-border);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
@@ -31,7 +31,7 @@
   transition: all 0.45s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .navbar-shell.scrolled {
-  height: 68px;
+  height: 54px;
   background: var(--glass);
   backdrop-filter: blur(28px);
   -webkit-backdrop-filter: blur(28px);
@@ -685,7 +685,8 @@
 
 .navbar-shell {
   width: min(100%, 1440px);
-  height: 72px;
+  height: 58px;
+  border-radius: 20px;
   padding:0 1.5rem;
   background: linear-gradient(180deg, rgba(10, 12, 18, 0.92), rgba(6, 7, 11, 0.95));
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -693,7 +694,8 @@
 }
 
 .navbar-shell.scrolled {
-  height: 72px;
+  height: 54px;
+  border-radius: 18px;
   background: linear-gradient(180deg, rgba(10, 12, 18, 0.96), rgba(6, 7, 11, 0.98));
   box-shadow: 0 18px 52px rgba(0, 0, 0, 0.42);
 }
@@ -743,9 +745,9 @@
   }
 
   .navbar-shell {
-    height: 68px;
+    height: 54px;
     padding: 0 0.9rem;
-    border-radius: 999px;
+    border-radius: 16px;
   }
 
   .navbar-logo {

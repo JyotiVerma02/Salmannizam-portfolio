@@ -47,6 +47,9 @@ export default function Navbar() {
   const currentPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
   const { theme, toggleTheme } = useTheme();
 
+  // Hide the navbar progress bar on blog post pages — those have their own dedicated progress indicator
+  const isBlogPost = /^\/blog\/.+/.test(pathname);
+
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 120,
@@ -95,7 +98,9 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <motion.div className="navbar-progress" style={{ scaleX }} />
+        {!isBlogPost && (
+          <motion.div className="navbar-progress" style={{ scaleX }} />
+        )}
 
         <nav className={`navbar-shell ${scrolled ? "scrolled" : ""}`}>
           <div className="navbar-left">

@@ -447,6 +447,20 @@ export default function BlogPostPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55 }}
           >
+            {heroHasImage && (
+              <div className="blog-detail-hero-bg" aria-hidden="true">
+                <Image
+                  src={blog.featuredImage!}
+                  alt=""
+                  fill
+                  sizes="(max-width: 768px) 100vw, 1180px"
+                  className="blog-detail-hero-bg-image"
+                  unoptimized
+                  priority
+                />
+              </div>
+            )}
+
             <div className="blog-detail-hero-copy">
               <span
                 className="blog-detail-kicker"
@@ -492,21 +506,6 @@ export default function BlogPostPage() {
                 ))}
                 {blog.status === "published" && <span className="blog-detail-status">Published</span>}
               </div>
-            </div>
-
-            <div className="blog-detail-hero-visual">
-              <div className="blog-detail-glow blog-detail-glow-left" />
-              <div className="blog-detail-glow blog-detail-glow-right" />
-
-              {heroHasImage ? (
-                <div className="blog-detail-image-frame">
-                  <Image src={blog.featuredImage!} alt={blog.title} width={1200} height={675} className="blog-detail-hero-image" unoptimized priority />
-                </div>
-              ) : (
-                <div className="blog-detail-image-frame placeholder" style={{ background: `linear-gradient(135deg, ${accent} 0%, #111827 100%)` }}>
-                  <span>{categoryLabel}</span>
-                </div>
-              )}
             </div>
           </motion.div>
         </section>
