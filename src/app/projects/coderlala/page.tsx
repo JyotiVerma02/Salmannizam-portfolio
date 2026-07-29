@@ -39,8 +39,8 @@ export default function CoderLalaProjectPage() {
               <p>
                 Developed a full-stack CRM solution using modern microservices 
                 architecture with the following key features:
-              </p>
-              <ul className="project-detail-list" style={{ marginTop: '0.75rem' }}>
+              </p> 
+              <ul className="project-detail-list mt-3">
                 <li>
                   <strong>Microservices Architecture:</strong> Modular design 
                   allowing independent scaling and deployment of services
@@ -83,8 +83,8 @@ export default function CoderLalaProjectPage() {
 
             {/* Role & Contribution */}
             <article className="project-detail-card">
-              <h2>Role &amp; Contribution</h2>
-              <p style={{ marginBottom: '0.75rem' }}>
+              <h2>Role &amp; Contribution</h2> 
+              <p className="mb-3">
                 As Full-Stack &amp; DevOps Engineer, I was responsible for:
               </p>
               <ul className="project-detail-list">
@@ -109,31 +109,16 @@ export default function CoderLalaProjectPage() {
                 provides reliable message queuing for background tasks, and offers 
                 high-performance data access through intelligent caching strategies.
               </p>
-              <div style={{ 
-                display: 'flex', 
-                gap: '1rem', 
-                marginTop: '1.5rem',
-                flexWrap: 'wrap' 
-              }}>
+              <div className="project-detail-actions">
                 <Link 
                   href="#" 
-                  className="project-btn"
-                  style={{ 
-                    background: 'linear-gradient(135deg, #3156d3, #4facfe)',
-                    padding: '0.7rem 1.4rem'
-                  }}
+                  className="project-btn project-btn--primary"
                 >
                   View Live Project →
                 </Link>
                 <Link 
                   href="#" 
-                  className="project-btn"
-                  style={{ 
-                    background: 'rgba(var(--first-color-rgb),0.06)',
-                    border: '1px solid rgba(var(--first-color-rgb),0.1)',
-                    padding: '0.7rem 1.4rem',
-                    color: '#fff'
-                  }}
+                  className="project-btn project-btn--secondary"
                 >
                   GitHub Repository →
                 </Link>

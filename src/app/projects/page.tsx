@@ -175,24 +175,8 @@ export default function ProjectsPage() {
                       ))}
                     </div>
 
-                    <div className="project-stats">
-                      {project.stats.map((stat, idx) => (
-                        <div key={idx} className="stat-item">
-                          <strong>{stat.value}</strong>
-                          <span>{stat.label}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    <div className="project-features">
-                      {project.features.map((feature, idx) => (
-                        <span key={idx}>{feature}</span>
-                      ))}
-                    </div>
-
                     <div className="project-actions">
                       <span className="project-btn">Learn More &rarr;</span>
-                      <span className="project-view">View Details</span>
                     </div>
                   </div>
                 </Link>

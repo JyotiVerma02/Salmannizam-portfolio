@@ -13,6 +13,7 @@ import "@/styles/footer.css";
 import "@/styles/responsive.css";
 import PublicFooter from "@/components/Common/PublicFooter";
 import SmoothScroll from "@/components/Common/SmoothScroll";
+import Navbar from "@/components/Navbar/Navbar";
 import { ThemeProvider } from "@/components/Common/ThemeProvider";
 
 const poppins = Poppins({
@@ -81,6 +82,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider>
+          <Navbar />
           <SmoothScroll>{children}</SmoothScroll>
           <PublicFooter />
         </ThemeProvider>
