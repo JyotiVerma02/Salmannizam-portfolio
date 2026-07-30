@@ -20,7 +20,7 @@
   overflow: hidden;
   transition: all var(--adm-transition);
   display: flex;
-  align-items: flex-center;
+  align-items: center;
   gap: 8px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);

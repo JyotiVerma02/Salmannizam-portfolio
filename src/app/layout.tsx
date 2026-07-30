@@ -82,7 +82,7 @@ export default function RootLayout({
       </head>
       <body suppressHydrationWarning>
         <ThemeProvider>
-          {/* <Navbar /> */}
+           <Navbar /> 
           <SmoothScroll>{children}</SmoothScroll>
           <PublicFooter />
         </ThemeProvider>

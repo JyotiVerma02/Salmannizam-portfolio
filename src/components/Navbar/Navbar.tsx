@@ -44,6 +44,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+
+  if (pathname.startsWith("/admin") || pathname.startsWith("/admin-login")) {
+    return null;
+  }
   const currentPath = pathname === "/" ? "/" : `/${pathname.split("/")[1]}`;
   const { theme, toggleTheme } = useTheme();
 

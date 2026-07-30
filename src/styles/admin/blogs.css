@@ -239,7 +239,8 @@
   background: var(--adm-bg-card);
   border: 1px solid var(--adm-border);
   border-radius: 16px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   backdrop-filter: blur(10px);
   transition: background var(--adm-transition), border-color var(--adm-transition);
 }
@@ -247,6 +248,7 @@
 .admin-table {
   width: 100%;
   border-collapse: collapse;
+  min-width: 850px;
 }
 
 .admin-table th {
@@ -831,6 +833,49 @@
   color: var(--adm-accent) !important;
   background: var(--adm-accent-light) !important;
 }
+
+/* ==========================================
+   RESPONSIVE FILTER & STATS OVERRIDES
+   ========================================== */
+@media (max-width: 640px) {
+  .admin-filters-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .admin-search-input {
+    width: 100%;
+  }
+
+  .admin-dropdown-wrapper {
+    width: 100%;
+  }
+
+  .admin-dropdown-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .admin-dropdown-menu {
+    width: 100%;
+    left: 0 !important;
+    right: 0 !important;
+  }
+
+  .admin-icon-btn {
+    width: 100%;
+    height: 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-stats-row {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+}
+
 
 
 

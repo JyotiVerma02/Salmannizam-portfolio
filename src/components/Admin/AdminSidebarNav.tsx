@@ -43,7 +43,7 @@ export default function AdminSidebarNav({ groups }: AdminSidebarNavProps) {
                   className={isActive ? 'active' : ''}
                 >
                   {item.icon}
-                  {item.label}
+                  <span className="nav-label">{item.label}</span>
                 </Link>
               );
             })}

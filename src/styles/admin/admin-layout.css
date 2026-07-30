@@ -108,13 +108,18 @@
    ========================================== */
 .admin-dashboard-layout {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: 220px minmax(0,1fr);
   background: var(--adm-bg-page);
   color: var(--adm-text-primary);
   font-family: 'Inter', 'Outfit', system-ui, sans-serif;
   position: relative;
   transition: background var(--adm-transition), color var(--adm-transition);
+}
+
+.admin-layout-container {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  min-height: 100vh;
+  width: 100%;
 }
 
 /* Animated ambient blobs */
@@ -403,11 +408,101 @@
 }
 
 /* ==========================================
-   RESPONSIVE
+   RESPONSIVE LAYOUT & MOBILE HEADER
    ========================================== */
-@media (max-width: 900px) {
-  .admin-dashboard-layout {
-    grid-template-columns: 220px minmax(0,1fr);
+
+/* Mobile topbar header - hidden on desktop */
+.admin-mobile-header {
+  display: none;
+  height: 64px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--adm-bg-topbar);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--adm-border);
+  padding: 0 20px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  transition: background var(--adm-transition), border-color var(--adm-transition);
+}
+
+.admin-hamburger-btn {
+  background: transparent;
+  border: none;
+  color: var(--adm-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 8px;
+  transition: all var(--adm-transition);
+}
+
+.admin-hamburger-btn:hover {
+  background: var(--adm-bg-muted);
+  color: var(--adm-accent);
+}
+
+.admin-mobile-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.admin-mobile-logo {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, var(--adm-accent), var(--adm-accent-2));
+  color: #ffffff;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
+  font-weight: 900;
+  font-size: 11px;
+}
+
+.admin-mobile-brand strong {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--adm-text-primary);
+}
+
+.admin-mobile-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Sidebar Backdrop overlay on mobile */
+.admin-sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 990;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-open .admin-sidebar-backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 1024px) {
+  .admin-layout-container {
+    grid-template-columns: 1fr;
+    padding-top: 64px;
+  }
+
+  .admin-mobile-header {
+    display: flex;
   }
 
   .admin-content-wrapper {
@@ -416,10 +511,6 @@
 }
 
 @media (max-width: 768px) {
-  .admin-dashboard-layout {
-    grid-template-columns: 1fr;
-  }
-
   .admin-content-wrapper {
     padding: 20px 16px;
   }
