@@ -1,11 +1,12 @@
 ﻿import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
+import { Inter } from "next/font/google";
 import { getCurrentAdmin } from "@/lib/auth";
 import AdminSidebarNav from "@/components/Admin/AdminSidebarNav";
 import ThemeToggle from "@/components/Admin/ThemeToggle";
 import "@/styles/admin/admin-layout.css";
 import "@/styles/admin/admin-sidebar.css";
-import "@/styles/admin/admin-navbar.css";
+
 
 // Basic icons to match the image visually
 const DashboardIcon = () => (
@@ -45,6 +46,8 @@ const ChevronDownIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/></svg>
 );
 
+const inter = Inter({ subsets: ["latin"], display: "swap" });
+
 const navGroups = [
   {
     heading: "MAIN",
@@ -76,7 +79,15 @@ type AdminDashboardLayoutProps = {
 };
 
 export default async function AdminDashboardLayout({ children }: AdminDashboardLayoutProps) {
-  const admin = await getCurrentAdmin();
+  let admin;
+  try {
+    admin = await getCurrentAdmin();
+  } catch (error) {
+    console.error("Admin session validation failed:", error);
+    // This error can happen if the token is invalid or malformed.
+    // Redirecting to login to re-establish a valid session.
+    redirect("/admin-login");
+  }
 
   if (!admin) {
     redirect("/admin-login");
@@ -90,7 +101,7 @@ export default async function AdminDashboardLayout({ children }: AdminDashboardL
     .join("") || "SN";
 
   return (
-    <main className="admin-dashboard-layout">
+    <main className={`admin-dashboard-layout ${inter.className}`}>
       {/* Animated background blobs */}
       <div className="admin-bg-blob admin-bg-blob--1" aria-hidden="true" />
       <div className="admin-bg-blob admin-bg-blob--2" aria-hidden="true" />
@@ -118,28 +129,7 @@ export default async function AdminDashboardLayout({ children }: AdminDashboardL
       </aside>
 
       <section className="admin-dashboard-main">
-        <header className="admin-dashboard-topbar">
-          <div className="admin-search-bar">
-            <SearchIcon />
-            <input type="text" placeholder="Search anything..." />
-          </div>
-
-          <div className="admin-topbar-actions">
-            <ThemeToggle />
-            <button className="admin-notification-btn" aria-label="Notifications">
-              <BellIcon />
-              <span className="admin-notification-dot" />
-            </button>
-            <div className="admin-user-chip">
-              <div className="admin-avatar">{initials}</div>
-              <div className="admin-user-chip-text">
-                <strong>{admin.name}</strong>
-                <span>Super Admin</span>
-              </div>
-              <ChevronDownIcon />
-            </div>
-          </div>
-        </header>
+        {/* The admin topbar header has been removed as requested. */}
 
         {children}
       </section>

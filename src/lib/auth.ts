@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
+import { Types } from "mongoose";
 import { ADMIN_AUTH_COOKIE } from "@/lib/cookies";
 import { connectDB } from "@/lib/db";
 import { verifyAdminToken } from "@/lib/jwt";
@@ -112,6 +113,16 @@ export async function getCurrentAdmin() {
     return null;
   }
 
+  // If the adminId is not a valid ObjectId, it's likely the env-based admin.
+  // In that case, we can't look them up in the DB, so we'll just use the payload data.
+  if (!Types.ObjectId.isValid(payload.adminId)) {
+    return {
+      id: payload.adminId,
+      name: typeof payload.name === "string" && payload.name.trim() ? payload.name : getConfiguredAdminName(),
+      email: payload.email,
+      role: "super_admin",
+    } satisfies SafeAdmin;
+  }
   try {
     await connectDB();
 
@@ -128,11 +139,8 @@ export async function getCurrentAdmin() {
   } catch (error) {
     console.warn("Admin session DB lookup failed", error);
   }
-
-  return {
-    id: payload.adminId,
-    name: typeof payload.name === "string" && payload.name.trim() ? payload.name : getConfiguredAdminName(),
-    email: payload.email,
-    role: "super_admin",
-  } satisfies SafeAdmin;
+  
+  // Fallback or if DB lookup fails for a valid-looking ID for some reason.
+  // This path should ideally not be hit if the token is valid and DB is connected.
+  return null;
 }

@@ -6,6 +6,7 @@
   position: relative;
   overflow: hidden;
   padding: 12px;
+  padding-top: 82px;
   background:
     radial-gradient(circle at 12% 16%, rgba(99, 102, 241, 0.14), transparent 32%),
     radial-gradient(circle at 84% 80%, rgba(20, 184, 166, 0.12), transparent 30%),
@@ -28,7 +29,7 @@
 .admin-login-wrapper {
   width: min(900px, 100%);
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(360px, 420px);
+  grid-template-columns: 1.2fr 400px;
   gap: 28px;
   align-items: center;
   position: relative;
@@ -126,8 +127,8 @@
 }
 
 .admin-card {
-  padding: 18px;
-  border-radius: 24px;
+  padding: 12px;
+  border-radius: 15px;
   border: 1px solid rgba(148, 163, 184, 0.26);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.96) 0%, rgba(247, 250, 252, 0.88) 100%);
   box-shadow: 0 24px 70px rgba(15, 23, 42, 0.12);
@@ -136,7 +137,12 @@
 }
 
 [data-theme="dark"] .admin-card {
-  background: linear-gradient(180deg, rgba(18, 22, 34, 0.92) 0%, rgba(15, 18, 28, 0.84) 100%);
+  background: rgba(18, 22, 36, .72);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, .45),
+    0 0 0 1px rgba(255, 255, 255, .04) inset;
   border-color: rgba(255, 255, 255, 0.08);
 }
 
@@ -176,31 +182,33 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 6px;
+  margin-bottom: 14px;
 }
 
 .input-group label {
   color: var(--white-color);
-  font-size: 0.92rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding-left: 5px;
 }
 
 .input-group input {
-  height: 46px;
+  height: 40px;
   width: 100%;
-  border-radius: 12px;
-  padding: 0 16px;
+  border-radius: 10px;
+  padding: 0 14px;
   border: 1px solid var(--border-color);
   background: var(--body-color);
   color: var(--white-color);
-  font-size: 0.98rem;
+  font-size: 0.95rem;
   outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
 .input-group input::placeholder {
   color: #8a94a6;
+  font-size: 0.9rem;
 }
 
 .input-group input:focus {
@@ -226,13 +234,13 @@
 
 .login-btn {
   width: 100%;
-  height: 48px;
+  height: 42px;
   border: none;
   border-radius: 12px;
   background: var(--gradient-color);
   color: #ffffff;
-  font-size: 0.98rem;
-  font-weight: 800;
+  font-size: 0.95rem;
+  font-weight: 700;
   cursor: pointer;
   box-shadow: 0 16px 36px rgba(var(--first-color-rgb), 0.24);
   transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;

@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { type FormEvent, useState } from "react";
-import Navbar from "@/components/Navbar/Navbar";
 import "@/styles/admin-login.css";
 
 type LoginResponse = {
@@ -68,8 +67,7 @@ export default function AdminLoginPage() {
 
   return (
     <>
-      <Navbar />
-      <main className="admin-login-page admin-login-page-with-navbar">
+      <main className="admin-login-page">
         <div className="admin-bg-blob blob-1" />
         <div className="admin-bg-blob blob-2" />
 
