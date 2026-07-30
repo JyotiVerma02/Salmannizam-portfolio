@@ -171,6 +171,21 @@
   transition: color var(--adm-transition);
 }
 
+.admin-mobile-header {
+  transition: opacity .25s ease, transform .25s ease;
+}
+
+.admin-mobile-header.hidden-header {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+
+
+
+
+
 .admin-nav-heading::before {
   content: '';
   width: 12px;

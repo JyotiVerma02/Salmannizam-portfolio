@@ -71,7 +71,11 @@ export default function AdminLayoutClient({
       }`}
     >
       {/* Mobile Topbar Header */}
-      <header className="admin-mobile-header">
+   <header
+  className={`admin-mobile-header ${
+    isSidebarOpen ? "hidden-header" : ""
+  }`}
+>
         <button
           type="button"
           className="admin-hamburger-btn"
@@ -136,7 +140,10 @@ export default function AdminLayoutClient({
         </div>
 
         <div className="admin-sidebar-nav-scroll">
-          <AdminSidebarNav groups={groups} />
+      <AdminSidebarNav
+  groups={groups}
+  onNavigate={() => setIsSidebarOpen(false)}
+/>
         </div>
 
         <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">

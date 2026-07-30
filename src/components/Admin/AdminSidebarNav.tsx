@@ -17,9 +17,13 @@ type NavGroup = {
 
 type AdminSidebarNavProps = {
   groups: NavGroup[];
+  onNavigate?: () => void;
 };
 
-export default function AdminSidebarNav({ groups }: AdminSidebarNavProps) {
+export default function AdminSidebarNav({
+  groups,
+  onNavigate,
+}: AdminSidebarNavProps) {
   const pathname = usePathname();
 
   return (
@@ -37,11 +41,12 @@ export default function AdminSidebarNav({ groups }: AdminSidebarNavProps) {
                 : pathname.startsWith(item.href);
 
               return (
-                <Link 
-                  key={item.label} 
-                  href={item.href} 
-                  className={isActive ? 'active' : ''}
-                >
+             <Link
+  key={item.label}
+  href={item.href}
+  className={isActive ? "active" : ""}
+  onClick={onNavigate}
+>
                   {item.icon}
                   <span className="nav-label">{item.label}</span>
                 </Link>
