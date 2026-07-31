@@ -31,6 +31,24 @@ const syne = Syne({
 export const metadata: Metadata = {
   title: "Salman Nizam - Senior Developer",
   description: "Portfolio of Salman Nizam, a senior full-stack developer.",
+  openGraph: {
+    title: "Salman Nizam - Senior Developer",
+    description: "Portfolio of Salman Nizam, a senior full-stack developer.",
+    url: "https://salmannizam.com",
+    siteName: "Salman Nizam Portfolio",
+    images: [
+      {
+        url: "/image/og-image.jpg",
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://salmannizam.com",
+  },
 };
 
 export const viewport: Viewport = {

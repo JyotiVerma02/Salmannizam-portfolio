@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { connectDB } from "@/lib/db";
 import Blog from "@/models/Blog";
+import { getCurrentAdmin } from "@/lib/auth";
 
 function slugify(value: string) {
   return value
@@ -53,6 +54,14 @@ export async function GET() {
 // POST new blog
 export async function POST(request: NextRequest) {
   try {
+    const admin = await getCurrentAdmin();
+    if (!admin) {
+      return NextResponse.json(
+        { success: false, message: "Unauthorized" },
+        { status: 401 }
+      );
+    }
+
     await connectDB();
 
     const body = await request.json();
