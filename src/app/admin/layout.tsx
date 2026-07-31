@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+export const dynamic = "force-dynamic";
 import { redirect } from "next/navigation";
 import { Inter } from "next/font/google";
 import { getCurrentAdmin } from "@/lib/auth";

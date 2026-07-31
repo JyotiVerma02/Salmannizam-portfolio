@@ -82,6 +82,7 @@ export async function proxy(request: NextRequest) {
   const token = request.cookies.get(ADMIN_AUTH_COOKIE)?.value;
   const isLoginPage = pathname === "/admin-login";
   const isAdminRoot = pathname === "/admin";
+  const isApiRoute = pathname.startsWith("/api/");
   const hasValidToken = token ? await isValidAdminToken(token) : false;
 
   if (isLoginPage) {
@@ -89,6 +90,23 @@ export async function proxy(request: NextRequest) {
       return NextResponse.redirect(new URL("/admin/dashboard", request.url));
     }
 
+    return NextResponse.next();
+  }
+
+  // Allow public API endpoints, e.g. GET /api/blogs
+  if (isApiRoute) {
+    const isPublicGet = request.method === "GET" && (pathname.startsWith("/api/blogs") || pathname.startsWith("/api/projects"));
+    const isPublicPost = pathname.startsWith("/api/contact") || pathname.startsWith("/api/admin/login");
+
+    if (isPublicGet || isPublicPost) {
+      return NextResponse.next();
+    }
+
+    // Protect all other API routes
+    if (!hasValidToken) {
+      return NextResponse.json({ success: false, message: "Unauthorized" }, { status: 401 });
+    }
+    
     return NextResponse.next();
   }
 
@@ -104,5 +122,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin", "/admin/:path*"],
+  matcher: ["/admin", "/admin/:path*", "/api/:path*"],
 };

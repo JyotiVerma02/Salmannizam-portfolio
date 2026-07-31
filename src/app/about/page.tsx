@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import PageShell from "@/components/Common/PageShell";
 import { 
   Award, Briefcase, Smile, Monitor, 
@@ -159,9 +160,11 @@ export default function AboutPage() {
           {/* Right Column - Image Placeholder */}
           <div className="about-hero-right">
             <div className="hero-image-placeholder">
-              <img 
+              <Image 
                 src="/image/salmannizam.jpg" 
                 alt="Salman Nizam"
+                width={600}
+                height={600}
                 className="hero-variant-image"
               />
               <div className="signature">Salman Nizam</div>

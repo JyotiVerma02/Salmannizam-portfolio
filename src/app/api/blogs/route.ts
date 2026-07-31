@@ -31,7 +31,7 @@ export async function GET() {
   try {
     await connectDB();
 
-    const blogs = await Blog.find().sort({ createdAt: -1 });
+    const blogs = await Blog.find().sort({ createdAt: -1 }).lean();
 
     return NextResponse.json({
       success: true,
