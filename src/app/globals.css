@@ -4,7 +4,7 @@
   LIGHT THEME (Default)
 ==================================*/
 :root {
-  --header-height: 4rem;
+  --header-height: 4.5rem;
   --page-shell-offset: 5.5rem;
 
   /* Primary accent */
@@ -15,7 +15,7 @@
   --white-color: #0f172a;     /* Primary text on light */
   --black-color: #ffffff;     /* Cards / pure white fills */
 
-  --text-color: #4b5563;      /* Secondary body text */
+  --text-color: #475569;      /* Secondary body text */
 
   /* Page surfaces */
   --body-color: #f8fafc;
@@ -23,23 +23,24 @@
 
   /* Borders & Radius */
   --border-color: #e2e8f0;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-full: 999px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
 
   /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  --transition-bounce: 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
   /* Glass */
   --glass: rgba(255, 255, 255, 0.82);
-  --glass-border: rgba(99, 102, 241, 0.1);
+  --glass-border: rgba(226, 232, 240, 0.8);
 
   /* Shadows */
-  --shadow:       0 4px 20px -4px rgba(99, 102, 241, 0.1), 0 2px 8px rgba(0,0,0,0.04);
-  --shadow-hover: 0 16px 40px -8px rgba(99, 102, 241, 0.18), 0 6px 20px rgba(0,0,0,0.06);
+  --shadow: var(--shadow-md);
+  --shadow-hover: var(--shadow-lg);
 
   --gradient-color: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #3b82f6 100%);
 }
@@ -375,7 +376,7 @@ body::after {
   background: var(--glass);
   backdrop-filter: blur(18px);
   border: 1px solid var(--glass-border);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   box-shadow: var(--shadow);
 }
 
@@ -518,17 +519,21 @@ body::after {
   }
 }
 
+/*==================================
+  ACCESSIBILITY & FOCUS STATES
+==================================*/
+*:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+  transition: box-shadow var(--transition-fast);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+.btn:focus-visible,
+.navbar-link:focus-visible,
+.navbar-icon-btn:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}

@@ -47,7 +47,7 @@
   color: var(--first-color);
   background: rgba(var(--first-color-rgb), 0.08);
   padding: 0.3rem 0.9rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   margin-bottom: 0.5rem;
   border: 1px solid rgba(var(--first-color-rgb), 0.08);
 }
@@ -242,9 +242,9 @@
   color: var(--primary-color);
   background: rgba(99, 102, 241, 0.08);
   padding: 0.15rem 0.6rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid rgba(99, 102, 241, 0.12);
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
 }
 
 .project-tag:hover {
@@ -280,7 +280,7 @@
 
 .tech-list span {
   padding: 0.2rem 0.5rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: rgba(0,0,0,.04);
   border: 1px solid rgba(0,0,0,.06);
   color: var(--white-color);
@@ -359,7 +359,7 @@
   align-items: center;
   gap: 0.3rem;
   padding: 0.4rem 0.9rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: #000;
   color: #fff;
   font-weight: 600;
@@ -426,7 +426,7 @@
 .cta-btn {
   display: inline-block;
   padding: 0.7rem 2rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: var(--black-color);
   color: var(--white-color);
   font-weight: 700;
@@ -799,10 +799,10 @@
   font-weight: 600;
   text-decoration: none;
   margin-bottom: 2rem;
-  transition: all 0.3s ease;
+  transition: all var(--transition-normal);
   background: rgba(var(--first-color-rgb), 0.08);
   padding: 0.4rem 1rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid rgba(var(--first-color-rgb), 0.15);
 }
 
@@ -965,7 +965,7 @@
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 0.4rem 1rem;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   color: var(--text-color);
   font-size: 0.85rem;
   font-weight: 500;

@@ -111,7 +111,7 @@
   padding: 1rem 0.5rem;
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   box-shadow: var(--shadow);
 }
 
@@ -156,10 +156,10 @@
   max-width: 500px;
   aspect-ratio: 4 / 3;
   background: linear-gradient(145deg, #1e1e2f, #141420);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -175,7 +175,7 @@
   object-position: center top; /* Anchors the top of the image so the head isn't cut off */
   /* Dark mode variant styling: slightly moody but natural colors */
   filter: brightness(0.85) contrast(1.1) saturate(0.85);
-  transition: all 0.5s ease;
+  transition: all var(--transition-normal);
 }
 
 [data-theme="light"] .hero-variant-image {
@@ -200,7 +200,7 @@
   background: var(--container-color);
   border: 1px solid var(--border-color);
   padding: 0.75rem 1.25rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -231,7 +231,7 @@
 .overview-card {
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
   box-shadow: var(--shadow);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -248,7 +248,7 @@
 .overview-icon-wrap {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: rgba(var(--first-color-rgb), 0.08);
   color: var(--first-color);
   display: flex;
@@ -360,7 +360,7 @@
 .timeline-header {
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
@@ -439,11 +439,11 @@
   background: transparent;
   border: 1px solid var(--first-color);
   color: var(--first-color);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   font-size: 0.85rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all var(--transition-normal);
 }
 
 .btn-resume:hover {
@@ -474,7 +474,7 @@
   width: calc(33.333% - 1rem);
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 1.75rem;
   box-shadow: var(--shadow);
   display: flex;
@@ -493,7 +493,7 @@
   height: 48px;
   background: rgba(var(--first-color-rgb), 0.08);
   border: 1px solid rgba(var(--first-color-rgb), 0.15);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -534,7 +534,7 @@
   border: 1px solid var(--border-color);
   padding: 0.35rem 0.8rem;
   border-radius: 999px;
-  transition: all 0.2s ease;
+  transition: all var(--transition-normal);
 }
 
 .skill-pill:hover {

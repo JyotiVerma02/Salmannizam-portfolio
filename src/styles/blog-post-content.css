@@ -155,7 +155,7 @@
 }
 
 .article-body .copy-code-btn {
-  transition: all 0.2s ease-in-out;
+  transition: all var(--transition-normal)-in-out;
 }
 
 .article-body .copy-code-btn:hover {

@@ -29,12 +29,15 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
+ metadataBase: new URL("http://localhost:3000"),
+
   title: "Salman Nizam - Senior Developer",
   description: "Portfolio of Salman Nizam, a senior full-stack developer.",
+
   openGraph: {
     title: "Salman Nizam - Senior Developer",
     description: "Portfolio of Salman Nizam, a senior full-stack developer.",
-    url: "https://salmannizam.com",
+    url: "/",
     siteName: "Salman Nizam Portfolio",
     images: [
       {
@@ -46,8 +49,16 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
+
   alternates: {
-    canonical: "https://salmannizam.com",
+    canonical: "/",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Salman Nizam - Senior Developer",
+    description: "Portfolio of Salman Nizam, a senior full-stack developer.",
+    images: ["/image/og-image.jpg"],
   },
 };
 

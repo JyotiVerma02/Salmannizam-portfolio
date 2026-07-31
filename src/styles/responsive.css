@@ -228,7 +228,7 @@
   .experience__item {
     padding: 1.1rem 1.2rem;
     margin-bottom: 1.25rem;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
   }
 
   .experience__item h3 {
@@ -280,7 +280,7 @@
   .experience__item {
     padding: 1rem;
     margin-bottom: 1rem;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
   }
 
   .experience__item h3 {
@@ -354,7 +354,7 @@
     gap: 0.75rem;
     height: 68px;
     padding: 0 1rem;
-    border-radius: 16px;
+    border-radius: var(--radius-lg);
     width: 96%;
   }
 
@@ -375,7 +375,7 @@
 
   .navbar-admin-btn {
     padding: 0.5rem;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
   }
 
   .navbar-logout-btn {
@@ -420,7 +420,7 @@
     grid-template-columns: auto 1fr;
     height: 64px;
     padding: 0 0.8rem;
-    border-radius: 12px;
+    border-radius: var(--radius-md);
   }
 
   .navbar-shell.scrolled {
@@ -430,24 +430,24 @@
   .navbar-icon-btn {
     width: 36px;
     height: 36px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
   .navbar-right {
     gap: 6px;
     padding: 4px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     flex-wrap: nowrap;
     white-space: nowrap;
   }
 
   .navbar-mobile-drawer {
-    border-radius: 14px 0 0 14px;
+    border-radius: var(--radius-md) 0 0 14px;
     padding: 1rem;
   }
 
   .navbar-drawer-link {
-    border-radius: 10px;
+    border-radius: var(--radius-md);
     padding: 0.8rem 0.9rem;
   }
 
@@ -455,14 +455,14 @@
     padding: 0.4rem;
     min-width: 32px;
     min-height: 32px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
   .navbar-logout-btn {
     padding: 0.4rem;
     min-width: 32px;
     min-height: 32px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
   }
 
   .navbar-admin-btn svg,
@@ -544,7 +544,7 @@
   }
 
   .contact-details-box {
-    border-radius: 6px;
+    border-radius: var(--radius-sm);
   }
 }
 
@@ -578,7 +578,7 @@
     grid-template-columns: auto 1fr;
     height: 56px;
     padding: 0 0.6rem;
-    border-radius: 10px;
+    border-radius: var(--radius-md);
   }
 
   .navbar-shell.scrolled {
@@ -652,7 +652,7 @@
   .blog-hero-banner {
     width: calc(100% - 1rem);
     padding: 2rem 0 1.6rem;
-    border-radius: 22px;
+    border-radius: var(--radius-lg);
   }
 
   .blog-banner-title {
@@ -670,7 +670,7 @@
 
   .blog-toolbar {
     padding: 0.85rem;
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .filter-btn {
@@ -680,7 +680,7 @@
 
   .blog-search {
     padding: 0.72rem 0.9rem;
-    border-radius: 14px;
+    border-radius: var(--radius-md);
   }
 
   .blog-search input {
@@ -731,7 +731,7 @@
 
 @media (max-width: 420px) {
   .blog-hero-banner {
-    border-radius: 18px;
+    border-radius: var(--radius-lg);
   }
 
   .blog-banner-title {

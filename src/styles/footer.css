@@ -107,7 +107,7 @@ linear-gradient(
     grid-template-columns: 1fr;
     gap: 2.5rem;
     padding: 1.2rem;
-    border-radius: 22px;
+    border-radius: var(--radius-lg);
   }
 }
 
@@ -130,7 +130,7 @@ linear-gradient(
   width: 40px;
   height: 40px;
   background: var(--gradient-color);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   color: white;
   font-weight: 800;
   font-size: 1.05rem;
@@ -163,7 +163,7 @@ linear-gradient(
   justify-content: center;
   width: 42px;
   height: 42px;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   color: var(--text-color, #a1a1aa);
   background: rgba(255, 255, 255, 0.45);
   border: 1px solid rgba(148, 163, 184, 0.16);

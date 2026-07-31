@@ -94,7 +94,7 @@
   justify-content: center;
   gap: 8px;
   padding: 14px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 250, 252, 0.84));
   color: var(--white-color);
@@ -121,7 +121,7 @@
   height: 24px;
   display: grid;
   place-items: center;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   color: #ffffff;
   font-size: 0.78rem;
   font-weight: 900;
@@ -158,7 +158,7 @@
   display: grid;
   place-items: center;
   margin: 0 auto 14px;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   background: var(--gradient-color);
   color: #ffffff;
   font-size: 1.15rem;
@@ -197,7 +197,7 @@
 .input-group input {
   height: 40px;
   width: 100%;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   padding: 0 14px;
   border: 1px solid var(--border-color);
   background: var(--body-color);
@@ -221,7 +221,7 @@
   margin: -2px 0 16px;
   padding: 10px 12px;
   border: 1px solid rgba(220, 38, 38, 0.3);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: rgba(239, 68, 68, 0.1);
   color: #dc2626;
   font-size: 0.9rem;
@@ -237,7 +237,7 @@
   width: 100%;
   height: 42px;
   border: none;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: var(--gradient-color);
   color: #ffffff;
   font-size: 0.95rem;
@@ -433,4 +433,33 @@
 [data-theme="dark"] .feature:hover {
   background: rgba(255, 255, 255, 0.04) !important;
   border-color: rgba(var(--first-color-rgb), 0.22) !important;
+}
+
+/*==================================
+  FORM POLISH & FOCUS STATES
+==================================*/
+.admin-input {
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-color);
+  background: var(--body-color);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+}
+
+.admin-input:focus {
+  border-color: var(--first-color);
+  box-shadow: 0 0 0 3px rgba(var(--first-color-rgb), 0.2);
+  outline: none;
+}
+
+.admin-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f1f5f9;
+}
+
+[data-theme="dark"] .admin-input:disabled {
+  background: rgba(255, 255, 255, 0.05);
 }

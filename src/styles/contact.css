@@ -41,7 +41,7 @@ CONTACT SECTION
   flex-direction: column !important;
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -87,7 +87,7 @@ CONTACT SECTION
   border: 1.5px solid var(--border-color) !important;
   color: var(--white-color) !important;
   padding: 0.85rem 1rem !important;
-  border-radius: 10px !important;
+  border-radius: var(--radius-md) !important;
   font-size: 0.93rem !important;
   font-family: inherit !important;
   outline: none !important;
@@ -149,7 +149,7 @@ CONTACT SECTION
 .contact-info {
   background: var(--container-color);
   border: 1px solid var(--border-color);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 1.5rem;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -211,7 +211,7 @@ CONTACT SECTION
   display: flex;
   flex-direction: column;
   border: 1px solid var(--border-color);
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   overflow: hidden;
   margin-bottom: 1rem;
   background: var(--body-color);
@@ -247,7 +247,7 @@ CONTACT SECTION
   flex: 0 0 38px;
   width: 38px;
   height: 38px;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   background: rgba(var(--first-color-rgb), 0.08);
   color: var(--first-color);
   transition: background 0.25s;
@@ -295,7 +295,7 @@ CONTACT SECTION
 .social-link {
   width: 38px;
   height: 38px;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,7 +328,7 @@ CONTACT SECTION
 .form-status {
   margin-top: 0.85rem;
   padding: 0.7rem 1rem;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   font-size: 0.93rem;
   text-align: center;
   font-weight: 500;
@@ -385,4 +385,37 @@ CONTACT SECTION
   .contact-info {
     padding: 1.25rem;
   }
+}
+
+/*==================================
+  FORM POLISH & FOCUS STATES
+==================================*/
+.contact-form input,
+.contact-form textarea {
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border-color);
+  background: var(--body-color);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-family: inherit;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: var(--first-color);
+  box-shadow: 0 0 0 3px rgba(var(--first-color-rgb), 0.2);
+  outline: none;
+}
+
+.contact-form input:disabled,
+.contact-form textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background: #f1f5f9;
+}
+
+[data-theme="dark"] .contact-form input:disabled,
+[data-theme="dark"] .contact-form textarea:disabled {
+  background: rgba(255, 255, 255, 0.05);
 }
