@@ -146,12 +146,15 @@ export default function AdminLayoutClient({
 />
         </div>
 
-        <form action="/api/admin/logout" method="post" className="admin-sidebar-logout">
-          <button type="submit">
+        <div className="admin-sidebar-logout">
+          <button type="button" onClick={async () => {
+            await fetch("/api/admin/logout?t=" + Date.now(), { method: "POST" });
+            window.location.href = "/admin-login";
+          }}>
             <LogoutIcon />
             <span className="logout-label">Logout</span>
           </button>
-        </form>
+        </div>
       </aside>
 
       {/* Main Content Area */}
